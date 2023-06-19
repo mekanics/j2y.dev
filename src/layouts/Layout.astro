@@ -1,16 +1,16 @@
 ---
 export interface Props {
-	title: string;
+	title: string
 }
 
-const { title } = Astro.props;
+const { title } = Astro.props
 ---
 
 <!DOCTYPE html>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="description" content="Astro description">
+		<meta name="description" content="Astro description" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
@@ -22,15 +22,26 @@ const { title } = Astro.props;
 </html>
 <style is:global>
 	:root {
+		--accent-1: #252624;
+		--accent-2: #434343;
+		--accent-3: #f6f4f4;
+
 		--accent: 124, 58, 237;
 		--accent-gradient: linear-gradient(45deg, rgb(var(--accent)), #da62c4 30%, white 60%);
 	}
-	html {
-		font-family: system-ui, sans-serif;
-		background-color: #F6F6F6;
+
+	* {
+		box-sizing: border-box;
 	}
+
+	html {
+		font-family: 'iA Writer Duo V', system-ui, sans-serif;
+		background-color: var(--accent-3);
+		color: var(--accent-1);
+	}
+
 	code {
-		font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
-			Bitstream Vera Sans Mono, Courier New, monospace;
+		font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono,
+			Courier New, monospace;
 	}
 </style>

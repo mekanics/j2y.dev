@@ -1,11 +1,17 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Card from '../components/Card.astro';
+import Layout from '../layouts/Layout.astro'
+import Card from '../components/Card.astro'
 ---
 
-<Layout title="Welcome to Astro.">
+<Layout title="Welcome to j2y.dev">
 	<main>
-		<h1>Welcome to <span class="text-gradient">Astro</span></h1>
+		<section>
+			<h1>
+				Hi, I'm Alex –<br />
+				a freelance software engineer dedicated to crafting digital solutions.
+			</h1>
+		</section>
+
 		<p class="instructions">
 			To get started, open the directory <code>src/pages</code> in your project.<br />
 			<strong>Code Challenge:</strong> Tweak the "Welcome to Astro" message above.
@@ -38,11 +44,15 @@ import Card from '../components/Card.astro';
 <style>
 	main {
 		margin: auto;
-		padding: 1.5rem;
+		padding: 3vw;
 		max-width: 60ch;
+		min-height: 100vh;
+		min-height: 100svh;
+		min-width: 100vw;
+		min-width: 100svw;
 	}
 	h1 {
-		font-size: 3rem;
+		font-size: 10vw;
 		font-weight: 800;
 		margin: 0;
 	}
