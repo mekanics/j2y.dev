@@ -1,0 +1,30 @@
+---
+import { getImage } from 'astro:assets'
+import noiseImg from '../assets/noise.png'
+const optimizedNoise = await getImage({ src: noiseImg, format: 'avif' })
+---
+
+<div class="noise">
+    <div class="inner"></div>
+</div>
+<style define:vars={{ noiseImg: `url(${optimizedNoise.src})` }}>
+    .noise {
+        position: fixed;
+        inset: 0;
+        z-index: -1;
+        overflow: hidden;
+        pointer-events: none;
+        /* background-blend-mode: soft-light; */
+        mix-blend-mode: soft-light;
+        /* mix-blend-mode: dark-light; */
+    }
+
+    .inner {
+        height: 120%;
+        width: 100%;
+
+        background: var(--noiseImg), lightgray 0% 0% / 100px 100px repeat;
+        background-repeat: repeat;
+        opacity: 0.75;
+    }
+</style>
