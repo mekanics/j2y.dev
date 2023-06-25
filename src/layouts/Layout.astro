@@ -159,44 +159,44 @@ const schema = {
 		<!-- <Noise /> -->
 
 		<script type="application/ld+json" set:html={JSON.stringify(schema)} />
-	</body><style is:global>
-		@font-face {
-			font-family: 'DistantGalaxy';
-			src: url('/fonts/iAWriterDuoV.ttf') format('truetype');
-			font-weight: normal;
-			font-style: normal;
-			font-display: swap;
-		}
-
-		:root {
-			--accent-1: #f6f4f4;
-			--accent-2: #252624;
-			--accent-3: #434343;
-
-			--gutter-h: 3vw;
-			--gap: 40px;
-		}
-
-		* {
-			box-sizing: border-box;
-		}
-
-		html {
-			font-family: 'iA Writer Duo V', system-ui, sans-serif;
-			background: var(--accent-1, #f6f4f4);
-			color: var(--accent-2, #252624);
-		}
-
-		body {
-			margin: 0;
-		}
-
-		@media (prefers-color-scheme: dark) {
-			:root {
-				--accent-1: #252624;
-				--accent-2: #f6f4f4;
-				--accent-3: #434343;
+		<style is:global>
+			@font-face {
+				font-family: 'iA Writer Duo V';
+				src: url('/fonts/iAWriterDuoV.ttf') format('truetype');
+				font-style: normal;
+				font-display: swap;
 			}
-		}
-	</style>
+
+			:root {
+				--accent-1: #f6f4f4;
+				--accent-2: #252624;
+				--accent-3: #434343;
+
+				--gutter-h: 3vw;
+				--gap: 40px;
+			}
+
+			* {
+				box-sizing: border-box;
+			}
+
+			html {
+				font-family: 'iA Writer Duo V', system-ui, sans-serif;
+				background: var(--accent-1, #f6f4f4);
+				color: var(--accent-2, #252624);
+			}
+
+			body {
+				margin: 0;
+			}
+
+			@media (prefers-color-scheme: dark) {
+				:root {
+					--accent-1: #252624;
+					--accent-2: #f6f4f4;
+					--accent-3: #434343;
+				}
+			}
+		</style>
+	</body>
 </html>
