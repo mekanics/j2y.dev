@@ -726,6 +726,11 @@ array-iterate@^2.0.0:
   resolved "https://registry.yarnpkg.com/array-iterate/-/array-iterate-2.0.1.tgz#6efd43f8295b3fee06251d3d62ead4bd9805dd24"
   integrity sha512-I1jXZMjAgCMmxT4qxXfPXa6SthSoE8h6gkSI9BGGNv8mP8G/v0blc+qFnZu6K42vTOiuME596QaLO0TP3Lk0xg==
 
+astro-seo@^0.7.4:
+  version "0.7.4"
+  resolved "https://registry.yarnpkg.com/astro-seo/-/astro-seo-0.7.4.tgz#0c2788b97ec3944390be2dd39a8ad9a6aec294b0"
+  integrity sha512-E+wJmxOnvBRjgzVctdGk/VdwoEqeQ6Q/KgVW2wRBXZWJVDgOweB32Da/UiH0/FpGncPzo2daOrc08DNn5wTanw==
+
 astro@^2.6.5:
   version "2.6.5"
   resolved "https://registry.yarnpkg.com/astro/-/astro-2.6.5.tgz#726edbbdcdb9267eb738cd50a52487a3a50943e9"

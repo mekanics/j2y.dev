@@ -1,12 +1,28 @@
 ---
 import Header from './Header.astro'
+import { SEO } from 'astro-seo'
 
 export interface Props {
 	title: string
 }
 
 const { title } = Astro.props
-
+const description =
+	"Welcome to my world of full-stack software engineering! With a strong passion for web and mobile development, I strive to create innovative and user-friendly digital solutions. My expertise lies in crafting seamless user experiences and delivering high-quality, scalable applications. Let's collaborate and bring your ideas to life!"
+const openGraph = {
+	basic: {
+		title,
+		type: 'website',
+		image: 'https://www.j2y.dev/og.png',
+		url: 'https://www.j2y.dev',
+	},
+	image: {
+		alt: 'jy2.dev',
+	},
+	optional: {
+		description,
+	},
+}
 const schema = {
 	'@context': 'https://schema.org',
 	'@type': 'Person',
@@ -14,8 +30,7 @@ const schema = {
 	url: 'https://www.j2y.dev',
 	email: 'alexandre@j2y.dev',
 	image: 'https://www.j2y.dev/images/profile.jpg',
-	description:
-		"Welcome to my world of full-stack software engineering! With a strong passion for web and mobile development, I strive to create innovative and user-friendly digital solutions. My expertise lies in crafting seamless user experiences and delivering high-quality, scalable applications. Let's collaborate and bring your ideas to life!",
+	description,
 	sameAs: [
 		'https://www.linkedin.com/in/jolyAlexandre',
 		'https://gitlab.com/mekanics',
@@ -133,6 +148,8 @@ const schema = {
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<title>{title}</title>
+
+		<SEO title={title} description={description} openGraph={openGraph} />
 	</head>
 	<body>
 		<Header />
@@ -142,45 +159,44 @@ const schema = {
 		<!-- <Noise /> -->
 
 		<script type="application/ld+json" set:html={JSON.stringify(schema)} />
-	</body>
-</html>
-<style is:global>
-	@font-face {
-		font-family: 'DistantGalaxy';
-		src: url('/fonts/iAWriterDuoV.ttf') format('truetype');
-		font-weight: normal;
-		font-style: normal;
-		font-display: swap;
-	}
-
-	:root {
-		--accent-1: #f6f4f4;
-		--accent-2: #252624;
-		--accent-3: #434343;
-
-		--gutter-h: 3vw;
-		--gap: 40px;
-	}
-
-	* {
-		box-sizing: border-box;
-	}
-
-	html {
-		font-family: 'iA Writer Duo V', system-ui, sans-serif;
-		background: var(--accent-1, #f6f4f4);
-		color: var(--accent-2, #252624);
-	}
-
-	body {
-		margin: 0;
-	}
-
-	@media (prefers-color-scheme: dark) {
-		:root {
-			--accent-1: #252624;
-			--accent-2: #f6f4f4;
-			--accent-3: #434343;
+	</body><style is:global>
+		@font-face {
+			font-family: 'DistantGalaxy';
+			src: url('/fonts/iAWriterDuoV.ttf') format('truetype');
+			font-weight: normal;
+			font-style: normal;
+			font-display: swap;
 		}
-	}
-</style>
+
+		:root {
+			--accent-1: #f6f4f4;
+			--accent-2: #252624;
+			--accent-3: #434343;
+
+			--gutter-h: 3vw;
+			--gap: 40px;
+		}
+
+		* {
+			box-sizing: border-box;
+		}
+
+		html {
+			font-family: 'iA Writer Duo V', system-ui, sans-serif;
+			background: var(--accent-1, #f6f4f4);
+			color: var(--accent-2, #252624);
+		}
+
+		body {
+			margin: 0;
+		}
+
+		@media (prefers-color-scheme: dark) {
+			:root {
+				--accent-1: #252624;
+				--accent-2: #f6f4f4;
+				--accent-3: #434343;
+			}
+		}
+	</style>
+</html>
