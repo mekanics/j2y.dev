@@ -42,7 +42,8 @@ const pathname = new URL(Astro.request.url).pathname
 		text-decoration: none;
 		color: inherit;
 		font-size: 12px;
-		font-weight: 650;
+		/* font-weight: 650; */
+		font-variation-settings: 'wght' 650;
 	}
 
 	.nav {
@@ -62,34 +63,34 @@ const pathname = new URL(Astro.request.url).pathname
 		text-decoration: none;
 		position: relative;
 		font-size: 12px;
-		font-weight: 650;
+		/* font-weight: 650; */
+		font-variation-settings: 'wght' 650;
 
 		position: relative;
-
-		&::after {
-			content: '';
-			background-color: var(--accent-2);
-			position: absolute;
-			left: -5px;
-			right: -5px;
-			bottom: 5px;
-			height: 2px;
-
-			transform: scaleX(0);
-			transform-origin: left center;
-			transition: transform 100ms ease-in-out;
-		}
 	}
 
-	.nav-item:is(:hover, :focus-visible) {
-		&::after {
-			transform: scaleX(1);
-		}
+	.nav-item::after {
+		content: '';
+		background-color: var(--accent-2);
+		position: absolute;
+		left: -5px;
+		right: -5px;
+		bottom: 5px;
+		height: 2px;
+
+		transform: scaleX(0);
+		transform-origin: left center;
+		transition: transform 100ms ease-in-out;
+	}
+
+	.nav-item:is(:hover, :focus-visible)::after {
+		transform: scaleX(1);
 	}
 
 	.nav-item:is(:hover, :focus-visible),
 	.nav-item.is-active {
-		font-weight: 500;
+		/* font-weight: 500; */
+		font-variation-settings: 'wght' 500;
 	}
 
 	@media (min-width: 672px) {
@@ -102,10 +103,9 @@ const pathname = new URL(Astro.request.url).pathname
 		}
 		.nav-item {
 			font-size: 18px;
-
-			&::after {
-				bottom: 8px;
-			}
+		}
+		.nav-item::after {
+			bottom: 8px;
 		}
 	}
 </style>
