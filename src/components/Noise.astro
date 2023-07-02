@@ -1,30 +1,62 @@
 ---
 import { getImage } from 'astro:assets'
 import noiseImg from '../assets/noise.png'
-const optimizedNoise = await getImage({ src: noiseImg, format: 'avif' })
+
+const optimizedNoiseWebp = await getImage({ src: noiseImg, format: 'webp' })
 ---
 
 <div class="noise">
     <div class="inner"></div>
 </div>
-<style define:vars={{ noiseImg: `url(${optimizedNoise.src})` }}>
+
+<style
+    define:vars={{
+        webp: `url(${optimizedNoiseWebp.src})`,
+    }}
+>
     .noise {
         position: fixed;
         inset: 0;
         z-index: -1;
         overflow: hidden;
         pointer-events: none;
-        /* background-blend-mode: soft-light; */
-        mix-blend-mode: soft-light;
-        /* mix-blend-mode: dark-light; */
     }
 
     .inner {
-        height: 120%;
-        width: 100%;
+        position: absolute;
+        width: 200vw;
+        height: 200vh;
+        left: -50%;
+        top: -50%;
+        background-image: var(--webp);
+        animation: grain 3s steps(6) infinite;
+    }
 
-        background: var(--noiseImg), lightgray 0% 0% / 100px 100px repeat;
-        background-repeat: repeat;
-        opacity: 0.75;
+    @media (prefers-color-scheme: light) {
+        .inner {
+            opacity: 0.29;
+        }
+    }
+
+    @keyframes grain {
+        0%,
+        100% {
+            transform: translate(0, 0);
+        }
+        10% {
+            transform: translate(-5%, -10%);
+        }
+        30% {
+            transform: translate(3%, -15%);
+        }
+        50% {
+            transform: translate(12%, 9%);
+        }
+        70% {
+            transform: translate(9%, 4%);
+        }
+        90% {
+            transform: translate(-1%, 7%);
+        }
     }
 </style>
