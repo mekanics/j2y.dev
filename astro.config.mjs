@@ -8,4 +8,5 @@ export default defineConfig({
     },
     site: 'https://www.j2y.dev',
     integrations: [sitemap()],
+    compressHTML: true
 })
