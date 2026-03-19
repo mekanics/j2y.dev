@@ -5,23 +5,24 @@ tags: ["kubernetes", "k3s", "longhorn", "homelab"]
 draft: false
 ---
 
-If you're running a K3s cluster where not all nodes should participate in Longhorn storage (e.g., a low-powered node you only want for scheduling), you need to configure node selectors explicitly.
+Picture this: you've got a beautiful K3s cluster. Some beefy nodes, one tiny Raspberry Pi you added "just for fun." Longhorn sees all nodes as equal and starts scheduling storage replicas everywhere — including the Pi that barely has enough disk space for the OS.
 
-Without it, Longhorn will try to schedule replicas on every node — and if a node doesn't have the required disk, you'll get stuck volumes.
+Cue: stuck volumes, cryptic errors, and 45 minutes of your life you won't get back.
 
-Label the nodes that should host storage:
+The fix: tell Longhorn which nodes are allowed to hold data.
 
 ```bash
 kubectl label node <node-name> node.longhorn.io/create-default-disk=true
 ```
 
-Then in Longhorn's settings, set `Create Default Disk Only On Labeled Nodes` to `true`.
-
-Alternatively, in the Longhorn Helm values:
+Then flip the setting:
 
 ```yaml
+# In Longhorn Helm values
 defaultSettings:
   createDefaultDiskLabeledNodes: true
 ```
 
-Took me longer than it should have to find this — the error messages from Longhorn aren't particularly helpful when replicas can't be placed.
+Now Longhorn only provisions disks on nodes you've explicitly blessed. The tiny Pi can still schedule workloads — it just won't try to store 50GB of replicated data on its 32GB SD card.
+
+The error messages from Longhorn when replicas can't be placed are... aspirational in their unhelpfulness. You'll see "replica scheduling failed" and nothing about *why*. So if you're here because you searched that error: you're welcome.

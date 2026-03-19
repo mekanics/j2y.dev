@@ -5,24 +5,24 @@ tags: ["python", "ml", "xgboost", "data-science"]
 draft: false
 ---
 
-The classic mistake when training on time series data: using `train_test_split` with shuffle — which is the scikit-learn default.
+Here's a fun way to feel like a genius for 20 minutes: train a time series model with `train_test_split(shuffle=True)` — which is the scikit-learn default — and marvel at your incredible metrics.
 
-Random splits leak future information into training. Your model learns patterns it couldn't possibly have known at prediction time. Evaluation metrics look great. Production performance doesn't match.
+Then deploy it and watch it predict like a drunk weatherman.
 
-The fix is chronological splitting:
+Random splits leak future data into training. Your model literally learns from tomorrow to predict today. Of course it looks great on paper.
 
 ```python
-# Wrong: random split leaks future data
+# 🚨 This is time travel, not machine learning
 from sklearn.model_selection import train_test_split
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-# Right: respect temporal ordering
+# ✅ Respect the arrow of time
 split_idx = int(len(X) * 0.8)
 X_train, X_test = X.iloc[:split_idx], X.iloc[split_idx:]
 y_train, y_test = y.iloc[:split_idx], y.iloc[split_idx:]
 ```
 
-For proper cross-validation on time series, use `TimeSeriesSplit`:
+For proper cross-validation, use `TimeSeriesSplit` which rolls forward through time:
 
 ```python
 from sklearn.model_selection import TimeSeriesSplit
@@ -33,4 +33,4 @@ for train_idx, test_idx in tscv.split(X):
     # ...
 ```
 
-Learned this while building the badi-predictor. The random-split model had suspiciously good metrics.
+I learned this building [badi-predictor](https://github.com/mekanics/badi-predictor) — a pool occupancy prediction model. The random-split version had suspiciously good metrics. "Suspiciously good" in ML is never a compliment.

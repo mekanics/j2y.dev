@@ -5,15 +5,15 @@ tags: ["webpack", "micro-frontends", "javascript"]
 draft: false
 ---
 
-When using Webpack Module Federation, the `shared` configuration silently resolves to different versions of a dependency if you're not careful — and you won't notice until runtime.
+Module Federation has this wonderful feature where it lets two different versions of React run simultaneously in your app. I say "wonderful" because it will absolutely not tell you it's doing this. Everything works. Until it doesn't. And then you're staring at a hook error that makes zero sense.
 
-The fix: be explicit about `requiredVersion`.
+The fix: stop being lazy with the `shared` config.
 
 ```javascript
-// Instead of this
+// This looks clean. It's a trap.
 shared: ['react', 'react-dom']
 
-// Do this
+// This is what you actually want.
 shared: {
   react: { 
     singleton: true, 
@@ -28,6 +28,6 @@ shared: {
 }
 ```
 
-`singleton: true` ensures only one instance loads. `strictVersion: true` will throw an error at runtime if the version constraint isn't met — loud failure beats silent inconsistency.
+`singleton: true` = one React to rule them all. `strictVersion: true` = blow up loudly if versions don't match. Loud failure beats two hours of "why is `useState` returning undefined."
 
-The `deps` reference is just `package.json` dependencies pulled in: `const deps = require('./package.json').dependencies`.
+The `deps` reference is just `require('./package.json').dependencies`. Nothing fancy. The fancy part was the debugging session that led me here.
