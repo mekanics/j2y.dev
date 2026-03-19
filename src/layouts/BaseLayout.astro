@@ -77,7 +77,16 @@ const resolvedCanonical = canonicalUrl || Astro.url.href;
       })();
     </script>
   </head>
-  <body class="min-h-screen flex flex-col antialiased">
+  <body class="min-h-screen flex flex-col antialiased overflow-x-hidden">
+    <!-- Ambient page-level gradient (subtle, dark mode more vivid) -->
+    <div aria-hidden="true" class="pointer-events-none fixed inset-0 -z-20 overflow-hidden">
+      <div class="absolute top-0 left-1/4 w-[500px] h-[500px]
+                  bg-blue-100/60 dark:bg-blue-900/20
+                  rounded-full [filter:blur(140px)]"></div>
+      <div class="absolute top-1/3 right-1/4 w-[400px] h-[400px]
+                  bg-violet-100/40 dark:bg-violet-900/15
+                  rounded-full [filter:blur(160px)]"></div>
+    </div>
     <Header />
     <main class="flex-1">
       <slot />
