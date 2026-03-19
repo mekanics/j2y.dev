@@ -1,0 +1,123 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import TilEntry from '../components/TilEntry.astro';
+import { getCollection } from 'astro:content';
+
+// Featured work
+const allWork = await getCollection('work', ({ data }) => !data.draft);
+const featuredWork = allWork
+  .filter((p) => p.data.featured)
+  .sort((a, b) => b.data.date.localeCompare(a.data.date))
+  .slice(0, 3);
+
+// Featured projects
+const allProjects = await getCollection('projects', ({ data }) => !data.draft);
+const featuredProjects = allProjects
+  .filter((p) => p.data.featured)
+  .slice(0, 2);
+
+// Latest TIL
+const allTil = await getCollection('til', ({ data }) => !data.draft);
+const latestTil = allTil
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 3);
+---
+
+<BaseLayout
+  title="j2y.dev"
+  description="Alex Joly — Freelance tech lead and full-stack developer based in Zurich, Switzerland. I build things that work."
+>
+  <Hero />
+
+  <!-- Featured Work -->
+  <section class="max-w-4xl mx-auto px-6 py-12">
+    <div class="flex items-center justify-between mb-8">
+      <h2 class="text-xl font-semibold text-zinc-900 dark:text-zinc-100">
+        Selected work
+      </h2>
+      <a href="/work" class="text-sm text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors">
+        All projects →
+      </a>
+    </div>
+
+    <div class="grid gap-4">
+      {featuredWork.map((item) => (
+        <ProjectCard
+          title={item.data.title}
+          client={item.data.client}
+          role={item.data.role}
+          description={item.data.description}
+          stack={item.data.stack}
+          href={`/work/${item.id}`}
+          date={item.data.date}
+        />
+      ))}
+    </div>
+  </section>
+
+  <!-- Divider -->
+  <div class="max-w-4xl mx-auto px-6">
+    <hr class="border-zinc-100 dark:border-zinc-800" />
+  </div>
+
+  <!-- Personal Projects -->
+  <section class="max-w-4xl mx-auto px-6 py-12">
+    <div class="flex items-center justify-between mb-8">
+      <h2 class="text-xl font-semibold text-zinc-900 dark:text-zinc-100">
+        Building for fun
+      </h2>
+      <a href="/projects" class="text-sm text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors">
+        All projects →
+      </a>
+    </div>
+
+    <div class="grid sm:grid-cols-2 gap-4">
+      {featuredProjects.map((item) => (
+        <ProjectCard
+          title={item.data.title}
+          description={item.data.description}
+          stack={item.data.stack}
+          href={`/projects/${item.id}`}
+          status={item.data.status}
+          url={item.data.url}
+          github={item.data.github}
+        />
+      ))}
+    </div>
+  </section>
+
+  <!-- Divider -->
+  <div class="max-w-4xl mx-auto px-6">
+    <hr class="border-zinc-100 dark:border-zinc-800" />
+  </div>
+
+  <!-- Latest TIL -->
+  <section class="max-w-4xl mx-auto px-6 py-12">
+    <div class="flex items-center justify-between mb-6">
+      <div>
+        <h2 class="text-xl font-semibold text-zinc-900 dark:text-zinc-100">
+          Today I learned
+        </h2>
+        <p class="text-sm text-zinc-500 dark:text-zinc-400 mt-1">
+          Short notes on things I discover while building.
+        </p>
+      </div>
+      <a href="/til" class="text-sm text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors shrink-0">
+        All posts →
+      </a>
+    </div>
+
+    <div>
+      {latestTil.map((post) => (
+        <TilEntry
+          title={post.data.title}
+          date={post.data.date}
+          tags={post.data.tags}
+          href={`/til/${post.id}`}
+        />
+      ))}
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,44 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import { getCollection } from 'astro:content';
+
+const allProjects = await getCollection('projects', ({ data }) => !data.draft);
+
+// Sort: featured first, then by status
+const sortedProjects = allProjects.sort((a, b) => {
+  if (a.data.featured && !b.data.featured) return -1;
+  if (!a.data.featured && b.data.featured) return 1;
+  return 0;
+});
+---
+
+<BaseLayout
+  title="Projects"
+  description="Personal and open-source projects by Alex Joly — side projects, experiments, tools I've built for fun."
+>
+  <div class="max-w-4xl mx-auto px-6 py-16">
+    <header class="mb-12">
+      <h1 class="text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 mb-3">
+        Projects
+      </h1>
+      <p class="text-zinc-600 dark:text-zinc-400 max-w-xl">
+        The personal stuff. Side projects, open source, experiments. What I build when no one's paying me to.
+      </p>
+    </header>
+
+    <div class="grid sm:grid-cols-2 gap-4">
+      {sortedProjects.map((item) => (
+        <ProjectCard
+          title={item.data.title}
+          description={item.data.description}
+          stack={item.data.stack}
+          href={`/projects/${item.id}`}
+          status={item.data.status}
+          url={item.data.url}
+          github={item.data.github}
+        />
+      ))}
+    </div>
+  </div>
+</BaseLayout>
