@@ -1,10 +1,22 @@
 import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
 
+const clients = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/clients' }),
+  schema: z.object({
+    name: z.string(),
+    logo: z.string(),
+    url: z.string().url().optional(),
+    industry: z.string().optional(),
+    order: z.number().default(99),
+  }),
+});
+
 const work = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/work' }),
   schema: z.object({
     title: z.string(),
+    // client matches the `name` field in the clients collection — could become a reference later
     client: z.string(),
     agency: z.string().optional(),
     role: z.string(),
@@ -40,4 +52,4 @@ const til = defineCollection({
   }),
 });
 
-export const collections = { work, projects, til };
+export const collections = { clients, work, projects, til };

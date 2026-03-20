@@ -1,148 +1,109 @@
 ---
-const clients = [
-  // Big / most recognisable first
-  { name: 'UBS AG',               logo: '/logos/ubs.svg' },
-  { name: 'Procter & Gamble',     logo: '/logos/procter-gamble.svg' },
-  { name: 'Deutsche Telekom',     logo: '/logos/deutsche-telekom.svg' },
-  { name: 'Schweiz Tourismus',    logo: '/logos/schweiz-tourismus.svg' },
-  { name: 'Migros',               logo: '/logos/migros.svg' },
-  { name: 'ewz',                  logo: '/logos/ewz.svg' },
-  { name: 'Bühler AG',            logo: '/logos/buhler.svg' },
-  // Rest alphabetically
-  { name: 'Alpiq Digital AG',     logo: '/logos/alpiq.svg' },
-  { name: 'Biomed AG',            logo: '/logos/biomed.svg' },
-  { name: 'Canton of Thurgau',    logo: '/logos/canton-thurgau.svg' },
-  { name: 'dreipol GmbH',         logo: '/logos/dreipol.svg' },
-  { name: 'EBP Schweiz AG',       logo: '/logos/ebp.svg' },
-  { name: 'Feller AG',            logo: '/logos/feller.svg' },
-  { name: 'mygrid AG',            logo: '/logos/mygrid.svg' },
-  { name: 'originate GmbH',       logo: '/logos/originate.svg' },
-  { name: 'Reproad AG',           logo: '/logos/reproad.svg' },
-  { name: 'Spühl GmbH',           logo: '/logos/spuehl.svg' },
-];
+import { getCollection } from 'astro:content';
+
+const allClients = await getCollection('clients');
+const clients = allClients.sort((a, b) => a.data.order - b.data.order);
 ---
 
 <section class="py-10">
-  <p class="text-xs font-medium tracking-widest text-zinc-400 dark:text-zinc-500 uppercase text-center mb-8">
-    Companies I've worked with
-  </p>
+	<p class="text-xs font-medium tracking-widest text-zinc-400 dark:text-zinc-500 uppercase text-center mb-8">
+		Companies I've worked with
+	</p>
 
-  <!-- Outer wrapper: clips the scroll track and applies edge fades -->
-  <div class="logo-outer">
-    <!-- Scroll track: duplicated for seamless loop -->
-    <div class="logo-track">
-      <!-- First copy -->
-      {clients.map(({ name, logo }) => (
-        <div class="logo-slot">
-          <img
-            src={logo}
-            alt={name}
-            title={name}
-            class="logo-img"
-            loading="lazy"
-            decoding="async"
-          />
-        </div>
-      ))}
-      <!-- Duplicate copy for seamless loop -->
-      {clients.map(({ name, logo }) => (
-        <div class="logo-slot" aria-hidden="true">
-          <img
-            src={logo}
-            alt={name}
-            title={name}
-            class="logo-img"
-            loading="lazy"
-            decoding="async"
-          />
-        </div>
-      ))}
-    </div>
-  </div>
+	<!-- Outer wrapper: clips the scroll track and applies edge fades -->
+	<div class="logo-outer">
+		<!-- Scroll track: duplicated for seamless loop -->
+		<div class="logo-track">
+			<!-- First copy -->
+			{
+				clients.map((c) => (
+					<div class="logo-slot">
+						<img src={c.data.logo} alt={c.data.name} title={c.data.name} class="logo-img" loading="lazy" decoding="async" />
+					</div>
+				))
+			}
+			<!-- Duplicate copy for seamless loop -->
+			{
+				clients.map((c) => (
+					<div class="logo-slot" aria-hidden="true">
+						<img src={c.data.logo} alt={c.data.name} title={c.data.name} class="logo-img" loading="lazy" decoding="async" />
+					</div>
+				))
+			}
+		</div>
+	</div>
 </section>
 
 <style>
-  /* ── Outer container ─────────────────────────────────────────────── */
-  .logo-outer {
-    overflow: hidden;
-    /* Edge fades */
-    mask-image: linear-gradient(
-      to right,
-      transparent 0%,
-      black 10%,
-      black 90%,
-      transparent 100%
-    );
-    -webkit-mask-image: linear-gradient(
-      to right,
-      transparent 0%,
-      black 10%,
-      black 90%,
-      transparent 100%
-    );
-  }
+	/* ── Outer container ─────────────────────────────────────────────── */
+	.logo-outer {
+		overflow: hidden;
+		/* Edge fades */
+		mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+		-webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+	}
 
-  /* ── Scroll track ────────────────────────────────────────────────── */
-  .logo-track {
-    display: flex;
-    align-items: center;
-    gap: 3rem; /* gap-12 */
-    width: max-content;
-    animation: scroll 30s linear infinite;
-  }
+	/* ── Scroll track ────────────────────────────────────────────────── */
+	.logo-track {
+		display: flex;
+		align-items: center;
+		gap: 3rem; /* gap-12 */
+		width: max-content;
+		animation: scroll 90s linear infinite;
+	}
 
-  .logo-track:hover {
-    animation-play-state: paused;
-  }
+	.logo-track:hover {
+		animation-play-state: paused;
+	}
 
-  /* ── Individual logo slot ────────────────────────────────────────── */
-  .logo-slot {
-    /* Fixed container — same size for all logos */
-    width: 7rem;   /* w-28 */
-    height: 3rem;  /* h-12 */
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+	/* ── Individual logo slot ────────────────────────────────────────── */
+	.logo-slot {
+		/* Fixed container — same size for all logos */
+		width: 7rem; /* w-28 */
+		height: 3rem; /* h-12 */
+		flex-shrink: 0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
 
-  /* ── Logo image ──────────────────────────────────────────────────── */
-  .logo-img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    filter: grayscale(1) opacity(0.5);
-    transition: filter 0.25s ease;
-  }
+	/* ── Logo image ──────────────────────────────────────────────────── */
+	.logo-img {
+		width: 100%;
+		height: 100%;
+		object-fit: contain;
+		filter: grayscale(1) opacity(0.5);
+		transition: filter 0.25s ease;
+	}
 
-  .logo-img:hover {
-    filter: grayscale(0) opacity(1);
-  }
+	.logo-img:hover {
+		filter: grayscale(0) opacity(1);
+	}
 
-  /* Dark-mode adjustments */
-  :global(.dark) .logo-img {
-    filter: grayscale(1) opacity(0.4);
-  }
+	/* Dark-mode adjustments */
+	:global(.dark) .logo-img {
+		filter: grayscale(1) opacity(0.4);
+	}
 
-  :global(.dark) .logo-img:hover {
-    filter: grayscale(0) opacity(0.95);
-  }
+	:global(.dark) .logo-img:hover {
+		filter: grayscale(0) opacity(0.95);
+	}
 
-  /* ── Keyframe ────────────────────────────────────────────────────── */
-  @keyframes scroll {
-    from {
-      transform: translateX(0);
-    }
-    to {
-      /* Translate by exactly half the track width (one copy of the list) */
-      transform: translateX(-50%);
-    }
-  }
+	/* ── Keyframe ────────────────────────────────────────────────────── */
+	@keyframes scroll {
+		from {
+			transform: translateX(0);
+		}
+		to {
+			/* Translate by exactly half the track width (one copy of the list) */
+			transform: translateX(-50%);
+		}
+	}
 
-  /* Respect reduced-motion preference */
-  @media (prefers-reduced-motion: reduce) {
-    .logo-track {
-      animation: none;
-    }
-  }
+	/* Respect reduced-motion preference */
+	@media (prefers-reduced-motion: reduce) {
+		.logo-track {
+			animation: none;
+		}
+	}
 </style>
