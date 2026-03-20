@@ -1,14 +1,29 @@
 ---
 title: "work-vacation-planner"
-description: "Work and vacation day planner built for Swiss freelancers. Track billable days, plan time off, stay on top of your targets."
-stack: ["Next.js", "TypeScript", "SQLite", "Drizzle ORM"]
+description: "Work and vacation day planner with an API, built for Swiss freelancers. Canton-aware holidays, working day counts, and a calendar UI."
+stack: ["Next.js", "TypeScript", "SQLite", "Drizzle ORM", "Docker", "Helm"]
+github: "https://github.com/mekanics/work-vacation-planner"
 status: "complete"
 featured: false
 draft: false
 ---
 
-Swiss freelancers don't have HR tools. You either track your working days manually or you don't — and "I thought I had enough vacation days" is not a great position to be in in December.
+![Year view — working days per month with vacation and holidays](/images/work/work-vacation-planner-calendar.png)
 
-This planner handles the Swiss-specific complexity: public holidays by canton, part-time configurations, and the calculation of how many billable days remain in the year.
+## Why
 
-Built with Next.js and TypeScript, SQLite with Drizzle ORM for persistence. Feature-complete and used for planning my own schedule.
+I needed an API to retrieve my vacation and working days in an n8n workflow. I didn't want to hardcode those days in the workflow — holidays change, vacation plans change, and maintaining that in JSON inside an automation tool is a recipe for stale data.
+
+So I built a proper app with an API that n8n can query.
+
+## What It Does
+
+A calendar-based planner that handles the Swiss-specific complexity: public holidays by canton (all 26 cantons supported via openholidays.org), project tracking with colour-coded calendar stripes, and a year view showing billable days per month.
+
+The API exposes working days, vacation days, and project allocations — so any automation tool can pull live data instead of relying on hardcoded values.
+
+## Stack
+
+Next.js with TypeScript, SQLite via Drizzle ORM for zero-config persistence. Dockerized with a Helm chart for homelab deployment. OpenAPI spec at `/openapi.yaml`, Swagger UI at `/docs`.
+
+Feature-complete, used daily for planning my own schedule.
