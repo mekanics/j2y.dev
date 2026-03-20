@@ -1,7 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 
-const allClients = await getCollection('clients');
+const allClients = await getCollection('clients', ({ data }) => data.showInCarousel !== false);
 const clients = allClients.sort((a, b) => a.data.order - b.data.order);
 ---
 

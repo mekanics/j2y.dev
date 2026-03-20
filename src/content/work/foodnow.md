@@ -1,11 +1,11 @@
 ---
-title: "Foodnow — Cross-Platform Food Delivery"
-client: "Foodnow AG (powered by Migros)"
-agency: "dreipol GmbH"
-role: "Mobile Developer"
-stack: ["Swift", "Kotlin Multiplatform", "GraphQL", "iOS", "Android"]
+title: 'Foodnow — Cross-Platform Food Delivery'
+client: 'Foodnow AG (powered by Migros)'
+agency: 'dreipol GmbH'
+role: 'Mobile Developer'
+stack: ['Swift', 'Kotlin Multiplatform', 'GraphQL', 'iOS', 'Android']
 description: "Cross-platform food delivery app for one of Switzerland's largest retailers. iOS and Android with shared business logic via Kotlin Multiplatform."
-url: "https://www.dreipol.ch/de/referenzen/foodnow-app"
+url: 'https://www.dreipol.ch/de/referenzen/foodnow-app'
 startYear: 2023
 endYear: 2023
 featured: false

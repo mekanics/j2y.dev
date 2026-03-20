@@ -9,6 +9,7 @@ const clients = defineCollection({
     url: z.string().url().optional(),
     industry: z.string().optional(),
     order: z.number().default(99),
+    showInCarousel: z.boolean().default(true),
   }),
 });
 
