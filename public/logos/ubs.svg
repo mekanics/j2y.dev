@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 40" role="img">
+  <title>UBS</title>
+  <!-- UBS red keys icon (simplified 3 keys) -->
+  <rect x="6" y="8" width="10" height="24" rx="5" fill="none" stroke="#E60028" stroke-width="2.5"/>
+  <line x1="11" y1="20" x2="18" y2="20" stroke="#E60028" stroke-width="2.5"/>
+  <line x1="11" y1="24" x2="15" y2="24" stroke="#E60028" stroke-width="2.5"/>
+  <!-- UBS wordmark -->
+  <text x="26" y="27" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" fill="#1a1a1a" letter-spacing="2">UBS</text>
+</svg>

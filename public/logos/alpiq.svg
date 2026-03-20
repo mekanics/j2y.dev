@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 110 40" role="img">
+  <title>Alpiq</title>
+  <!-- Mountain / energy peak icon -->
+  <polyline points="8,30 18,10 24,20 30,14 38,30" fill="none" stroke="#0E4F9E" stroke-width="2.5" stroke-linejoin="round"/>
+  <!-- Text -->
+  <text x="45" y="27" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" fill="#1a1a1a" letter-spacing="0.5">alpiq</text>
+</svg>

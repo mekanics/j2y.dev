@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 40" role="img">
+  <title>ewz</title>
+  <!-- Lightning bolt icon -->
+  <polygon points="20,8 14,22 20,22 16,32 26,18 20,18 24,8" fill="#0071B8"/>
+  <!-- Text -->
+  <text x="32" y="27" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700" fill="#1a1a1a" letter-spacing="1">ewz</text>
+</svg>

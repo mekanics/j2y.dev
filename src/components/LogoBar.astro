@@ -1,25 +1,39 @@
 ---
 const clients = [
-  { name: 'Deutsche Telekom', logo: '/logos/deutsche-telekom.svg' },
-  { name: 'Migros',           logo: '/logos/migros.svg' },
-  { name: 'Spühl',            logo: '/logos/spuehl.svg' },
-  { name: 'Canton of Thurgau', logo: '/logos/canton-thurgau.svg' },
-  { name: 'mygrid',           logo: '/logos/mygrid.svg' },
-  { name: 'A leading Swiss bank', logo: '/logos/confidential.svg' },
+  // Big / most recognisable first
+  { name: 'UBS AG',               logo: '/logos/ubs.svg' },
+  { name: 'Procter & Gamble',     logo: '/logos/procter-gamble.svg' },
+  { name: 'Deutsche Telekom',     logo: '/logos/deutsche-telekom.svg' },
+  { name: 'Schweiz Tourismus',    logo: '/logos/schweiz-tourismus.svg' },
+  { name: 'Migros',               logo: '/logos/migros.svg' },
+  { name: 'ewz',                  logo: '/logos/ewz.svg' },
+  { name: 'Bühler AG',            logo: '/logos/buhler.svg' },
+  // Rest alphabetically
+  { name: 'Alpiq Digital AG',     logo: '/logos/alpiq.svg' },
+  { name: 'Biomed AG',            logo: '/logos/biomed.svg' },
+  { name: 'Canton of Thurgau',    logo: '/logos/canton-thurgau.svg' },
+  { name: 'dreipol GmbH',         logo: '/logos/dreipol.svg' },
+  { name: 'EBP Schweiz AG',       logo: '/logos/ebp.svg' },
+  { name: 'Feller AG',            logo: '/logos/feller.svg' },
+  { name: 'mygrid AG',            logo: '/logos/mygrid.svg' },
+  { name: 'originate GmbH',       logo: '/logos/originate.svg' },
+  { name: 'Reproad AG',           logo: '/logos/reproad.svg' },
+  { name: 'Spühl GmbH',           logo: '/logos/spuehl.svg' },
 ];
 ---
 
-<section class="max-w-4xl mx-auto px-6 py-10">
+<section class="max-w-5xl mx-auto px-6 py-10">
   <p class="text-xs font-medium tracking-widest text-zinc-400 dark:text-zinc-500 uppercase text-center mb-8">
     Companies I've worked with
   </p>
 
-  <div class="flex flex-wrap items-center justify-center gap-8 sm:gap-10">
+  <div class="flex flex-wrap items-center justify-center gap-6 sm:gap-8">
     {clients.map(({ name, logo }) => (
       <img
         src={logo}
         alt={name}
-        class="logo-item h-8 sm:h-9 w-auto"
+        title={name}
+        class="logo-item h-7 sm:h-8 w-auto"
         loading="lazy"
         decoding="async"
       />
