@@ -1,11 +1,11 @@
 ---
-title: "Recipe Governance Platform"
-client: "Spühl GmbH"
-agency: "Freelance (self-employed)"
-role: "Lead Developer"
-stack: ["React", "Next.js", "Python", "Flask", "Azure"]
-description: "Replaced a USB-stick-based production workflow with an auditable recipe governance system featuring 4-stage approval workflows."
-date: "2024"
+title: 'Recipe Governance Platform'
+client: 'Spühl GmbH'
+agency: 'Freelance (self-employed)'
+role: 'Lead Developer'
+stack: ['React', 'Next.js', 'Python', 'Flask', 'Azure']
+description: 'Replaced a USB-stick-based production workflow with an auditable recipe governance system featuring 4-stage approval workflows.'
+date: '2025'
 featured: true
 draft: false
 ---

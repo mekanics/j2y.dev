@@ -29,7 +29,7 @@ const statusColors: Record<string, string> = {
         <p class="text-xs font-mono text-zinc-500 dark:text-zinc-500 mb-1 truncate">{client}</p>
       )}
       <h3 class="font-semibold text-zinc-900 dark:text-zinc-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors leading-snug">
-        <a href={href} class="after:absolute after:inset-0 relative">
+        <a href={href} class="after:absolute after:inset-0 after:z-10 relative">
           {title}
         </a>
       </h3>
@@ -63,7 +63,7 @@ const statusColors: Record<string, string> = {
 
     <!-- External links (for projects) -->
     {(url || github) && (
-      <div class="flex items-center gap-2 shrink-0">
+      <div class="flex items-center gap-2 shrink-0 relative z-20">
         {github && (
           <a
             href={github}
