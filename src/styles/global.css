@@ -25,9 +25,7 @@
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    /* overflow-x: clip does NOT create a scroll container (unlike hidden),
-       so position:sticky works correctly in children */
-    overflow-x: clip;
+    /* overflow-x removed — was clipping ambient gradients */
   }
 
   /* Focus styles */
