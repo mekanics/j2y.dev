@@ -145,14 +145,15 @@ html {
 
 /* Glass card — dark mode */
 .dark .glass-card {
-  background: rgba(24, 24, 27, 0.85);
+  background: rgba(255, 255, 255, 0.03);
   border: none;
   outline: none;
-  box-shadow: 0 12px 32px -4px rgba(0, 0, 0, 0.35);
+  box-shadow: none;
 }
 
 .dark .glass-card:hover {
-  box-shadow: 0 16px 40px -4px rgba(0, 0, 0, 0.50);
+  background: rgba(255, 255, 255, 0.06);
+  box-shadow: none;
 }
 
 /* Page-level ambient background — CSS radial gradients replace filter:blur()
@@ -231,11 +232,7 @@ html {
 .terminal-block {
   border-radius: 0.625rem;
   overflow: hidden;
-  /* Subtle glow that echoes the green text */
-  box-shadow:
-    0 4px 24px rgba(0, 0, 0, 0.35),
-    0 0 0 1px rgba(143, 188, 143, 0.12),
-    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.35);
 }
 
 .terminal-inner {
