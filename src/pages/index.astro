@@ -5,6 +5,7 @@ import Hero from '../components/Hero.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import TilEntry from '../components/TilEntry.astro';
 import { getCollection } from 'astro:content';
+import socialsData from '../content/socials.json';
 
 // Featured work
 const allWork = await getCollection('work', ({ data }) => !data.draft);
@@ -49,12 +50,7 @@ const latestTil = allTil
       alternateName: 'Alex Joly',
       url: 'https://j2y.dev',
       image: 'https://avatars.githubusercontent.com/u/591059?v=4',
-      sameAs: [
-        'https://github.com/mekanics',
-        'https://www.linkedin.com/in/jolyalexandre/',
-        'https://mastodon.online/@jolyAlexandre',
-        'https://x.com/jolyAlexandre',
-      ],
+      sameAs: socialsData.map(s => s.href),
       jobTitle: 'Freelance Tech Lead & Full-Stack Developer',
       worksFor: {
         '@type': 'Organization',

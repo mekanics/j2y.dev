@@ -1,12 +1,12 @@
 ---
-const year = new Date().getFullYear();
+import socialsData from '../content/socials.json';
 
-const socials = [
-  { href: 'https://github.com/mekanics', label: 'GitHub' },
-  { href: 'https://www.linkedin.com/in/jolyalexandre/', label: 'LinkedIn' },
-  { href: 'https://mastodon.online/@jolyAlexandre', label: 'Mastodon', rel: 'me' },
-  { href: 'https://x.com/jolyAlexandre', label: 'X' },
-];
+const year = new Date().getFullYear();
+const socials = socialsData.map(s => ({
+  href: s.href,
+  label: s.platform,
+  rel: s.rel || undefined,
+}));
 ---
 
 <footer class="border-t border-zinc-200 dark:border-zinc-800 mt-24">

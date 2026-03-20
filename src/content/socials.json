@@ -1,0 +1,22 @@
+[
+  {
+    "platform": "GitHub",
+    "href": "https://github.com/mekanics",
+    "rel": null
+  },
+  {
+    "platform": "LinkedIn",
+    "href": "https://www.linkedin.com/in/jolyalexandre/",
+    "rel": null
+  },
+  {
+    "platform": "Mastodon",
+    "href": "https://mastodon.online/@jolyAlexandre",
+    "rel": "me"
+  },
+  {
+    "platform": "X",
+    "href": "https://x.com/jolyAlexandre",
+    "rel": null
+  }
+]
