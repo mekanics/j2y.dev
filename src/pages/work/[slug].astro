@@ -12,7 +12,7 @@ export async function getStaticPaths() {
 
 const { item } = Astro.props;
 const { Content } = await render(item);
-const { title, client, agency, role, stack, startYear, endYear } = item.data;
+const { title, client, agency, role, stack, startYear, endYear, url } = item.data;
 
 const yearRange = !endYear ? `${startYear} — present` : startYear === endYear ? `${startYear}` : `${startYear} — ${endYear}`;
 
@@ -116,6 +116,12 @@ const structuredData = [
           <dt class="text-xs font-mono text-zinc-500 dark:text-zinc-500 uppercase tracking-wide mb-1">Year</dt>
           <dd class="text-sm text-zinc-700 dark:text-zinc-300">{yearRange}</dd>
         </div>
+        {url && (
+          <div>
+            <dt class="text-xs font-mono text-zinc-500 dark:text-zinc-500 uppercase tracking-wide mb-1">Link</dt>
+            <dd class="text-sm"><a href={url} target="_blank" rel="noopener noreferrer" class="text-blue-600 dark:text-orange-400 hover:underline">{new URL(url).hostname.replace('www.', '')}</a></dd>
+          </div>
+        )}
         <div class="col-span-2 sm:col-span-3">
           <dt class="text-xs font-mono text-zinc-500 dark:text-zinc-500 uppercase tracking-wide mb-2">Stack</dt>
           <dd class="flex flex-wrap gap-1.5">
