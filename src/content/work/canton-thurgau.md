@@ -50,7 +50,7 @@ The architecture had to be straightforward. The components had to be accessible.
 
 ## Portal Walkthrough
 
-<video controls playsinline preload="metadata" class="rounded-lg w-full">
+<video controls playsinline preload="metadata" poster="/images/work/canton-thurgau/portal-walkthrough-poster.jpg" class="rounded-lg w-full">
   <source src="/images/work/canton-thurgau/portal-walkthrough.mp4" type="video/mp4" />
 </video>
 
