@@ -13,9 +13,9 @@ draft: false
 
 ## The Problem
 
-A legacy financial platform serving an internal business unit had grown into a monolith. Independent teams were stepping on each other. Deployments were risky and infrequent. The business needed to move faster — but the system wasn't built for that.
+A legacy monolith that multiple teams shared. Deployments were risky, infrequent, and no one wanted to own the consequences — which slowed everything down.
 
-Rearchitecting meant accepting risk. A big-bang rewrite was off the table. Any changes had to land in production incrementally, without disrupting active users.
+A big rewrite was off the table — too risky, too long. Any changes had to go through production incrementally, without disrupting active users.
 
 ## What We Built
 
@@ -30,12 +30,12 @@ The work involved:
 
 ## How We Did It
 
-Incrementally. We started with one module, got it running in production, and used that as the proof of concept and template for everything that followed. Each step validated the architecture before we committed to the next.
+We started with one module, got it running in production, and used that as the proof of concept and template for everything that followed. Each step validated the architecture before we committed to the next.
 
-No big-bang cutover. No dark launch for months. Just careful, deliberate decomposition — one module at a time.
+We didn't do a big cutover or a months-long dark launch. One module at a time, each one in production before starting the next.
 
 ## Outcome
 
-Independent teams now own independent modules. Deployments are routine. The system that was once a shared liability is now a platform each team can work in without fear of breaking something they didn't touch.
+Teams can now deploy independently. The system went from 'nobody wants to touch this' to each team owning their module and shipping on their own schedule.
 
-The architecture is documented and the pattern is repeatable. When the next team needs to extract their module, the path is already there.
+The architecture is documented. When the next team extracts their module, they have a working example to follow.

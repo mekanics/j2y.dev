@@ -9,7 +9,7 @@ featured: false
 draft: false
 ---
 
-![Year view — working days per month with vacation and holidays](/images/work/work-vacation-planner-calendar.png)
+![Year view — working days per month with vacation and holidays](./images/work-vacation-planner-calendar.png)
 
 ## Why
 

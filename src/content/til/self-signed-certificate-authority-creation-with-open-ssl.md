@@ -12,20 +12,7 @@ description: "Step-by-step guide to creating a self-signed certificate authority
 draft: false
 ---
 
-When running a homelab and managing internal services, SSL/TLS certificates are needed for secure communication. While public Certificate Authorities like [Let's Encrypt](https://letsencrypt.org/) work great for internet-facing services, they're not always practical for internal infrastructure. Creating your own Certificate Authority (CA) solves this problem.
-
-This post covers creating a self-signed Certificate Authority using OpenSSL and configuring it to work with cert-manager in Kubernetes for automated certificate management.
-
-## Why Create Your Own CA
-
-The main reasons for creating your own CA:
-
-- **Internal Services**: Perfect for services that only need to communicate within your network
-- **Development Environment**: Avoid certificate warnings during development
-- **Cost-Effective**: No need to purchase certificates for internal use
-- **Full Control**: You control the entire certificate lifecycle
-- **Client Certificate Authentication**: Secure services by requiring client certificates for access, providing strong mutual TLS (mTLS) authentication
-- **Learning**: Great way to understand how PKI (Public Key Infrastructure) works
+Let's Encrypt is great for anything internet-facing. For internal homelab services, it's more hassle than it's worth — you can't use HTTP-01 or DNS-01 challenges for services that aren't exposed to the internet. Here's how to set up your own CA with OpenSSL and wire it into cert-manager.
 
 ## Requirements
 
@@ -174,10 +161,4 @@ Common issues you might encounter:
 - **Namespace issues**: Verify cert-manager is running in the expected namespace
 - **Secret not found**: Check that the secret was created in the correct namespace
 
-## Conclusion
-
-Creating your own Certificate Authority provides a robust foundation for secure internal communications in your homelab or development environment. With cert-manager handling the certificate lifecycle automatically, you can focus on building your services while maintaining proper security practices.
-
-Your local network now has its own self-signed CA, and cert-manager will use it to issue new signed certificates for secure internal communications. Remember to handle the CA private key (`ca.key`) with utmost security to prevent unauthorized certificate issuance.
-
-This setup gives you the flexibility and control needed for internal PKI management while maintaining the convenience of automated certificate provisioning through cert-manager.
+Keep `ca.key` out of your git repo. If it leaks, anyone can issue trusted certs for your internal network.

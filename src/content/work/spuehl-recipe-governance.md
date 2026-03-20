@@ -14,7 +14,7 @@ draft: false
 
 Industrial machines run on recipes — precise configurations that define how production processes work. At Spühl, those recipes were being transported on USB sticks.
 
-That means no audit trail. No approval process. No version control. If the wrong recipe ended up on a machine, you'd find out the hard way. The risk wasn't theoretical — it was embedded in the daily workflow.
+No audit trail, no version control, no approval process. A wrong recipe on a machine meant you'd find out during production, not before.
 
 ## What We Built
 
@@ -29,12 +29,12 @@ A governance platform that replaces the USB workflow with a structured, traceabl
 
 ## The Shift
 
-The hard part wasn't the technology — it was changing how people worked. USB sticks are simple. Workflows add friction.
+The tech was straightforward. The harder thing was that USB sticks, despite everything, are simple — you grab one, walk to the machine, and it works. Adding a four-stage approval process means convincing production staff that the friction is worth it.
 
-The design had to be opinionated enough to enforce compliance, but not so rigid that people would route around it. That balance came from spending time with the people who actually run production — understanding their constraints before writing a line of code.
+I spent time on the production floor before building anything. If the approval workflow is too much friction, people route around it — which defeats the point. Getting that right required understanding how they actually work, not how the process diagram said they should.
 
 ## Outcome
 
-A fragile, untracked process replaced by one that meets production-grade compliance requirements. Recipes are traceable from creation to deployment. The risk of the wrong recipe reaching a machine is eliminated — not managed, eliminated.
+A fragile, untracked process replaced by one that meets production-grade compliance requirements. Recipes are traceable from creation to deployment. The wrong recipe can no longer reach a machine. Full stop.
 
 Spühl now has an auditable record of every change, every approval, every deployment.
