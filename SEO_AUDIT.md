@@ -1,4 +1,5 @@
 # SEO & Discoverability Audit — j2y.dev
+
 **Audited:** 2026-03-20  
 **Site:** https://j2y.dev  
 **Stack:** Astro 6 static site, deployed on Vercel
@@ -7,22 +8,22 @@
 
 ## Summary Scorecard
 
-| Area | Status |
-|---|---|
-| Title & meta descriptions | ⚠️ Needs improvement |
+| Area                       | Status               |
+| -------------------------- | -------------------- |
+| Title & meta descriptions  | ⚠️ Needs improvement |
 | Open Graph / Twitter Cards | ⚠️ Needs improvement |
-| Structured Data (JSON-LD) | ❌ Missing |
-| Sitemap | ⚠️ Needs improvement |
-| robots.txt | ✅ Good |
-| llms.txt | ❌ Missing |
-| Canonical URLs | ✅ Good |
-| Heading hierarchy | ✅ Good |
-| RSS feed | ⚠️ Needs improvement |
-| Favicon | ⚠️ Needs improvement |
-| Images | ✅ Good |
-| Internal linking | ⚠️ Needs improvement |
-| 404 page | ❌ Missing |
-| `<html lang>` | ✅ Good |
+| Structured Data (JSON-LD)  | ❌ Missing           |
+| Sitemap                    | ⚠️ Needs improvement |
+| robots.txt                 | ✅ Good              |
+| llms.txt                   | ❌ Missing           |
+| Canonical URLs             | ✅ Good              |
+| Heading hierarchy          | ✅ Good              |
+| RSS feed                   | ⚠️ Needs improvement |
+| Favicon                    | ⚠️ Needs improvement |
+| Images                     | ✅ Good              |
+| Internal linking           | ⚠️ Needs improvement |
+| 404 page                   | ❌ Missing           |
+| `<html lang>`              | ✅ Good              |
 
 ---
 
@@ -38,13 +39,17 @@
 
 **Details:**  
 `src/layouts/BaseLayout.astro` references `/og-default.png` as the default OG/Twitter card image:
+
 ```astro
 ogImage = '/og-default.png',
 ```
+
 And resolves it with:
+
 ```astro
 <meta property="og:image" content={new URL(ogImage, Astro.site)} />
 ```
+
 This generates `https://j2y.dev/og-default.png` on every page. The file `public/og-default.png` **does not exist**. Every social share across the entire site — all 21 pages — shows a broken/missing image. This is the single highest-impact SEO fix.
 
 **Action:**  
@@ -60,6 +65,7 @@ Zurich, Switzerland
 ```
 
 Tools: Figma, Canva, or a quick script. Once created, copy to:
+
 ```
 public/og-default.png
 ```
@@ -288,11 +294,13 @@ const jsonLd = {
 
 **Details:**  
 `src/pages/til/[slug].astro` line 21:
+
 ```astro
 description={`TIL: ${title}`}
 ```
 
 This generates descriptions like:
+
 - `"TIL: Simple Snippet to Add a Help Description to a Bash Script"` — just the title prefixed
 - `"TIL: Time series models will silently overfit if you use random train/test splits"` — same
 
@@ -312,7 +320,7 @@ const til = defineCollection({
     description: z.string().optional(), // ADD THIS
     draft: z.boolean().optional().default(false),
   }),
-});
+})
 ```
 
 **Step 2:** Update `src/pages/til/[slug].astro` to use it:
@@ -326,6 +334,7 @@ const metaDescription = description || `A short note on ${tags.slice(0, 2).map(t
 ```
 
 Then:
+
 ```astro
 <BaseLayout
   title={title}
@@ -337,33 +346,39 @@ Then:
 **Step 3:** Add `description` to each existing TIL frontmatter:
 
 `src/content/til/bash-script-help.md`:
+
 ```yaml
-description: "A reusable bash boilerplate that auto-generates --help output from inline comments using awk. Zero external dependencies."
+description: 'A reusable bash boilerplate that auto-generates --help output from inline comments using awk. Zero external dependencies.'
 ```
 
 `src/content/til/xgboost-time-series-leak.md`:
+
 ```yaml
-description: "Why shuffled train/test splits cause silent data leakage in time series models, and how TimeSeriesSplit fixes it."
+description: 'Why shuffled train/test splits cause silent data leakage in time series models, and how TimeSeriesSplit fixes it.'
 ```
 
 `src/content/til/today-I-hired-a-cfo.md`:
+
 ```yaml
-description: "How I automated monthly invoicing with n8n, Harvest, and Beancount — saving 15 minutes/month at the cost of 2 days engineering. Classic."
+description: 'How I automated monthly invoicing with n8n, Harvest, and Beancount — saving 15 minutes/month at the cost of 2 days engineering. Classic.'
 ```
 
 `src/content/til/k3s-longhorn-node-selector.md`:
+
 ```yaml
 description: "Longhorn storage will try to use all nodes by default — here's the node selector config to restrict it to designated storage nodes."
 ```
 
 `src/content/til/module-federation-shared-deps.md`:
+
 ```yaml
-description: "Webpack Module Federation can silently ship duplicate dependencies without version constraints — how to configure shared deps correctly."
+description: 'Webpack Module Federation can silently ship duplicate dependencies without version constraints — how to configure shared deps correctly.'
 ```
 
 `src/content/til/self-signed-certificate-authority-creation-with-open-ssl.md`:
+
 ```yaml
-description: "Step-by-step guide to creating a self-signed certificate authority with OpenSSL for homelab Kubernetes clusters and local HTTPS."
+description: 'Step-by-step guide to creating a self-signed certificate authority with OpenSSL for homelab Kubernetes clusters and local HTTPS.'
 ```
 
 ---
@@ -376,6 +391,7 @@ description: "Step-by-step guide to creating a self-signed certificate authority
 
 **Details:**  
 `src/layouts/BaseLayout.astro` line 43:
+
 ```astro
 <meta property="og:type" content="website" />
 ```
@@ -403,11 +419,13 @@ const {
 ```
 
 Then in the template:
+
 ```astro
 <meta property="og:type" content={ogType} />
 ```
 
 For `src/pages/til/[slug].astro`:
+
 ```astro
 <BaseLayout
   title={title}
@@ -418,6 +436,7 @@ For `src/pages/til/[slug].astro`:
 ```
 
 For `src/pages/work/[slug].astro`:
+
 ```astro
 <BaseLayout
   title={title}
@@ -443,6 +462,7 @@ For `src/pages/work/[slug].astro`:
 `dist/sitemap-0.xml` contains 21 URLs with zero `lastmod`, `changefreq`, or `priority` hints. Google uses `lastmod` to prioritise re-crawling. For a content site with TIL posts and work case studies, this is a missed signal.
 
 The default `@astrojs/sitemap` configuration in `astro.config.mjs` is minimal:
+
 ```javascript
 integrations: [sitemap()]
 ```
@@ -451,14 +471,14 @@ integrations: [sitemap()]
 Update `astro.config.mjs` to add `lastmod` and `changefreq` customisation:
 
 ```javascript
-import { defineConfig } from 'astro/config';
-import tailwindcss from '@tailwindcss/vite';
-import sitemap from '@astrojs/sitemap';
+import { defineConfig } from 'astro/config'
+import tailwindcss from '@tailwindcss/vite'
+import sitemap from '@astrojs/sitemap'
 
 export default defineConfig({
   site: 'https://j2y.dev',
   vite: {
-    plugins: [tailwindcss()]
+    plugins: [tailwindcss()],
   },
   integrations: [
     sitemap({
@@ -475,7 +495,7 @@ export default defineConfig({
       wrap: true,
     },
   },
-});
+})
 ```
 
 For proper per-page `lastmod` based on content date, you'd need a custom serialiser — but this gets you `lastmod` on every URL immediately.
@@ -531,6 +551,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 **Details:**  
 `src/pages/til/rss.xml.ts` line 15:
+
 ```typescript
 description: post.data.tags.map((t) => `#${t}`).join(' '),
 ```
@@ -541,29 +562,28 @@ This produces descriptions like `"#python #ml #xgboost #data-science"` in the fe
 Update `src/pages/til/rss.xml.ts` to use the `description` field once added (see Finding #3), with a fallback:
 
 ```typescript
-import rss from '@astrojs/rss';
-import { getCollection } from 'astro:content';
-import type { APIContext } from 'astro';
+import rss from '@astrojs/rss'
+import { getCollection } from 'astro:content'
+import type { APIContext } from 'astro'
 
 export async function GET(context: APIContext) {
-  const posts = await getCollection('til', ({ data }) => !data.draft);
-  const sortedPosts = posts.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+  const posts = await getCollection('til', ({ data }) => !data.draft)
+  const sortedPosts = posts.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
 
   return rss({
-    title: "j2y.dev — Today I Learned",
-    description: "Short notes on things Alex Joly discovers while building software.",
+    title: 'j2y.dev — Today I Learned',
+    description: 'Short notes on things Alex Joly discovers while building software.',
     site: context.site!.toString(),
-    items: sortedPosts.map((post) => ({
+    items: sortedPosts.map(post => ({
       title: post.data.title,
       pubDate: post.data.date,
       // Use description if available, otherwise a meaningful fallback
-      description: post.data.description
-        ?? `Tagged: ${post.data.tags.map((t) => `#${t}`).join(' ')}`,
+      description: post.data.description ?? `Tagged: ${post.data.tags.map(t => `#${t}`).join(' ')}`,
       categories: post.data.tags,
       link: `/til/${post.id}/`,
     })),
     customData: `<language>en</language>`,
-  });
+  })
 }
 ```
 
@@ -647,17 +667,19 @@ There are clear topical connections between content sections that are unexploite
 - Work detail pages have no "Related TIL" section
 - The Work index page links to individual work pages but not to related projects
 
-**Action:**  
+**Action:**
+
 1. **Add a `relatedTil` field to work and project frontmatter** (optional array of TIL slugs):
 
 In `src/content.config.ts`:
+
 ```typescript
 const work = defineCollection({
   schema: z.object({
     // ...existing fields...
     relatedTil: z.array(z.string()).optional(), // TIL post IDs
   }),
-});
+})
 ```
 
 2. **Add a "Related notes" section to `src/pages/work/[slug].astro`** after the content:
@@ -691,13 +713,15 @@ const relatedTilPosts = allTil.filter(p => relatedTilSlugs.includes(p.id));
 3. **For immediate wins, add links manually** in TIL post content bodies:
 
 In `src/content/til/xgboost-time-series-leak.md`, add at the end:
+
 ```markdown
-*Related: I use XGBoost for occupancy prediction in [badi-predictor](/projects/badi-predictor).*
+_Related: I use XGBoost for occupancy prediction in [badi-predictor](/projects/badi-predictor)._
 ```
 
 In `src/content/til/module-federation-shared-deps.md`:
+
 ```markdown
-*Related: I applied this to a production micro-frontend migration — [Card Center Platform case study](/work/swiss-bank-card-center).*
+_Related: I applied this to a production micro-frontend migration — [Card Center Platform case study](/work/swiss-bank-card-center)._
 ```
 
 ---
@@ -711,7 +735,8 @@ In `src/content/til/module-federation-shared-deps.md`:
 **Details:**  
 `public/` only contains `favicon.ico` and `favicon.svg`. No `apple-touch-icon.png` (180×180) or web manifest. When someone bookmarks the site on iOS, they get a blank bookmark icon. The favicon.svg is good for modern browsers but iOS Safari requires a PNG.
 
-**Action:**  
+**Action:**
+
 1. Create `public/apple-touch-icon.png` — 180×180px PNG version of the favicon.
 2. Add to `src/layouts/BaseLayout.astro` in `<head>`:
 
@@ -743,6 +768,7 @@ In `src/content/til/module-federation-shared-deps.md`:
 ```
 
 And link in `<head>`:
+
 ```astro
 <link rel="manifest" href="/site.webmanifest" />
 ```
@@ -782,11 +808,13 @@ Add to `src/layouts/BaseLayout.astro` in the Open Graph section:
 
 **Details:**  
 `src/pages/about.astro` line ~27:
+
 ```astro
 src="https://avatars.githubusercontent.com/u/591059?v=4"
 ```
 
 This is an external dependency (GitHub avatar CDN). Issues:
+
 - GitHub could change URL format or rate-limit
 - Not served through Astro's image optimisation pipeline (no WebP conversion, no resizing)
 - No `width`/`height` attributes causing CLS (Cumulative Layout Shift)
@@ -857,7 +885,8 @@ sitemap({
 **Status:** ⚠️ Needs improvement  
 **Priority:** Low
 
-**Details:**  
+**Details:**
+
 - `index.astro` meta description: `"Alex Joly"`
 - `about.astro` description + H1: `"Alexandre Joly"`
 - `work/index.astro` description: `"Alex Joly"`
@@ -878,26 +907,26 @@ Choose one canonical form. "Alexandre Joly" is the full legal name and is better
 
 These are done right — don't break them:
 
-| Item | Details |
-|---|---|
-| `<html lang="en">` ✅ | Set in `BaseLayout.astro` |
-| Canonical URLs ✅ | Present on all pages via `<link rel="canonical">` |
-| robots.txt ✅ | Correctly allows all crawlers and references sitemap |
-| RSS feed ✅ | Exists at `/til/rss.xml`, linked in `<head>` |
-| Unique page titles ✅ | All 21 pages have distinct titles |
-| Open Graph tags ✅ | Present on all pages (image broken, but tags exist) |
-| Twitter Card tags ✅ | `summary_large_image`, creator handle set |
-| Clean URLs ✅ | All URLs are descriptive and slug-based |
-| Heading hierarchy ✅ | H1→H2→H3 structure is correct on all pages |
-| Semantic HTML ✅ | `<header>`, `<nav>`, `<main>`, `<footer>`, `<article>`, `<section>`, `<time>`, `<dl>` used correctly |
-| Image lazy loading ✅ | Astro auto-adds `loading="lazy" decoding="async"` to content images |
-| WebP image conversion ✅ | Astro converts PNG content images to WebP (confirmed in dist) |
-| Image alt text ✅ | TIL post images have descriptive alt text |
-| Breadcrumb navigation ✅ | All detail pages have visible breadcrumb nav |
-| `aria-*` attributes ✅ | Decorative elements use `aria-hidden="true"`, nav links use `aria-current` |
-| Sitemap coverage ✅ | All 21 public pages are in the sitemap |
-| Sitemap domain ✅ | Production domain `https://j2y.dev` is correctly set |
-| Favicon (SVG + ICO) ✅ | Both formats present |
+| Item                     | Details                                                                                              |
+| ------------------------ | ---------------------------------------------------------------------------------------------------- |
+| `<html lang="en">` ✅    | Set in `BaseLayout.astro`                                                                            |
+| Canonical URLs ✅        | Present on all pages via `<link rel="canonical">`                                                    |
+| robots.txt ✅            | Correctly allows all crawlers and references sitemap                                                 |
+| RSS feed ✅              | Exists at `/til/rss.xml`, linked in `<head>`                                                         |
+| Unique page titles ✅    | All 21 pages have distinct titles                                                                    |
+| Open Graph tags ✅       | Present on all pages (image broken, but tags exist)                                                  |
+| Twitter Card tags ✅     | `summary_large_image`, creator handle set                                                            |
+| Clean URLs ✅            | All URLs are descriptive and slug-based                                                              |
+| Heading hierarchy ✅     | H1→H2→H3 structure is correct on all pages                                                           |
+| Semantic HTML ✅         | `<header>`, `<nav>`, `<main>`, `<footer>`, `<article>`, `<section>`, `<time>`, `<dl>` used correctly |
+| Image lazy loading ✅    | Astro auto-adds `loading="lazy" decoding="async"` to content images                                  |
+| WebP image conversion ✅ | Astro converts PNG content images to WebP (confirmed in dist)                                        |
+| Image alt text ✅        | TIL post images have descriptive alt text                                                            |
+| Breadcrumb navigation ✅ | All detail pages have visible breadcrumb nav                                                         |
+| `aria-*` attributes ✅   | Decorative elements use `aria-hidden="true"`, nav links use `aria-current`                           |
+| Sitemap coverage ✅      | All 21 public pages are in the sitemap                                                               |
+| Sitemap domain ✅        | Production domain `https://j2y.dev` is correctly set                                                 |
+| Favicon (SVG + ICO) ✅   | Both formats present                                                                                 |
 
 ---
 
@@ -906,18 +935,21 @@ These are done right — don't break them:
 Copy this and work through it:
 
 ### Immediate (30 mins each)
+
 - [ ] **Create `public/og-default.png`** — 1200×630px OG image (unblocks all social sharing)
 - [ ] **Add `og:type="article"` prop** to `BaseLayout.astro` and pass it from TIL/work slugs
 - [ ] **Create `src/pages/404.astro`** — basic branded 404 with nav back home
 - [ ] **Create `public/llms.txt`** — copy from template above
 
 ### Short-term (1-2 hours total)
+
 - [ ] **Add `description` to TIL frontmatter** — write real descriptions for all 6 posts
 - [ ] **Add `description` field to TIL schema** in `src/content.config.ts`
 - [ ] **Update `src/pages/til/[slug].astro`** to use description field
 - [ ] **Update `src/pages/til/rss.xml.ts`** to use descriptions in feed items
 
 ### Structured Data Sprint (2-3 hours)
+
 - [ ] **Add `jsonLd` prop to `BaseLayout.astro`**
 - [ ] **Add `Person` + `WebSite` JSON-LD to `index.astro`**
 - [ ] **Add `ProfilePage` JSON-LD to `about.astro`**
@@ -925,6 +957,7 @@ Copy this and work through it:
 - [ ] **Add `BreadcrumbList` JSON-LD to `work/[slug].astro`**, `projects/[slug].astro`, `til/[slug].astro`
 
 ### Polish (ongoing)
+
 - [ ] **Add `og:locale`** to `BaseLayout.astro`
 - [ ] **Create `apple-touch-icon.png`** and link it
 - [ ] **Add `relatedTil` links** between connected content pieces
@@ -933,4 +966,4 @@ Copy this and work through it:
 
 ---
 
-*Audit generated by Jarvis (OpenClaw research agent) — 2026-03-20*
+_Audit generated by Jarvis (OpenClaw research agent) — 2026-03-20_
