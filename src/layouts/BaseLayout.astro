@@ -77,7 +77,9 @@ const resolvedCanonical = canonicalUrl || Astro.url.href;
       })();
     </script>
   </head>
-  <body class="min-h-screen flex flex-col antialiased overflow-x-hidden">
+  <!-- overflow-x-clip (not overflow-x-hidden) so body does NOT become a
+       scroll container — overflow:hidden on body breaks position:sticky. -->
+  <body class="min-h-screen flex flex-col antialiased overflow-x-clip">
     <!-- Ambient page-level gradient — CSS radial gradients, no filter:blur().
          filter:blur() on fixed elements forces full-page re-composite every
          scroll frame; radial-gradient is a single GPU fill pass. -->

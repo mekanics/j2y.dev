@@ -25,7 +25,9 @@
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    overflow-x: hidden;
+    /* overflow-x: clip does NOT create a scroll container (unlike hidden),
+       so position:sticky works correctly in children */
+    overflow-x: clip;
   }
 
   /* Focus styles */
@@ -125,28 +127,32 @@ html {
 }
 
 /* Glass card — light mode
-   High-opacity background, no backdrop-filter (avoids GPU re-composite lag),
-   no close-range shadow or inset highlight (both look like borders) */
+   High-opacity background, no backdrop-filter (avoids GPU re-composite lag).
+   Box-shadow uses a large y-offset + negative spread so the shadow sits
+   cleanly BELOW the card and doesn't bleed around the sides/top (which
+   creates a false border halo at low opacity values). */
 .glass-card {
   background: rgba(255, 255, 255, 0.88);
   border: none;
-  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.06);
+  outline: none;
+  box-shadow: 0 12px 32px -4px rgba(0, 0, 0, 0.08);
   transition: box-shadow 0.2s ease;
 }
 
 .glass-card:hover {
-  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.09);
+  box-shadow: 0 16px 40px -4px rgba(0, 0, 0, 0.12);
 }
 
 /* Glass card — dark mode */
 .dark .glass-card {
   background: rgba(24, 24, 27, 0.85);
   border: none;
-  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.28);
+  outline: none;
+  box-shadow: 0 12px 32px -4px rgba(0, 0, 0, 0.35);
 }
 
 .dark .glass-card:hover {
-  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.42);
+  box-shadow: 0 16px 40px -4px rgba(0, 0, 0, 0.50);
 }
 
 /* Page-level ambient background — CSS radial gradients replace filter:blur()
