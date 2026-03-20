@@ -48,6 +48,12 @@ The architecture had to be straightforward. The components had to be accessible.
 
 ![Help & contact page with FAQ section, and graceful server error page](/images/work/canton-thurgau/help-contact-error.webp)
 
+## Portal Walkthrough
+
+<video controls playsinline preload="metadata" class="rounded-lg w-full">
+  <source src="/images/work/canton-thurgau/portal-walkthrough.mp4" type="video/mp4" />
+</video>
+
 ## Outcome
 
 A live digital government portal serving the citizens of Canton Thurgau. A design system with hand-drawn illustrations that makes government services feel approachable rather than bureaucratic. The kind of work where good UX means someone gets their scholarship application submitted in 15 minutes instead of mailing forms back and forth for weeks.
