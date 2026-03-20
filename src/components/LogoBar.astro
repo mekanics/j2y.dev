@@ -22,41 +22,127 @@ const clients = [
 ];
 ---
 
-<section class="max-w-5xl mx-auto px-6 py-10">
+<section class="py-10">
   <p class="text-xs font-medium tracking-widest text-zinc-400 dark:text-zinc-500 uppercase text-center mb-8">
     Companies I've worked with
   </p>
 
-  <div class="flex flex-wrap items-center justify-center gap-6 sm:gap-8">
-    {clients.map(({ name, logo }) => (
-      <img
-        src={logo}
-        alt={name}
-        title={name}
-        class="logo-item h-7 sm:h-8 w-auto"
-        loading="lazy"
-        decoding="async"
-      />
-    ))}
+  <!-- Outer wrapper: clips the scroll track and applies edge fades -->
+  <div class="logo-outer">
+    <!-- Scroll track: duplicated for seamless loop -->
+    <div class="logo-track">
+      <!-- First copy -->
+      {clients.map(({ name, logo }) => (
+        <div class="logo-slot">
+          <img
+            src={logo}
+            alt={name}
+            title={name}
+            class="logo-img"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+      ))}
+      <!-- Duplicate copy for seamless loop -->
+      {clients.map(({ name, logo }) => (
+        <div class="logo-slot" aria-hidden="true">
+          <img
+            src={logo}
+            alt={name}
+            title={name}
+            class="logo-img"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+      ))}
+    </div>
   </div>
 </section>
 
 <style>
-  .logo-item {
-    filter: grayscale(1) opacity(0.45);
+  /* ── Outer container ─────────────────────────────────────────────── */
+  .logo-outer {
+    overflow: hidden;
+    /* Edge fades */
+    mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      black 10%,
+      black 90%,
+      transparent 100%
+    );
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      black 10%,
+      black 90%,
+      transparent 100%
+    );
+  }
+
+  /* ── Scroll track ────────────────────────────────────────────────── */
+  .logo-track {
+    display: flex;
+    align-items: center;
+    gap: 3rem; /* gap-12 */
+    width: max-content;
+    animation: scroll 30s linear infinite;
+  }
+
+  .logo-track:hover {
+    animation-play-state: paused;
+  }
+
+  /* ── Individual logo slot ────────────────────────────────────────── */
+  .logo-slot {
+    /* Fixed container — same size for all logos */
+    width: 7rem;   /* w-28 */
+    height: 3rem;  /* h-12 */
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* ── Logo image ──────────────────────────────────────────────────── */
+  .logo-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: grayscale(1) opacity(0.5);
     transition: filter 0.25s ease;
   }
 
-  .logo-item:hover {
+  .logo-img:hover {
     filter: grayscale(0) opacity(1);
   }
 
-  /* Slightly higher hover opacity in dark mode */
-  :global(.dark) .logo-item {
+  /* Dark-mode adjustments */
+  :global(.dark) .logo-img {
     filter: grayscale(1) opacity(0.4);
   }
 
-  :global(.dark) .logo-item:hover {
+  :global(.dark) .logo-img:hover {
     filter: grayscale(0) opacity(0.95);
+  }
+
+  /* ── Keyframe ────────────────────────────────────────────────────── */
+  @keyframes scroll {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      /* Translate by exactly half the track width (one copy of the list) */
+      transform: translateX(-50%);
+    }
+  }
+
+  /* Respect reduced-motion preference */
+  @media (prefers-reduced-motion: reduce) {
+    .logo-track {
+      animation: none;
+    }
   }
 </style>
