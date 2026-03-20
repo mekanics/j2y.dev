@@ -185,7 +185,7 @@ html {
   box-shadow: none;
 }
 
-/* Gradient CTA button */
+/* Gradient CTA button — light: warm coral, dark: blue/violet */
 .btn-gradient {
   background: linear-gradient(135deg, oklch(55% 0.18 20), oklch(55% 0.18 35));
   color: white;
@@ -193,9 +193,18 @@ html {
   box-shadow: 0 2px 12px oklch(55% 0.18 25 / 0.35);
 }
 
+.dark .btn-gradient {
+  background: linear-gradient(135deg, oklch(55% 0.22 260), oklch(55% 0.22 300));
+  box-shadow: 0 2px 12px oklch(55% 0.22 280 / 0.35);
+}
+
 .btn-gradient:hover {
   filter: brightness(1.1);
   box-shadow: 0 4px 20px oklch(55% 0.18 25 / 0.5);
+}
+
+.dark .btn-gradient:hover {
+  box-shadow: 0 4px 20px oklch(55% 0.22 280 / 0.5);
 }
 
 .btn-gradient:active {
@@ -211,7 +220,7 @@ html {
 }
 
 .dark .gradient-heading {
-  background: linear-gradient(135deg, oklch(92% 0.02 25), oklch(75% 0.12 30));
+  background: linear-gradient(135deg, oklch(92% 0.02 260), oklch(75% 0.18 280));
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
