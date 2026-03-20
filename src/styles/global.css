@@ -159,7 +159,7 @@ html {
    fixed elements forces full-page re-composite on every scroll frame. */
 .page-ambient {
   background:
-    radial-gradient(circle at 35% 15%, oklch(92% 0.05 236 / 0.30) 0%, transparent 55%),
+    radial-gradient(circle at 35% 15%, oklch(96% 0.03 236 / 0.18) 0%, transparent 55%),
     radial-gradient(circle at 65% 45%, oklch(93% 0.04 278 / 0.15) 0%, transparent 50%);
 }
 
