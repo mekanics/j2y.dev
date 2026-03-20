@@ -22,6 +22,14 @@ const socials = [
     icon: `<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.748l7.73-8.835L1.254 2.25H8.08l4.259 5.63L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117z" /></svg>`,
   },
 ];
+
+const terminalLines = [
+  'Hey there! 👋',
+  "I'm Alex — freelance tech lead & full-stack dev.",
+  'Nearly 20 years shipping software across Swiss enterprise.',
+  'Industrial automation → micro-frontend architecture.',
+  'I scope it. I lead it. I ship it.',
+];
 ---
 
 <section class="relative max-w-4xl mx-auto px-6 pt-20 pb-16 overflow-hidden">
@@ -65,14 +73,22 @@ const socials = [
       I build things<br />that work.
     </h1>
 
-    <!-- Intro -->
-    <p class="text-lg text-zinc-600 dark:text-zinc-400 leading-relaxed mb-4">
-      I'm <strong class="text-zinc-900 dark:text-zinc-100 font-medium">Alex</strong> — a freelance tech lead and full-stack developer.
-      Nearly 20 years of shipping software for Swiss enterprise, from industrial automation to mobile apps to micro-frontend architecture.
-    </p>
-    <p class="text-lg text-zinc-600 dark:text-zinc-400 leading-relaxed mb-8">
-      I scope it. I lead it. I ship it.
-    </p>
+    <!-- Terminal hero block -->
+    <div class="terminal-block mb-8" role="region" aria-label="Introduction">
+      <div class="terminal-inner">
+        {terminalLines.map((line, i) => (
+          <div class="terminal-line">
+            <span class="terminal-prompt" aria-hidden="true">&gt;</span>
+            <span class="terminal-text">
+              {line}
+              {i === terminalLines.length - 1 && (
+                <span class="terminal-cursor" aria-hidden="true">█</span>
+              )}
+            </span>
+          </div>
+        ))}
+      </div>
+    </div>
 
     <!-- CTA + Socials -->
     <div class="flex flex-col sm:flex-row items-start sm:items-center gap-6">

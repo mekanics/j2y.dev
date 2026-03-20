@@ -218,6 +218,60 @@ html {
   -webkit-text-fill-color: transparent;
 }
 
+/* ============================================
+   Terminal Hero Block
+   ============================================ */
+
+/* Blinking cursor animation */
+@keyframes cursor-blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+.terminal-block {
+  border-radius: 0.625rem;
+  overflow: hidden;
+  /* Subtle glow that echoes the green text */
+  box-shadow:
+    0 4px 24px rgba(0, 0, 0, 0.35),
+    0 0 0 1px rgba(143, 188, 143, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.terminal-inner {
+  background: #1e1e1e;
+  padding: 1.25rem 1.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  line-height: 1.7;
+}
+
+.terminal-line {
+  display: flex;
+  gap: 0.6em;
+  align-items: baseline;
+}
+
+.terminal-prompt {
+  color: #5a8a5a;
+  flex-shrink: 0;
+  user-select: none;
+}
+
+.terminal-text {
+  color: #8fbc8f;
+  word-break: break-word;
+}
+
+.terminal-cursor {
+  display: inline-block;
+  color: #8fbc8f;
+  animation: cursor-blink 1s step-end infinite;
+  margin-left: 0.1em;
+  line-height: 1;
+  vertical-align: baseline;
+}
+
 /* Section gradient separator */
 .section-glow {
   position: relative;
