@@ -12,17 +12,23 @@ interface Props {
   canonicalUrl?: string;
   ogType?: 'website' | 'article';
   structuredData?: object | object[];
+  noindex?: boolean;
+  articlePublishedTime?: string;
+  articleAuthor?: string;
 }
 
 const {
   title,
-  description = 'Alex Joly — Freelance tech lead and full-stack developer based in Zurich, Switzerland.',
+  description = 'Alexandre Joly — Freelance tech lead and full-stack developer based in Zurich, Switzerland.',
   ogTitle,
   ogDescription,
   ogImage = '/og-default.png',
   canonicalUrl,
   ogType = 'website',
   structuredData,
+  noindex = false,
+  articlePublishedTime,
+  articleAuthor,
 } = Astro.props;
 
 const pageTitle = title === 'j2y.dev' ? title : `${title} — j2y.dev`;
@@ -41,15 +47,22 @@ const resolvedCanonical = canonicalUrl || Astro.url.href;
     <!-- Primary Meta -->
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
-    <link rel="canonical" href={resolvedCanonical} />
+    {noindex && <meta name="robots" content="noindex,nofollow" />}
+    {!noindex && <link rel="canonical" href={resolvedCanonical} />}
 
     <!-- Open Graph -->
+    <meta property="og:locale" content="en_US" />
     <meta property="og:type" content={ogType} />
     <meta property="og:title" content={resolvedOgTitle} />
     <meta property="og:description" content={resolvedOgDesc} />
     <meta property="og:url" content={resolvedCanonical} />
     <meta property="og:image" content={new URL(ogImage, Astro.site)} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:type" content="image/png" />
     <meta property="og:site_name" content="j2y.dev" />
+    {articlePublishedTime && <meta property="article:published_time" content={articlePublishedTime} />}
+    {articleAuthor && <meta property="article:author" content={articleAuthor} />}
 
     <!-- Twitter/X Card -->
     <meta name="twitter:card" content="summary_large_image" />

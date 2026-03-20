@@ -5,6 +5,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 <BaseLayout
   title="404 — Page Not Found"
   description="This page doesn't exist. It may have moved or been deleted."
+  noindex={true}
+  canonicalUrl="https://j2y.dev/"
 >
   <div class="max-w-4xl mx-auto px-6 py-32 text-center">
     <p class="font-mono text-6xl font-bold text-zinc-200 dark:text-zinc-800 mb-4">404</p>

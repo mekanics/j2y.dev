@@ -18,7 +18,31 @@ const { title, client, agency, role, stack, date } = item.data;
 const allClients = await getCollection('clients');
 const clientEntry = allClients.find((c) => c.data.name === client);
 
+// date is stored as "YYYY-MM" — convert to ISO for schema
+const isoDate = new Date(date + '-01').toISOString();
+
 const structuredData = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: title,
+    description: item.data.description,
+    datePublished: isoDate,
+    author: {
+      '@type': 'Person',
+      '@id': 'https://j2y.dev/#alex',
+      name: 'Alexandre Joly',
+      url: 'https://j2y.dev/about',
+    },
+    publisher: {
+      '@type': 'Person',
+      name: 'Alexandre Joly',
+      url: 'https://j2y.dev',
+    },
+    url: `https://j2y.dev/work/${item.id}/`,
+    mainEntityOfPage: `https://j2y.dev/work/${item.id}/`,
+    keywords: stack.join(', '),
+  },
   {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
@@ -46,6 +70,8 @@ const structuredData = [
   ogTitle={`${title} — j2y.dev`}
   ogDescription={item.data.description}
   ogType="article"
+  articlePublishedTime={isoDate}
+  articleAuthor="Alexandre Joly"
   structuredData={structuredData}
 >
   <div class="max-w-4xl mx-auto px-6 py-16">
