@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1200, height=630">
+  <title>OG Template — j2y.dev</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      width: 1200px;
+      height: 630px;
+      overflow: hidden;
+      background: #18181b;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      color: #fff;
+    }
+
+    .canvas {
+      width: 1200px;
+      height: 630px;
+      position: relative;
+      background: #18181b;
+      overflow: hidden;
+    }
+
+    /* ── Ambient gradient orbs ── */
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      pointer-events: none;
+    }
+
+    .orb-blue {
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(59, 130, 246, 0.35) 0%, transparent 70%);
+      top: -150px;
+      left: -80px;
+    }
+
+    .orb-violet {
+      width: 450px;
+      height: 450px;
+      background: radial-gradient(circle, rgba(139, 92, 246, 0.3) 0%, transparent 70%);
+      bottom: -120px;
+      right: 100px;
+    }
+
+    .orb-indigo {
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(99, 102, 241, 0.2) 0%, transparent 70%);
+      top: 200px;
+      left: 400px;
+    }
+
+    /* ── Subtle grid pattern overlay ── */
+    .grid-overlay {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+      background-size: 40px 40px;
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 20%, transparent 100%);
+      -webkit-mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 20%, transparent 100%);
+    }
+
+    /* ── Left panel: brand identity ── */
+    .left-panel {
+      position: absolute;
+      left: 72px;
+      top: 0;
+      bottom: 0;
+      width: 540px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 0;
+    }
+
+    /* Logo */
+    .logo {
+      font-family: 'JetBrains Mono', 'Courier New', monospace;
+      font-size: 72px;
+      font-weight: 700;
+      letter-spacing: -2px;
+      line-height: 1;
+      margin-bottom: 28px;
+    }
+
+    .logo .bracket {
+      background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 50%, #818cf8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .logo .inner {
+      color: #f8fafc;
+    }
+
+    /* Tagline */
+    .tagline {
+      font-size: 28px;
+      font-weight: 700;
+      color: #f8fafc;
+      line-height: 1.2;
+      margin-bottom: 20px;
+      letter-spacing: -0.5px;
+    }
+
+    .tagline .accent {
+      color: #818cf8;
+    }
+
+    /* Name */
+    .name {
+      font-size: 20px;
+      font-weight: 600;
+      color: #cbd5e1;
+      margin-bottom: 10px;
+      letter-spacing: 0.2px;
+    }
+
+    /* Role pill */
+    .role-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+
+    .role {
+      font-size: 15px;
+      font-weight: 500;
+      color: #94a3b8;
+      letter-spacing: 0.2px;
+    }
+
+    /* Location */
+    .location {
+      font-size: 14px;
+      font-weight: 400;
+      color: #64748b;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .location-flag {
+      font-size: 16px;
+    }
+
+    /* Divider line */
+    .divider {
+      position: absolute;
+      left: 624px;
+      top: 64px;
+      bottom: 64px;
+      width: 1px;
+      background: linear-gradient(
+        to bottom,
+        transparent 0%,
+        rgba(99, 102, 241, 0.4) 20%,
+        rgba(139, 92, 246, 0.5) 50%,
+        rgba(99, 102, 241, 0.4) 80%,
+        transparent 100%
+      );
+    }
+
+    /* ── Right panel: terminal block ── */
+    .right-panel {
+      position: absolute;
+      right: 60px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 490px;
+    }
+
+    .terminal {
+      background: #1e1e1e;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow:
+        0 0 0 1px rgba(99,102,241,0.15),
+        0 20px 60px rgba(0,0,0,0.5),
+        0 0 80px rgba(99,102,241,0.08);
+    }
+
+    /* Terminal titlebar */
+    .terminal-bar {
+      background: #2a2a2a;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+    }
+    .dot-red    { background: #ff5f57; }
+    .dot-yellow { background: #febc2e; }
+    .dot-green  { background: #28c840; }
+
+    .terminal-title {
+      flex: 1;
+      text-align: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: #6b7280;
+      letter-spacing: 0.5px;
+      margin-right: 36px;
+    }
+
+    /* Terminal body */
+    .terminal-body {
+      padding: 22px 24px 24px;
+      font-family: 'JetBrains Mono', 'Courier New', monospace;
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .t-line {
+      display: flex;
+      align-items: flex-start;
+      gap: 0;
+    }
+
+    .t-prompt {
+      color: #60a5fa;
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-right: 2px;
+    }
+
+    .t-cmd {
+      color: #e2e8f0;
+    }
+
+    .t-output {
+      color: #8fbc8f;
+      padding-left: 2px;
+    }
+
+    .t-comment {
+      color: #6b7280;
+    }
+
+    .t-key {
+      color: #a78bfa;
+    }
+
+    .t-val {
+      color: #8fbc8f;
+    }
+
+    .t-string {
+      color: #fbbf24;
+    }
+
+    .t-empty {
+      height: 6px;
+    }
+
+    .cursor {
+      display: inline-block;
+      width: 8px;
+      height: 14px;
+      background: #8fbc8f;
+      vertical-align: middle;
+      margin-left: 2px;
+      border-radius: 1px;
+    }
+
+    /* ── Bottom domain watermark ── */
+    .domain-bar {
+      position: absolute;
+      bottom: 32px;
+      left: 72px;
+      right: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .domain {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      font-weight: 500;
+      color: rgba(148, 163, 184, 0.5);
+      letter-spacing: 1px;
+    }
+
+    .domain-dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: rgba(99, 102, 241, 0.5);
+      margin: 0 8px;
+      display: inline-block;
+    }
+
+    /* Gradient border along bottom */
+    .bottom-line {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #3b82f6, #6366f1, #8b5cf6, #6366f1, #3b82f6);
+    }
+  </style>
+</head>
+<body>
+  <div class="canvas">
+    <!-- Ambient orbs -->
+    <div class="orb orb-blue"></div>
+    <div class="orb orb-violet"></div>
+    <div class="orb orb-indigo"></div>
+
+    <!-- Grid overlay -->
+    <div class="grid-overlay"></div>
+
+    <!-- Left panel -->
+    <div class="left-panel">
+      <div class="logo">
+        <span class="bracket">[</span><span class="inner">j2y</span><span class="bracket">]</span>
+      </div>
+      <div class="tagline">I build things<br>that <span class="accent">work.</span></div>
+      <div class="name">Alex Joly</div>
+      <div class="role-row">
+        <span class="role">Freelance Tech Lead &amp; Full-Stack Developer</span>
+      </div>
+      <div class="location">
+        <span class="location-flag">🇨🇭</span>
+        <span>Zurich, Switzerland</span>
+      </div>
+    </div>
+
+    <!-- Vertical divider -->
+    <div class="divider"></div>
+
+    <!-- Right panel: Terminal -->
+    <div class="right-panel">
+      <div class="terminal">
+        <div class="terminal-bar">
+          <div class="dot dot-red"></div>
+          <div class="dot dot-yellow"></div>
+          <div class="dot dot-green"></div>
+          <div class="terminal-title">~/alex — zsh</div>
+        </div>
+        <div class="terminal-body">
+          <div class="t-line">
+            <span class="t-prompt">❯&nbsp;</span>
+            <span class="t-cmd">cat profile.json</span>
+          </div>
+          <div class="t-empty"></div>
+          <div class="t-line">
+            <span class="t-output">{</span>
+          </div>
+          <div class="t-line">
+            <span class="t-output">&nbsp;&nbsp;<span class="t-key">"experience"</span>: <span class="t-string">"20+ years"</span>,</span>
+          </div>
+          <div class="t-line">
+            <span class="t-output">&nbsp;&nbsp;<span class="t-key">"focus"</span>: <span class="t-string">"Swiss enterprise"</span>,</span>
+          </div>
+          <div class="t-line">
+            <span class="t-output">&nbsp;&nbsp;<span class="t-key">"stack"</span>: [<span class="t-string">"TS"</span>, <span class="t-string">"React"</span>, <span class="t-string">"Swift"</span>],</span>
+          </div>
+          <div class="t-line">
+            <span class="t-output">&nbsp;&nbsp;<span class="t-key">"available"</span>: <span class="t-val">true</span></span>
+          </div>
+          <div class="t-line">
+            <span class="t-output">}</span>
+          </div>
+          <div class="t-empty"></div>
+          <div class="t-line">
+            <span class="t-prompt">❯&nbsp;</span>
+            <span class="t-cmd">open j2y.dev<span class="cursor"></span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom bar -->
+    <div class="domain-bar">
+      <span class="domain">j2y.dev</span>
+      <span class="domain" style="font-size:11px; opacity:0.5;">shipping software since 2005</span>
+    </div>
+
+    <!-- Gradient bottom accent line -->
+    <div class="bottom-line"></div>
+  </div>
+</body>
+</html>
