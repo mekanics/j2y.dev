@@ -125,40 +125,43 @@ html {
 }
 
 /* Glass card — light mode
-   Uses high-opacity background instead of backdrop-filter
-   to avoid GPU re-composite lag on scroll */
+   High-opacity background, no backdrop-filter (avoids GPU re-composite lag),
+   no close-range shadow or inset highlight (both look like borders) */
 .glass-card {
   background: rgba(255, 255, 255, 0.88);
   border: none;
-  box-shadow:
-    0 4px 24px rgba(0, 0, 0, 0.05),
-    0 1px 4px rgba(0, 0, 0, 0.03),
-    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.06);
   transition: box-shadow 0.2s ease;
 }
 
 .glass-card:hover {
-  box-shadow:
-    0 8px 32px rgba(0, 0, 0, 0.09),
-    0 2px 8px rgba(0, 0, 0, 0.05),
-    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.09);
 }
 
 /* Glass card — dark mode */
 .dark .glass-card {
-  background: rgba(24, 24, 27, 0.82);
+  background: rgba(24, 24, 27, 0.85);
   border: none;
-  box-shadow:
-    0 4px 24px rgba(0, 0, 0, 0.3),
-    0 1px 4px rgba(0, 0, 0, 0.2),
-    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.28);
 }
 
 .dark .glass-card:hover {
-  box-shadow:
-    0 8px 32px rgba(0, 0, 0, 0.45),
-    0 2px 8px rgba(0, 0, 0, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.42);
+}
+
+/* Page-level ambient background — CSS radial gradients replace filter:blur()
+   on fixed elements. Gradients are GPU-accelerated fill ops; filter:blur() on
+   fixed elements forces full-page re-composite on every scroll frame. */
+.page-ambient {
+  background:
+    radial-gradient(ellipse 65% 55% at 25% 0%, oklch(84% 0.07 236 / 0.55) 0%, transparent 70%),
+    radial-gradient(ellipse 55% 45% at 75% 33%, oklch(82% 0.07 278 / 0.40) 0%, transparent 70%);
+}
+
+.dark .page-ambient {
+  background:
+    radial-gradient(ellipse 65% 55% at 25% 0%, oklch(32% 0.13 236 / 0.20) 0%, transparent 70%),
+    radial-gradient(ellipse 55% 45% at 75% 33%, oklch(30% 0.13 278 / 0.15) 0%, transparent 70%);
 }
 
 /* Glass header — light mode */
