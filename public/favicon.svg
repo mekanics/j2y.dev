@@ -1,4 +1,26 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <rect width="32" height="32" rx="6" fill="#1a1a2e"/>
-  <text x="4" y="24" font-family="monospace" font-size="18" font-weight="bold" fill="#60a5fa">j2y</text>
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect width="512" height="512" />
+    <path d="M117 363.52V148H193.08V170.32H143.64V341.2H193.08V363.52H117Z" />
+    <path d="M394.853 148V363.52H318.773V341.2H368.213V170.32H318.773V148H394.853Z" />
+
+    <style>
+        rect {
+            fill: #252624;
+        }
+
+        path {
+            fill: #F6F4F4;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            rect {
+                fill: #F6F4F4;
+            }
+
+            path {
+                fill: #252624;
+            }
+        }
+    </style>
+
 </svg>
