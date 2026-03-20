@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ProjectCard from '../../components/ProjectCard.astro';
+import LogoBar from '../../components/LogoBar.astro';
 import { getCollection } from 'astro:content';
 
 const allWork = await getCollection('work', ({ data }) => !data.draft);
@@ -21,7 +22,9 @@ const sortedWork = allWork.sort((a, b) => b.data.date.localeCompare(a.data.date)
       </p>
     </header>
 
-    <div class="grid gap-4">
+    <LogoBar />
+
+    <div class="grid gap-4 mt-12">
       {sortedWork.map((item) => (
         <ProjectCard
           title={item.data.title}
