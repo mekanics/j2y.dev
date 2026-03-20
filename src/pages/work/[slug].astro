@@ -38,7 +38,7 @@ const clientEntry = allClients.find((c) => c.data.name === client);
       <div class="flex items-center gap-2 mb-2">
         {clientEntry && (
           <img
-            src={clientEntry.data.logo}
+            src={clientEntry.data.logo.src}
             alt={client}
             class="h-6 w-auto object-contain opacity-70 dark:opacity-60"
           />

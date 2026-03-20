@@ -1,6 +1,6 @@
 ---
 name: "ewz"
-logo: "/logos/ewz.svg"
+logo: "./logos/ewz.svg"
 url: "https://www.ewz.ch"
 industry: "Energy"
 order: 6

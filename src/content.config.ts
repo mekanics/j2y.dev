@@ -3,9 +3,9 @@ import { glob } from 'astro/loaders';
 
 const clients = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/clients' }),
-  schema: z.object({
+  schema: ({ image }) => z.object({
     name: z.string(),
-    logo: z.string(),
+    logo: image(),
     url: z.string().url().optional(),
     industry: z.string().optional(),
     order: z.number().default(99),
