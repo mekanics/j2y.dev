@@ -32,6 +32,33 @@ const timeline = [
 <BaseLayout
   title="About"
   description="Alexandre Joly — freelance tech lead and full-stack developer based in Zurich, Switzerland. 20+ years of building software."
+  structuredData={{
+    '@context': 'https://schema.org',
+    '@type': 'ProfilePage',
+    mainEntity: {
+      '@context': 'https://schema.org',
+      '@type': 'Person',
+      '@id': 'https://j2y.dev/#alex',
+      name: 'Alexandre Joly',
+      alternateName: 'Alex Joly',
+      url: 'https://j2y.dev',
+      image: 'https://avatars.githubusercontent.com/u/591059?v=4',
+      sameAs: [
+        'https://github.com/mekanics',
+        'https://www.linkedin.com/in/jolyalexandre/',
+        'https://mastodon.online/@jolyAlexandre',
+        'https://x.com/jolyAlexandre',
+      ],
+      jobTitle: 'Freelance Tech Lead & Full-Stack Developer',
+      description: 'Freelance tech lead and full-stack developer based in Zurich, Switzerland. 20+ years shipping software across Swiss enterprise.',
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: 'Zurich',
+        addressCountry: 'CH',
+      },
+      knowsLanguage: ['en', 'de', 'fr'],
+    },
+  }}
 >
   <div class="max-w-4xl mx-auto px-6 py-16">
     <div class="grid lg:grid-cols-3 gap-12 lg:gap-16">

@@ -48,6 +48,7 @@ const til = defineCollection({
     title: z.string(),
     date: z.coerce.date(),
     tags: z.array(z.string()),
+    description: z.string().optional(),
     draft: z.boolean().optional().default(false),
   }),
 });

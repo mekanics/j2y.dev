@@ -2,6 +2,7 @@
 title: "Module Federation shared dependencies need explicit version constraints"
 date: "2024-11-15"
 tags: ["webpack", "micro-frontends", "javascript"]
+description: "Webpack Module Federation can silently ship duplicate dependencies without version constraints — how to configure shared deps correctly."
 draft: false
 ---
 

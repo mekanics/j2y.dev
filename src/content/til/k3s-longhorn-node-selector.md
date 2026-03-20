@@ -2,6 +2,7 @@
 title: "Longhorn requires a node selector when mixing storage and non-storage nodes"
 date: "2024-09-03"
 tags: ["kubernetes", "k3s", "longhorn", "homelab"]
+description: "Longhorn storage will try to use all nodes by default — here's the node selector config to restrict it to designated storage nodes."
 draft: false
 ---
 

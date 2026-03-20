@@ -10,6 +10,8 @@ interface Props {
   ogDescription?: string;
   ogImage?: string;
   canonicalUrl?: string;
+  ogType?: 'website' | 'article';
+  structuredData?: object | object[];
 }
 
 const {
@@ -19,6 +21,8 @@ const {
   ogDescription,
   ogImage = '/og-default.png',
   canonicalUrl,
+  ogType = 'website',
+  structuredData,
 } = Astro.props;
 
 const pageTitle = title === 'j2y.dev' ? title : `${title} — j2y.dev`;
@@ -40,7 +44,7 @@ const resolvedCanonical = canonicalUrl || Astro.url.href;
     <link rel="canonical" href={resolvedCanonical} />
 
     <!-- Open Graph -->
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={ogType} />
     <meta property="og:title" content={resolvedOgTitle} />
     <meta property="og:description" content={resolvedOgDesc} />
     <meta property="og:url" content={resolvedCanonical} />
@@ -64,6 +68,11 @@ const resolvedCanonical = canonicalUrl || Astro.url.href;
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Structured Data -->
+    {structuredData && (
+      <script type="application/ld+json" set:html={JSON.stringify(Array.isArray(structuredData) ? structuredData : [structuredData])} />
+    )}
 
     <!-- Theme detection (inline to avoid flash) -->
     <script is:inline>

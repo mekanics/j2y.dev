@@ -7,6 +7,7 @@ tags:
   - awk
   - unix
   - documentation
+description: "A reusable bash boilerplate that auto-generates --help output from inline comments using awk. Zero external dependencies."
 draft: false
 ---
 This is my standard boilerplate to add a help documentation to a bash script.

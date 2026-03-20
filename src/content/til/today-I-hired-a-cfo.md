@@ -8,6 +8,7 @@ tags:
   - finance
   - beancount
   - harvest
+description: "How I automated monthly invoicing with n8n, Harvest, and Beancount — saving 15 minutes/month at the cost of 2 days engineering. Classic."
 draft: false
 ---
 

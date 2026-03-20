@@ -8,6 +8,7 @@ tags:
   - ssl
   - cert-manager
   - security
+description: "Step-by-step guide to creating a self-signed certificate authority with OpenSSL for homelab Kubernetes clusters and local HTTPS."
 draft: false
 ---
 

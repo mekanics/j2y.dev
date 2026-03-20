@@ -1,9 +1,10 @@
 ---
-title: "badi-predictor"
-description: "ML system predicting Zürich public pool (Badi) occupancy using real-time data and historical patterns."
-stack: ["Python", "XGBoost", "FastAPI", "TimescaleDB", "Docker"]
-github: "https://github.com/mekanics/badi-predictor"
-status: "live"
+title: 'badi-predictor'
+description: 'ML system predicting Zürich public pool (Badi) occupancy using real-time data and historical patterns.'
+stack: ['Python', 'XGBoost', 'FastAPI', 'TimescaleDB', 'Docker']
+github: 'https://github.com/mekanics/badi-predictor'
+url: 'https://badifrei.ch'
+status: 'live'
 featured: true
 draft: false
 ---

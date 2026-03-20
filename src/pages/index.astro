@@ -28,7 +28,47 @@ const latestTil = allTil
 
 <BaseLayout
   title="j2y.dev"
-  description="Alex Joly — Freelance tech lead and full-stack developer based in Zurich, Switzerland. I build things that work."
+  description="Alexandre Joly — Freelance tech lead and full-stack developer based in Zurich, Switzerland. I build things that work."
+  structuredData={[
+    {
+      '@context': 'https://schema.org',
+      '@type': 'WebSite',
+      name: 'j2y.dev',
+      url: 'https://j2y.dev',
+      description: 'Personal portfolio of Alexandre Joly — freelance tech lead and full-stack developer in Zurich',
+      author: {
+        '@type': 'Person',
+        name: 'Alexandre Joly',
+      },
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Person',
+      '@id': 'https://j2y.dev/#alex',
+      name: 'Alexandre Joly',
+      alternateName: 'Alex Joly',
+      url: 'https://j2y.dev',
+      image: 'https://avatars.githubusercontent.com/u/591059?v=4',
+      sameAs: [
+        'https://github.com/mekanics',
+        'https://www.linkedin.com/in/jolyalexandre/',
+        'https://mastodon.online/@jolyAlexandre',
+        'https://x.com/jolyAlexandre',
+      ],
+      jobTitle: 'Freelance Tech Lead & Full-Stack Developer',
+      worksFor: {
+        '@type': 'Organization',
+        name: 'Self-employed',
+      },
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: 'Zurich',
+        addressCountry: 'CH',
+      },
+      knowsLanguage: ['en', 'de', 'fr'],
+      description: 'Freelance tech lead and full-stack developer based in Zurich, Switzerland. 20+ years shipping software across Swiss enterprise.',
+    },
+  ]}
 >
   <Hero />
 

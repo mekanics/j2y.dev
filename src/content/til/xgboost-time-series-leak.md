@@ -2,6 +2,7 @@
 title: 'Time series models will silently overfit if you use random train/test splits'
 date: '2026-03-08'
 tags: ['python', 'ml', 'xgboost', 'data-science']
+description: "Why shuffled train/test splits cause silent data leakage in time series models, and how TimeSeriesSplit fixes it."
 draft: false
 ---
 
