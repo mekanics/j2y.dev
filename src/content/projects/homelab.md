@@ -3,6 +3,7 @@ title: "Homelab"
 description: "Kubernetes cluster on Raspberry Pi — K3s, Cilium, Longhorn, GitOps with ArgoCD. Because running production infrastructure at home is a perfectly reasonable hobby."
 stack: ["K3s", "Cilium", "Longhorn", "ArgoCD", "CloudNative-PG", "Raspberry Pi"]
 github: "https://github.com/mekanics/homelab"
+year: 2022
 status: "in-progress"
 featured: false
 draft: false

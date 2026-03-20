@@ -3,6 +3,7 @@ title: "work-vacation-planner"
 description: "Work and vacation day planner with an API, built for Swiss freelancers. Canton-aware holidays, working day counts, and a calendar UI."
 stack: ["Next.js", "TypeScript", "SQLite", "Drizzle ORM", "Docker", "Helm"]
 github: "https://github.com/mekanics/work-vacation-planner"
+year: 2026
 status: "complete"
 featured: false
 draft: false

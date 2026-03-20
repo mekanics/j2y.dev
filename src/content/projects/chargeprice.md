@@ -3,6 +3,7 @@ title: "chargeprice.ch"
 description: "EV charging price comparison tool for Switzerland. Find the cheapest charging network for your car."
 stack: ["Web App"]
 url: "https://www.chargeprice.ch"
+year: 2024
 status: "live"
 featured: true
 draft: false

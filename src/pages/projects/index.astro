@@ -5,12 +5,8 @@ import { getCollection } from 'astro:content';
 
 const allProjects = await getCollection('projects', ({ data }) => !data.draft);
 
-// Sort: featured first, then by status
-const sortedProjects = allProjects.sort((a, b) => {
-  if (a.data.featured && !b.data.featured) return -1;
-  if (!a.data.featured && b.data.featured) return 1;
-  return 0;
-});
+// Sort: newest first by year
+const sortedProjects = allProjects.sort((a, b) => (b.data.year ?? 0) - (a.data.year ?? 0));
 ---
 
 <BaseLayout

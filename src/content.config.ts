@@ -35,6 +35,7 @@ const projects = defineCollection({
     title: z.string(),
     description: z.string(),
     stack: z.array(z.string()),
+    year: z.number().optional(),
     url: z.string().optional(),
     github: z.string().optional(),
     status: z.enum(['live', 'complete', 'in-progress', 'archived']),

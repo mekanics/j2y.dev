@@ -4,6 +4,7 @@ description: 'ML system predicting Zürich public pool (Badi) occupancy using re
 stack: ['Python', 'XGBoost', 'FastAPI', 'TimescaleDB', 'Docker']
 github: 'https://github.com/mekanics/badi-predictor'
 url: 'https://badifrei.ch'
+year: 2026
 status: 'live'
 featured: true
 draft: false
