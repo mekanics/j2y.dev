@@ -12,7 +12,7 @@ featured: false
 draft: false
 ---
 
-![Restaurant menu with burger options and prices](./images/foodnow/restaurant-menu.jpg)
+![Foodnow app — restaurant browsing with food categories](./images/foodnow/hero.jpg)
 
 ## The Context
 
