@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 60" role="img">
+  <title>Canton of Thurgau</title>
+  <!-- Shield shape -->
+  <path d="M40 58 C40 58 8 42 8 20 L8 6 L72 6 L72 20 C72 42 40 58 40 58Z" fill="#007A3D"/>
+  <!-- White diagonal stripe (Thurgau colours: green/white) -->
+  <path d="M8 6 L72 6 L72 20 L40 58 L8 20Z" fill="#007A3D"/>
+  <path d="M8 6 L72 6 L72 14 L8 14Z" fill="white"/>
+  <path d="M8 14 L72 14 L72 20 L52 36 L28 36 L8 20Z" fill="white"/>
+  <!-- TG text -->
+  <text x="40" y="35" font-family="Arial, sans-serif" font-size="16" font-weight="700" fill="#007A3D" text-anchor="middle">TG</text>
+  <!-- Simpler shield: just green with white TG -->
+  <path d="M40 57 C40 57 9 41 9 20 L9 7 L71 7 L71 20 C71 41 40 57 40 57Z" fill="#1D6F42"/>
+  <text x="40" y="38" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="white" text-anchor="middle">TG</text>
+</svg>

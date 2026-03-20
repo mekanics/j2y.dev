@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
+import LogoBar from '../components/LogoBar.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import TilEntry from '../components/TilEntry.astro';
 import { getCollection } from 'astro:content';
@@ -30,6 +31,14 @@ const latestTil = allTil
   description="Alex Joly — Freelance tech lead and full-stack developer based in Zurich, Switzerland. I build things that work."
 >
   <Hero />
+
+  <!-- Client Logo Bar -->
+  <LogoBar />
+
+  <!-- Divider -->
+  <div class="max-w-4xl mx-auto px-6">
+    <hr class="border-zinc-100/80 dark:border-zinc-800/60" />
+  </div>
 
   <!-- Featured Work -->
   <section class="max-w-4xl mx-auto px-6 py-12">

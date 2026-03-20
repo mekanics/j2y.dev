@@ -1,7 +1,7 @@
 ---
-title: "Time series models will silently overfit if you use random train/test splits"
-date: "2024-06-20"
-tags: ["python", "ml", "xgboost", "data-science"]
+title: 'Time series models will silently overfit if you use random train/test splits'
+date: '2026-03-08'
+tags: ['python', 'ml', 'xgboost', 'data-science']
 draft: false
 ---
 
