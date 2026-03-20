@@ -5,7 +5,8 @@ agency: "Freelance (self-employed)"
 role: "Lead Developer"
 stack: ["React Native", "TypeScript", "AWS Lambda", "Terraform", "Serverless"]
 description: "Mobile app and serverless backend for Switzerland's private and semi-public EV charging infrastructure — end-to-end ownership from prototype to production."
-date: "2023"
+startYear: 2023
+endYear: 2023
 featured: true
 draft: false
 ---

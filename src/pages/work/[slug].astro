@@ -12,14 +12,16 @@ export async function getStaticPaths() {
 
 const { item } = Astro.props;
 const { Content } = await render(item);
-const { title, client, agency, role, stack, date } = item.data;
+const { title, client, agency, role, stack, startYear, endYear } = item.data;
+
+const yearRange = !endYear ? `${startYear} — present` : startYear === endYear ? `${startYear}` : `${startYear} — ${endYear}`;
 
 // Try to match client name against the clients collection for logo display
 const allClients = await getCollection('clients');
 const clientEntry = allClients.find((c) => c.data.name === client);
 
-// date is stored as "YYYY-MM" — convert to ISO for schema
-const isoDate = new Date(date + '-01').toISOString();
+// Use startYear for schema datePublished
+const isoDate = new Date(`${startYear}-01-01`).toISOString();
 
 const structuredData = [
   {
@@ -112,7 +114,7 @@ const structuredData = [
         )}
         <div>
           <dt class="text-xs font-mono text-zinc-500 dark:text-zinc-500 uppercase tracking-wide mb-1">Year</dt>
-          <dd class="text-sm text-zinc-700 dark:text-zinc-300">{date}</dd>
+          <dd class="text-sm text-zinc-700 dark:text-zinc-300">{yearRange}</dd>
         </div>
         <div class="col-span-2 sm:col-span-3">
           <dt class="text-xs font-mono text-zinc-500 dark:text-zinc-500 uppercase tracking-wide mb-2">Stack</dt>

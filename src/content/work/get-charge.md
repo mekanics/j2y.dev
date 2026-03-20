@@ -5,7 +5,8 @@ agency: "KiloKilo GmbH (co-founded)"
 role: "Lead Developer"
 stack: ["React Native", "React", "Digital Branding", "Mobile"]
 description: "The mobile app for Telekom Deutschland's EV charging network — 56,000+ charging stations across Europe."
-date: "2020"
+startYear: 2020
+endYear: 2020
 featured: false
 draft: false
 ---

@@ -5,7 +5,10 @@ import LogoBar from '../../components/LogoBar.astro';
 import { getCollection } from 'astro:content';
 
 const allWork = await getCollection('work', ({ data }) => !data.draft);
-const sortedWork = allWork.sort((a, b) => b.data.date.localeCompare(a.data.date));
+const sortedWork = allWork.sort((a, b) => b.data.startYear - a.data.startYear);
+
+const formatYearRange = (start: number, end?: number) =>
+  !end ? `${start} — present` : start === end ? `${start}` : `${start} — ${end}`;
 ---
 
 <BaseLayout
@@ -33,7 +36,7 @@ const sortedWork = allWork.sort((a, b) => b.data.date.localeCompare(a.data.date)
           description={item.data.description}
           stack={item.data.stack}
           href={`/work/${item.id}`}
-          date={item.data.date}
+          date={formatYearRange(item.data.startYear, item.data.endYear)}
         />
       ))}
     </div>

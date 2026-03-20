@@ -5,7 +5,8 @@ agency: "KiloKilo GmbH (co-founded)"
 role: "Lead Developer"
 stack: ["TypeScript", "Next.js", "React", "Component Library"]
 description: "Government-grade IT service ordering and ticketing system — frontend and component library for the canton's internal service portal."
-date: "2021"
+startYear: 2021
+endYear: 2021
 featured: false
 draft: false
 ---

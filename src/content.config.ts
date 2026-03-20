@@ -22,7 +22,8 @@ const work = defineCollection({
     role: z.string(),
     stack: z.array(z.string()),
     description: z.string(),
-    date: z.string(),
+    startYear: z.number(),
+    endYear: z.number().optional(), // omit for ongoing
     featured: z.boolean().optional().default(false),
     draft: z.boolean().optional().default(false),
   }),

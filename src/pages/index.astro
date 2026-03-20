@@ -11,8 +11,11 @@ import socialsData from '../content/socials.json';
 const allWork = await getCollection('work', ({ data }) => !data.draft);
 const featuredWork = allWork
   .filter((p) => p.data.featured)
-  .sort((a, b) => b.data.date.localeCompare(a.data.date))
+  .sort((a, b) => b.data.startYear - a.data.startYear)
   .slice(0, 3);
+
+const formatYearRange = (start: number, end?: number) =>
+  !end ? `${start} — present` : start === end ? `${start}` : `${start} — ${end}`;
 
 // Featured projects
 const allProjects = await getCollection('projects', ({ data }) => !data.draft);
@@ -96,7 +99,7 @@ const latestTil = allTil
           description={item.data.description}
           stack={item.data.stack}
           href={`/work/${item.id}`}
-          date={item.data.date}
+          date={formatYearRange(item.data.startYear, item.data.endYear)}
         />
       ))}
     </div>

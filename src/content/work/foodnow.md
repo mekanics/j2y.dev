@@ -5,7 +5,8 @@ agency: "dreipol GmbH"
 role: "Mobile Developer"
 stack: ["Swift", "Kotlin Multiplatform", "GraphQL", "iOS", "Android"]
 description: "Cross-platform food delivery app for one of Switzerland's largest retailers. iOS and Android with shared business logic via Kotlin Multiplatform."
-date: "2023"
+startYear: 2023
+endYear: 2023
 featured: false
 draft: false
 ---
