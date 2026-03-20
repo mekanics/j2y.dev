@@ -29,4 +29,4 @@ harvest-clients/
     └── n8n-workflows/       # Ready-to-import workflow examples
 ```
 
-MIT licensed. If you're a freelancer using both n8n and Harvest, this should slot right in.
+MIT licensed. If you're a freelancer running both, install it and you're done.

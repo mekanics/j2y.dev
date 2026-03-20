@@ -5,10 +5,9 @@
 
 ## About
 
-Alexandre Joly is a freelance software architect and engineer specialising in technical leadership,
-full-stack development, and frontend architecture. Based in Zurich. Trilingual: English, German, French.
+Alexandre Joly is a freelance tech lead and full-stack developer based in Zurich. Trilingual: English, German, French.
 
-Available for project-based technical leadership and full-stack engagements.
+Available for freelance technical leadership and development work.
 
 Contact: alexandre@j2y.dev
 

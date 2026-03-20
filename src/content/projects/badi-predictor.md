@@ -16,4 +16,4 @@ The system collects real-time occupancy data, stores it in TimescaleDB, and trai
 
 It's been collecting data since launch. The longer it runs, the better it gets.
 
-A classic example of solving a mildly annoying problem with entirely disproportionate technology — which is the best kind of side project.
+Classic side project: annoying problem, way too much infrastructure.

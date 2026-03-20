@@ -27,8 +27,8 @@ The GraphQL API powered the data layer, handling the complexity of real-time inv
 
 Kotlin Multiplatform gave us one place to write and test the business logic. Both platforms consumed it. Changes to the core behaviour propagated to both apps without duplication.
 
-This approach required careful boundary design — what belongs in shared code versus what belongs in native UI. Getting that wrong adds friction. Getting it right means the platforms stay in sync without ceremony.
+This approach required careful boundary design — what belongs in shared code versus what belongs in native UI. Get the boundary wrong and you end up with duplicated logic and inconsistent behaviour across platforms. Get it right and changes to core logic propagate to both apps automatically.
 
 ## Outcome
 
-A cross-platform food delivery app shipping to Swiss customers, backed by one of the country's largest retailers. Both platforms, shared business logic, one coherent product.
+The app shipped on iOS and Android with shared business logic. One codebase for the core, native UI on each platform.

@@ -1,6 +1,6 @@
 ---
-title: "Today I hired a CFO - an n8n workflow to automate my invoices."
-date: "2025-12-19"
+title: 'Today I hired a CFO - an n8n workflow to automate my invoices.'
+date: '2025-12-19'
 tags:
   - n8n
   - automation
@@ -8,7 +8,7 @@ tags:
   - finance
   - beancount
   - harvest
-description: "How I automated monthly invoicing with n8n, Harvest, and Beancount — saving 15 minutes/month at the cost of 2 days engineering. Classic."
+description: 'How I automated monthly invoicing with n8n, Harvest, and Beancount — saving 15 minutes/month at the cost of 2 days engineering. Classic.'
 draft: false
 ---
 
@@ -39,11 +39,11 @@ Here's what the automation does:
 
 ![n8n workflow automation diagram showing monthly invoice preparation process with schedule trigger, uninvoiced time and expense retrieval, conditional client routing via switch node, and sub-workflow calls for invoice generation](./images/posts/today-I-hired-a-cfo/n8n-workflow-invoice.png)
 
-*Automated monthly invoicing workflow with scheduled triggers and client-specific routing*
+_Automated monthly invoicing workflow with scheduled triggers and client-specific routing_
 
 ![n8n workflow diagram showing invoice generation process with Harvest integration: retrieving project data, creating invoice, generating Beancount accounting entries, and sending Telegram notification](./images/posts/today-I-hired-a-cfo/n8n-workflow-invoice-monthly.png)
 
-*Core invoice preparation workflow: from Harvest project to Beancount entry and Telegram notification*
+_Core invoice preparation workflow: from Harvest project to Beancount entry and Telegram notification_
 
 ## The timesheet variation
 
@@ -56,7 +56,7 @@ Some clients want detailed timesheets with their invoices. For those, I extended
 
 ![Advanced n8n workflow for invoice generation with timesheet: Harvest integration, CSV timesheet generation, PDF invoice download, AI-powered email composition with OpenAI, Beancount entry creation, and Telegram notification](./images/posts/today-I-hired-a-cfo/n8n-workflow-invoice-monthly-with-timesheet-and-email.png)
 
-*Extended workflow for clients requiring timesheets: automated CSV timesheet generation, PDF downloads, AI-generated email drafts, and accounting integration*
+_Extended workflow for clients requiring timesheets: automated CSV timesheet generation, PDF downloads, AI-generated email drafts, and accounting integration_
 
 The email draft bit is particularly nice. I get a notification, check the draft in my email, make any tweaks if needed, and hit send. Still semi-automated, but it saves me from having to create the timesheet and manually attaching files.
 

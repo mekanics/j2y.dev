@@ -1,12 +1,12 @@
 ---
-title: "chargeprice.ch"
-description: "EV charging price comparison tool for Switzerland. Find the cheapest charging network for your car."
-stack: ["Web App"]
-url: "https://www.chargeprice.ch"
+title: 'chargeprice.ch'
+description: 'EV charging price comparison tool for Switzerland. Find the cheapest charging network for your car.'
+stack: ['Web App', 'TypeScript', 'Next.js', 'Tailwind CSS', 'Shadcn UI', 'AWS SQS']
+url: 'https://www.chargeprice.ch'
 year: 2024
-status: "live"
+status: 'live'
 featured: true
-draft: false
+draft: true
 ---
 
 EV charging in Switzerland is fragmented — different networks, different pricing models, different rates depending on your car. Before chargeprice.ch, comparing them meant guessing.

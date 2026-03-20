@@ -17,7 +17,7 @@ So I spent two hours vibe-coding this with AI assistance: a Python script that s
 
 GitHub Actions runs the scraper every morning at 8:00 AM UTC. If prices changed, it sends an alert to a Telegram channel ([@spusu_price_alerts](https://t.me/spusu_price_alerts)). Either way, the latest data gets committed back to the repo.
 
-No server needed. No database. Just a cron job, a Python script, and two JSON files.
+Runs on GitHub Actions. Cron job, Python script, two JSON files. No server.
 
 ## Honest Assessment
 

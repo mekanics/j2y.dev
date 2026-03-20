@@ -29,10 +29,10 @@ Everything provisioned with Terraform. Reproducible, version-controlled infrastr
 
 ## End-to-End Ownership
 
-The defining characteristic of this project was scope. I wasn't the frontend developer. I wasn't the backend developer. I was the person responsible for the whole thing reaching production.
+What made this project different was scope. I wasn't the frontend developer. I wasn't the backend developer. I was the person responsible for the whole thing reaching production.
 
-That means architecture decisions, third-party integrations, DevOps setup, and the operational runbook — not just shipping features. When something breaks at 11pm, you want to know who owns it. On this project, that was clear.
+That means architecture decisions, third-party integrations, DevOps setup, and the operational runbook — not just shipping features. When something breaks at 11pm, you want one person accountable — and I was it.
 
 ## Outcome
 
-A production mobile app backed by a serverless infrastructure — shipped from a blank slate to live users. Built to be maintainable by a small team, not just the person who built it.
+Shipped from scratch to production. The infrastructure is Terraform-managed and the architecture is documented — whoever picks this up next won't be starting from memory.

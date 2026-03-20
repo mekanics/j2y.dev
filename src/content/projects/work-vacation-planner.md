@@ -13,7 +13,7 @@ draft: false
 
 ## Why
 
-I needed an API to retrieve my vacation and working days in an n8n workflow. I didn't want to hardcode those days in the workflow — holidays change, vacation plans change, and maintaining that in JSON inside an automation tool is a recipe for stale data.
+I needed an API to retrieve my vacation and working days in an n8n workflow. I didn't want to hardcode those days in the workflow — holidays change, vacation plans change, and maintaining that in JSON inside n8n means it's out of date the moment your plans change.
 
 So I built a proper app with an API that n8n can query.
 
