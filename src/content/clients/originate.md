@@ -1,7 +1,7 @@
 ---
-name: "originate GmbH"
-logo: "./logos/originate.svg"
-url: "https://www.originate.ch"
-industry: "Agency"
-order: 15
+name: 'originate GmbH'
+logo: './logos/originate.svg'
+url: 'https://www.originate.ch'
+industry: 'Agency'
+order: 1
 ---

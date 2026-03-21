@@ -80,13 +80,13 @@ const clients = allClients.sort((a, b) => a.data.order - b.data.order);
 		filter: grayscale(0) opacity(1);
 	}
 
-	/* Dark-mode adjustments — invert so dark logos become light */
+	/* Dark-mode: flatten to white silhouettes for universal visibility */
 	:global(.dark) .logo-img {
-		filter: grayscale(1) invert(1) opacity(0.6);
+		filter: brightness(0) invert(1) opacity(0.6);
 	}
 
 	:global(.dark) .logo-img:hover {
-		filter: grayscale(0) opacity(0.95);
+		filter: brightness(0) invert(1) opacity(1);
 	}
 
 	/* ── Keyframe ────────────────────────────────────────────────────── */
