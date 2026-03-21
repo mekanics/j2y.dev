@@ -3,8 +3,8 @@ title: "GET CHARGE — EV Charging Roaming"
 client: "Telekom Deutschland GmbH"
 agency: "KiloKilo GmbH (co-founded)"
 role: "Lead Developer"
-stack: ["React Native", "React", "Digital Branding", "Mobile"]
-description: "Mobile app and digital brand for Telekom Deutschland's EV charging roaming service — one card, 56,000+ stations across 29 European countries."
+stack: ["React Native", "React", "Digital Branding", "iOS", "Android"]
+description: "Mobile app and digital brand for Telekom Deutschland's EV charging roaming service — one card, 56'000+ stations across 29 European countries."
 startYear: 2020
 endYear: 2020
 featured: false
@@ -13,7 +13,7 @@ draft: false
 
 ## The Context
 
-Telekom Deutschland didn't own charging stations. They built a roaming service on top of them — one app, one card, access to 56,000+ third-party charging stations across 29 European countries. Same idea as mobile roaming: you have one contract, one monthly bill in euros, and it works everywhere regardless of who operates the station.
+Telekom Deutschland didn't own charging stations. They built a roaming service on top of them — one app, one card, access to 56'000+ third-party charging stations across 29 European countries. Same idea as mobile roaming: you have one contract, one monthly bill in euros, and it works everywhere regardless of who operates the station.
 
 The brief came to KiloKilo, the digital studio I co-founded. I led the development.
 
@@ -30,4 +30,4 @@ We shaped the digital brand for GET CHARGE — visual identity, tone of voice, h
 
 ## Outcome
 
-Shipped in 2020. 56,000+ stations across 29 countries, ~21,000 in Germany alone. One of the bigger projects we shipped at KiloKilo — and a good example of a telco trying to apply their roaming expertise to a new market.
+Shipped in 2020. 56'000+ stations across 29 countries, ~21'000 in Germany alone. One of the bigger projects we shipped at KiloKilo — and a good example of a telco trying to apply their roaming expertise to a new market.
