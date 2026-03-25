@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=1200, height=630">
@@ -67,8 +68,8 @@
       position: absolute;
       inset: 0;
       background-image:
-        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+        linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
       background-size: 40px 40px;
       mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 20%, transparent 100%);
       -webkit-mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 20%, transparent 100%);
@@ -167,14 +168,12 @@
       top: 64px;
       bottom: 64px;
       width: 1px;
-      background: linear-gradient(
-        to bottom,
-        transparent 0%,
-        rgba(99, 102, 241, 0.4) 20%,
-        rgba(139, 92, 246, 0.5) 50%,
-        rgba(99, 102, 241, 0.4) 80%,
-        transparent 100%
-      );
+      background: linear-gradient(to bottom,
+          transparent 0%,
+          rgba(99, 102, 241, 0.4) 20%,
+          rgba(139, 92, 246, 0.5) 50%,
+          rgba(99, 102, 241, 0.4) 80%,
+          transparent 100%);
     }
 
     /* ── Right panel: terminal block ── */
@@ -190,11 +189,11 @@
       background: #1e1e1e;
       border-radius: 12px;
       overflow: hidden;
-      border: 1px solid rgba(255,255,255,0.08);
+      border: 1px solid rgba(255, 255, 255, 0.08);
       box-shadow:
-        0 0 0 1px rgba(99,102,241,0.15),
-        0 20px 60px rgba(0,0,0,0.5),
-        0 0 80px rgba(99,102,241,0.08);
+        0 0 0 1px rgba(99, 102, 241, 0.15),
+        0 20px 60px rgba(0, 0, 0, 0.5),
+        0 0 80px rgba(99, 102, 241, 0.08);
     }
 
     /* Terminal titlebar */
@@ -204,7 +203,7 @@
       display: flex;
       align-items: center;
       gap: 8px;
-      border-bottom: 1px solid rgba(255,255,255,0.06);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
     }
 
     .dot {
@@ -212,9 +211,18 @@
       height: 12px;
       border-radius: 50%;
     }
-    .dot-red    { background: #ff5f57; }
-    .dot-yellow { background: #febc2e; }
-    .dot-green  { background: #28c840; }
+
+    .dot-red {
+      background: #ff5f57;
+    }
+
+    .dot-yellow {
+      background: #febc2e;
+    }
+
+    .dot-green {
+      background: #28c840;
+    }
 
     .terminal-title {
       flex: 1;
@@ -325,6 +333,7 @@
     }
   </style>
 </head>
+
 <body>
   <div class="canvas">
     <!-- Ambient orbs -->
@@ -340,7 +349,7 @@
       <div class="logo">
         <span class="bracket">[</span><span class="inner">j2y</span><span class="bracket">]</span>
       </div>
-      <div class="tagline">I build things<br>that <span class="accent">work.</span></div>
+      <div class="tagline">I build, break and fix <span class="accent">work.</span></div>
       <div class="name">Alex Joly</div>
       <div class="role-row">
         <span class="role">Freelance Tech Lead &amp; Full-Stack Developer</span>
@@ -373,16 +382,20 @@
             <span class="t-output">{</span>
           </div>
           <div class="t-line">
-            <span class="t-output">&nbsp;&nbsp;<span class="t-key">"experience"</span>: <span class="t-string">"20+ years"</span>,</span>
+            <span class="t-output">&nbsp;&nbsp;<span class="t-key">"experience"</span>: <span class="t-string">"20+
+                years"</span>,</span>
           </div>
           <div class="t-line">
-            <span class="t-output">&nbsp;&nbsp;<span class="t-key">"focus"</span>: <span class="t-string">"Swiss enterprise"</span>,</span>
+            <span class="t-output">&nbsp;&nbsp;<span class="t-key">"focus"</span>: <span class="t-string">"Swiss
+                enterprise"</span>,</span>
           </div>
           <div class="t-line">
-            <span class="t-output">&nbsp;&nbsp;<span class="t-key">"stack"</span>: [<span class="t-string">"TS"</span>, <span class="t-string">"React"</span>, <span class="t-string">"Swift"</span>],</span>
+            <span class="t-output">&nbsp;&nbsp;<span class="t-key">"stack"</span>: [<span class="t-string">"TS"</span>,
+              <span class="t-string">"React"</span>, <span class="t-string">"Swift"</span>],</span>
           </div>
           <div class="t-line">
-            <span class="t-output">&nbsp;&nbsp;<span class="t-key">"available"</span>: <span class="t-val">true</span></span>
+            <span class="t-output">&nbsp;&nbsp;<span class="t-key">"available"</span>: <span
+                class="t-val">true</span></span>
           </div>
           <div class="t-line">
             <span class="t-output">}</span>
@@ -406,4 +419,5 @@
     <div class="bottom-line"></div>
   </div>
 </body>
+
 </html>
