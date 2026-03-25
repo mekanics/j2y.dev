@@ -12,24 +12,28 @@ const clients = allClients.sort((a, b) => a.data.order - b.data.order);
 
 	<!-- Outer wrapper: clips the scroll track and applies edge fades -->
 	<div class="logo-outer">
-		<!-- Scroll track: duplicated for seamless loop -->
+		<!-- Scroll track: two logo-sets with a gap between them for seamless loop -->
 		<div class="logo-track">
 			<!-- First copy -->
-			{
-				clients.map((c) => (
-					<div class="logo-slot">
-						<img src={c.data.logo.src} alt={c.data.name} title={c.data.name} class="logo-img" loading="lazy" decoding="async" />
-					</div>
-				))
-			}
+			<div class="logo-set">
+				{
+					clients.map((c) => (
+						<div class="logo-slot">
+							<img src={c.data.logo.src} alt={c.data.name} title={c.data.name} class="logo-img" loading="lazy" decoding="async" />
+						</div>
+					))
+				}
+			</div>
 			<!-- Duplicate copy for seamless loop -->
-			{
-				clients.map((c) => (
-					<div class="logo-slot" aria-hidden="true">
-						<img src={c.data.logo.src} alt="" class="logo-img" loading="lazy" decoding="async" />
-					</div>
-				))
-			}
+			<div class="logo-set" aria-hidden="true">
+				{
+					clients.map((c) => (
+						<div class="logo-slot">
+							<img src={c.data.logo.src} alt="" class="logo-img" loading="lazy" decoding="async" />
+						</div>
+					))
+				}
+			</div>
 		</div>
 	</div>
 </section>
@@ -47,13 +51,20 @@ const clients = allClients.sort((a, b) => a.data.order - b.data.order);
 	.logo-track {
 		display: flex;
 		align-items: center;
-		gap: 3rem; /* gap-12 */
+		gap: 3rem; /* gap between the two logo-sets */
 		width: max-content;
 		animation: scroll 90s linear infinite;
 	}
 
 	.logo-track:hover {
 		animation-play-state: paused;
+	}
+
+	/* ── Logo set (one copy of the list) ─────────────────────────────── */
+	.logo-set {
+		display: flex;
+		align-items: center;
+		gap: 3rem; /* gap between logos within each set */
 	}
 
 	/* ── Individual logo slot ────────────────────────────────────────── */
@@ -95,8 +106,14 @@ const clients = allClients.sort((a, b) => a.data.order - b.data.order);
 			transform: translateX(0);
 		}
 		to {
-			/* Translate by exactly half the track width (one copy of the list) */
-			transform: translateX(-50%);
+			/*
+			 * Track total width = 2 × set_width + 3rem (the gap between sets).
+			 * 50% of track = set_width + 1.5rem.
+			 * We want to translate by exactly one set_width + one gap (3rem)
+			 * so the second set snaps back to the first set's start position.
+			 * set_width + 3rem = (50% - 1.5rem) + 3rem = 50% + 1.5rem
+			 */
+			transform: translateX(calc(-50% - 1.5rem));
 		}
 	}
 
