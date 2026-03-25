@@ -8,7 +8,7 @@ description: "Cross-platform food delivery app for one of Switzerland's largest 
 url: 'https://www.dreipol.ch/de/referenzen/foodnow-app'
 startYear: 2023
 endYear: 2023
-featured: false
+featured: true
 draft: false
 ---
 
@@ -47,4 +47,4 @@ This approach required careful boundary design — what belongs in shared code v
 
 The app shipped on iOS and Android with shared business logic. One codebase for the core, native UI on each platform. 3 months from kickoff to App Store, 4.4 rating, 75% of orders through the app.
 
-Foodnow was later discontinued as part of broader cost-cutting at Migros — but the product shipped, the approach worked, and I'd do it the same way again.
+Foodnow was later discontinued as part of broader cost-cutting at Migros — but the product shipped, and the approach worked.

@@ -8,7 +8,7 @@ description: 'PoC applications and initial component library for the Canton of T
 startYear: 2021
 endYear: 2021
 featured: true
-draft: false
+draft: true
 ---
 
 ![TG Service Portal — design system cover illustration](./images/canton-thurgau/design-system-cover.webp)
@@ -17,7 +17,7 @@ draft: false
 
 The Canton of Thurgau was building the TG Service Portal — an internal IT service portal for their own employees and departments. Think service desk and IT ordering system: internal customers request hardware, report issues, order software licences, that kind of thing. Not citizen-facing — this was infrastructure for the people running the canton.
 
-KiloKilo was brought in to build proof-of-concept applications and lay the foundation for the component library. I led that work.
+KiloKilo was brought in to build proof-of-concept applications and lay the foundation for the component library.
 
 ## What We Built
 
