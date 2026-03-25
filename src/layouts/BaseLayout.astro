@@ -99,9 +99,9 @@ const resolvedCanonical = canonicalUrl || Astro.url.href;
     <script is:inline>
       (function() {
         const stored = localStorage.getItem('theme');
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        const isDark = stored === 'dark' || (!stored && prefersDark);
-        if (isDark) {
+        const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+        const isLight = stored === 'light' || (!stored && prefersLight);
+        if (!isLight) {
           document.documentElement.classList.add('dark');
         }
       })();
