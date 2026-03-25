@@ -45,4 +45,6 @@ This approach required careful boundary design — what belongs in shared code v
 
 ## Outcome
 
-The app shipped on iOS and Android with shared business logic. One codebase for the core, native UI on each platform. Foodnow has since been discontinued due to cost-cutting measures at Migros.
+The app shipped on iOS and Android with shared business logic. One codebase for the core, native UI on each platform. 3 months from kickoff to App Store, 4.4 rating, 75% of orders through the app.
+
+Foodnow was later discontinued as part of broader cost-cutting at Migros — but the product shipped, the approach worked, and I'd do it the same way again.

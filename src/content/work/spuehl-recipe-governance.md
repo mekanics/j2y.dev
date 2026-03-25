@@ -18,6 +18,8 @@ No audit trail, no version control, no approval process. A wrong recipe on a mac
 
 ## What We Built
 
+I was contracted through originate GmbH, who build the machine-side software and API. My focus was the frontend and the governance workflow layer.
+
 A governance platform that replaces the USB workflow with a structured, traceable process. The system handles the full recipe lifecycle:
 
 - **Recipe management** — version-controlled recipe library, with change history and authorship tracking

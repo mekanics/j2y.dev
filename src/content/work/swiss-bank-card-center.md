@@ -30,9 +30,9 @@ The work involved:
 
 ## How We Did It
 
-We started with one module, got it running in production, and used that as the proof of concept and template for everything that followed. Each step validated the architecture before we committed to the next.
+The migration started with one module, got it running in production, and used that as the proof of concept and template for everything that followed. Each step validated the architecture before committing to the next.
 
-We didn't do a big cutover or a months-long dark launch. One module at a time, each one in production before starting the next.
+No big cutover, no months-long dark launch. One module at a time, each one in production before starting the next.
 
 ## Outcome
 
