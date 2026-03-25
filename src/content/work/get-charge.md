@@ -24,6 +24,8 @@ screenshots:
     alt: "Charging history — past sessions and billing summary"
 ---
 
+![GET CHARGE — app and charging card key visual](./images/get-charge/hero.jpg)
+
 ## The Context
 
 Telekom Deutschland didn't own charging stations. They built a roaming service on top of them — one app, one card, access to 56'000+ third-party charging stations across 29 European countries. Same idea as mobile roaming: you have one contract, one monthly bill in euros, and it works everywhere regardless of who operates the station.
