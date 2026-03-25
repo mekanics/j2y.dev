@@ -1,0 +1,169 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import socialsData from '../content/socials.json';
+
+const timeline = [
+  {
+    period: '2023 – Present',
+    role: 'Freelance Tech Lead',
+    org: 'Self-employed',
+    description: 'Independent technical leadership for Swiss enterprise. Banking, manufacturing, government — the sectors where bugs aren\'t just annoying.',
+  },
+  {
+    period: '2015 – 2023',
+    role: 'Co-Founder & Managing Director, Technical Lead',
+    org: 'KiloKilo GmbH',
+    description: 'Co-founded a Zurich digital studio. Eight years of client work — Telekom Deutschland, Schweiz Tourismus, ewz, Alpiq Digital. Owned everything technical.',
+  },
+  {
+    period: '2012 – 2015',
+    role: 'iOS Developer',
+    org: 'Y&R Group Switzerland AG',
+    description: 'Shipped iOS applications for Swiss and international brand clients. Introduced GitLab as the company-wide version control standard.',
+  },
+  {
+    period: '2005 – 2012',
+    role: 'Control System Engineer',
+    org: 'Bühler AG',
+    description: 'Software engineering apprenticeship, then stayed on as a developer. Built control system software for flour mills and food processing plants in .NET. Making those systems work in software wasn\'t glamorous, but I learned what production-grade really means.',
+  },
+];
+---
+
+<BaseLayout
+  title="About"
+  description="Alexandre Joly — freelance tech lead and full-stack developer based in Zurich, Switzerland. 20+ years of building software."
+  structuredData={{
+    '@context': 'https://schema.org',
+    '@type': 'ProfilePage',
+    mainEntity: {
+      '@context': 'https://schema.org',
+      '@type': 'Person',
+      '@id': 'https://j2y.dev/#alex',
+      name: 'Alexandre Joly',
+      alternateName: 'Alex Joly',
+      url: 'https://j2y.dev',
+      image: 'https://avatars.githubusercontent.com/u/591059?v=4',
+      sameAs: socialsData.map(s => s.href),
+      jobTitle: 'Freelance Tech Lead & Full-Stack Developer',
+      description: 'Freelance tech lead and full-stack developer based in Zurich, Switzerland. 20+ years shipping software across Swiss enterprise.',
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: 'Zurich',
+        addressCountry: 'CH',
+      },
+      knowsLanguage: ['en', 'de', 'fr'],
+    },
+  }}
+>
+  <div class="max-w-4xl mx-auto px-6 py-16">
+    <div class="grid lg:grid-cols-3 gap-12 lg:gap-16">
+      <!-- Left: Photo + quick facts -->
+      <div class="lg:col-span-1">
+        <!-- Photo -->
+        <div class="w-full aspect-square max-w-xs rounded-2xl bg-zinc-100 dark:bg-zinc-800 mb-6 overflow-hidden">
+          <img
+            src="https://avatars.githubusercontent.com/u/591059?v=4"
+            alt="Alexandre Joly"
+            class="w-full h-full object-cover"
+            loading="lazy"
+          />
+        </div>
+
+        <!-- Quick facts -->
+        <dl class="space-y-4">
+          <div>
+            <dt class="text-xs font-mono text-zinc-500 dark:text-zinc-500 uppercase tracking-wide">Location</dt>
+            <dd class="text-sm text-zinc-700 dark:text-zinc-300 mt-1">Zurich 🇨🇭</dd>
+          </div>
+          <div>
+            <dt class="text-xs font-mono text-zinc-500 dark:text-zinc-500 uppercase tracking-wide">Languages</dt>
+            <dd class="text-sm text-zinc-700 dark:text-zinc-300 mt-1">English · German · French</dd>
+          </div>
+          <div>
+            <dt class="text-xs font-mono text-zinc-500 dark:text-zinc-500 uppercase tracking-wide">Interests</dt>
+            <dd class="text-sm text-zinc-700 dark:text-zinc-300 mt-1">Bouldering · Homelab tinkering · Building side projects</dd>
+          </div>
+          <div>
+            <dt class="text-xs font-mono text-zinc-500 dark:text-zinc-500 uppercase tracking-wide">Available for</dt>
+            <dd class="text-sm text-zinc-700 dark:text-zinc-300 mt-1">Freelance technical leadership and development work</dd>
+          </div>
+        </dl>
+
+        <!-- Contact CTA -->
+        <div class="mt-8">
+          <a
+            href="mailto:alexandre@j2y.dev"
+            class="inline-flex items-center gap-2 w-full justify-center px-4 py-2.5 bg-zinc-900 dark:bg-zinc-100 text-zinc-100 dark:text-zinc-900 text-sm font-medium rounded-lg hover:bg-zinc-700 dark:hover:bg-zinc-300 transition-colors"
+          >
+            Get in touch
+          </a>
+          <p class="text-xs text-zinc-400 dark:text-zinc-600 font-mono text-center mt-2">alexandre@j2y.dev</p>
+        </div>
+      </div>
+
+      <!-- Right: Bio + Timeline -->
+      <div class="lg:col-span-2">
+        <h1 class="text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 mb-6">
+          Alexandre Joly
+        </h1>
+
+        <div class="space-y-4 text-zinc-600 dark:text-zinc-400 leading-relaxed mb-12">
+          <p>
+            Freelance tech lead and full-stack developer, based in Zurich. 20+ years of shipping software — from software engineering at Bühler AG, through co-founding a digital studio (KiloKilo GmbH), to freelance technical leadership for Swiss enterprise clients.
+          </p>
+          <p>
+            The projects I take on tend to be ones where the architecture matters — banking, government, infrastructure. In these sectors, "we'll fix it in the next sprint" tends to have actual consequences. I come in, understand the problem, lead the technical work, and make sure it ships.
+          </p>
+          <p>
+            Trilingual — English, German, French — which actually matters when your clients are spread across Romandy, Deutschschweiz, and everything in between.
+          </p>
+          <p>
+            Outside work: bouldering, tinkering with a Kubernetes homelab, and building side projects that solve mildly annoying problems with entirely disproportionate technology.
+          </p>
+        </div>
+
+        <!-- Timeline -->
+        <div>
+          <h2 class="text-lg font-semibold text-zinc-900 dark:text-zinc-100 mb-6">
+            Work history
+          </h2>
+
+          <div class="relative">
+            <!-- Timeline line -->
+            <div class="absolute left-0 top-2 bottom-2 w-px bg-zinc-200 dark:bg-zinc-800" aria-hidden="true"></div>
+
+            <ol class="space-y-8 pl-8">
+              {timeline.map(({ period, role, org, description }) => (
+                <li class="relative">
+                  <!-- Dot -->
+                  <div class="absolute -left-8 top-1.5 w-2.5 h-2.5 rounded-full bg-zinc-300 dark:bg-zinc-600 ring-2 ring-white dark:ring-zinc-950" aria-hidden="true"></div>
+
+                  <p class="font-mono text-xs text-zinc-400 dark:text-zinc-600 mb-1">{period}</p>
+                  <p class="font-semibold text-zinc-900 dark:text-zinc-100 text-sm">
+                    {role}
+                    <span class="font-normal text-zinc-500 dark:text-zinc-500"> — {org}</span>
+                  </p>
+                  <p class="text-sm text-zinc-600 dark:text-zinc-400 mt-1 leading-relaxed">{description}</p>
+                </li>
+              ))}
+            </ol>
+          </div>
+
+          <p class="mt-8 text-sm text-zinc-500 dark:text-zinc-500">
+            Full work history on{' '}
+            <a
+              href={socialsData.find(s => s.platform === 'LinkedIn')?.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-blue-600 dark:text-orange-400 hover:underline"
+            >
+              LinkedIn
+            </a>
+            .
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

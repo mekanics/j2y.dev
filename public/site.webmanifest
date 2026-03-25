@@ -1,0 +1,14 @@
+{
+  "name": "j2y.dev — Alexandre Joly",
+  "short_name": "[j2y]",
+  "description": "Alexandre Joly — Freelance Tech Lead & Full-Stack Developer based in Zurich, Switzerland.",
+  "start_url": "/",
+  "lang": "en",
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ],
+  "theme_color": "#18181b",
+  "background_color": "#18181b",
+  "display": "standalone"
+}

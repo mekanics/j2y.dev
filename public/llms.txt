@@ -1,0 +1,45 @@
+# j2y.dev — Alexandre Joly
+
+> Freelance tech lead and full-stack developer based in Zurich, Switzerland.
+> 20+ years shipping software across Swiss enterprise — banking, manufacturing, government.
+
+## About
+
+Alexandre Joly is a freelance tech lead and full-stack developer based in Zurich. Trilingual: English, German, French.
+
+Available for freelance technical leadership and development work.
+
+Contact: alexandre@j2y.dev
+
+## Site sections
+
+- **Work** (https://j2y.dev/work): Client case studies — Swiss enterprise projects in banking, EV infrastructure, government, manufacturing
+- **Projects** (https://j2y.dev/projects): Personal side projects and open-source work
+- **TIL** (https://j2y.dev/til): Today I Learned — short technical notes on things discovered while building
+- **About** (https://j2y.dev/about): Background, timeline, and contact
+
+## Selected Work
+
+- Swiss bank card center platform — Frontend architecture lead, micro-frontend migration (React, Module Federation)
+- Spühl GmbH recipe governance — Lead developer, replaced USB-stick workflow with auditable 4-stage approval system
+- mygrid AG EV charging app — Lead developer, React Native + AWS Lambda serverless backend
+- Canton of Thurgau IT service portal — Lead developer, Next.js, government accessibility requirements
+- Get Charge (Deutsche Telekom) — Mobile app for 56,000+ EV charging stations across Europe
+
+## Personal Projects
+
+- badi-predictor: ML system predicting Zürich public pool occupancy (Python, XGBoost, FastAPI)
+- chargeprice.ch: EV charging price comparison for Switzerland
+- homelab: Kubernetes on Raspberry Pi (K3s, Cilium, Longhorn, ArgoCD)
+- work-vacation-planner: Freelance day planning tool for Swiss contractors
+
+## TIL Posts
+
+https://j2y.dev/til/rss.xml (RSS feed, all posts)
+
+## Social
+
+- GitHub: https://github.com/mekanics
+- LinkedIn: https://www.linkedin.com/in/jolyalexandre/
+- Mastodon: https://mastodon.online/@jolyAlexandre
+- X/Twitter: https://x.com/jolyAlexandre

@@ -1,0 +1,131 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+  ogTitle?: string;
+  ogDescription?: string;
+  ogImage?: string;
+  canonicalUrl?: string;
+  ogType?: 'website' | 'article';
+  structuredData?: object | object[];
+  noindex?: boolean;
+  articlePublishedTime?: string;
+  articleAuthor?: string;
+}
+
+const {
+  title,
+  description = 'Alexandre Joly — Freelance tech lead and full-stack developer based in Zurich, Switzerland.',
+  ogTitle,
+  ogDescription,
+  ogImage = '/og-default.png',
+  canonicalUrl,
+  ogType = 'website',
+  structuredData,
+  noindex = false,
+  articlePublishedTime,
+  articleAuthor,
+} = Astro.props;
+
+const pageTitle = title === 'j2y.dev' ? title : `${title} — j2y.dev`;
+const resolvedOgTitle = ogTitle || pageTitle;
+const resolvedOgDesc = ogDescription || description;
+const resolvedCanonical = canonicalUrl || Astro.url.href;
+---
+
+<!doctype html>
+<html lang="en" class="bg-white text-zinc-900 dark:bg-zinc-950 dark:text-zinc-100">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Primary Meta -->
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex,nofollow" />}
+    {!noindex && <link rel="canonical" href={resolvedCanonical} />}
+
+    <!-- Open Graph -->
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:title" content={resolvedOgTitle} />
+    <meta property="og:description" content={resolvedOgDesc} />
+    <meta property="og:url" content={resolvedCanonical} />
+    <meta property="og:image" content={new URL(ogImage, Astro.site)} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:site_name" content="j2y.dev" />
+    {articlePublishedTime && <meta property="article:published_time" content={articlePublishedTime} />}
+    {articleAuthor && <meta property="article:author" content={articleAuthor} />}
+
+    <!-- Twitter/X Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={resolvedOgTitle} />
+    <meta name="twitter:description" content={resolvedOgDesc} />
+    <meta name="twitter:image" content={new URL(ogImage, Astro.site)} />
+    <meta name="twitter:creator" content="@jolyAlexandre" />
+
+    <!-- RSS -->
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title="j2y.dev TIL feed"
+      href="/til/rss.xml"
+    />
+
+    <!-- Analytics (Umami) -->
+    {import.meta.env.PUBLIC_UMAMI_WEBSITE_ID && (
+      <script defer src="https://cloud.umami.is/script.js" data-website-id={import.meta.env.PUBLIC_UMAMI_WEBSITE_ID}></script>
+    )}
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- Structured Data -->
+    {structuredData && (
+      <script type="application/ld+json" set:html={JSON.stringify(Array.isArray(structuredData) ? structuredData : [structuredData])} />
+    )}
+
+    <!-- Theme detection (inline to avoid flash) -->
+    <script is:inline>
+      (function() {
+        const stored = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const isDark = stored === 'dark' || (!stored && prefersDark);
+        if (isDark) {
+          document.documentElement.classList.add('dark');
+        }
+      })();
+    </script>
+  </head>
+  <body class="min-h-screen flex flex-col antialiased">
+    <!-- Ambient page-level gradient — CSS radial gradients, no filter:blur().
+         filter:blur() on fixed elements forces full-page re-composite every
+         scroll frame; radial-gradient is a single GPU fill pass. -->
+    <div aria-hidden="true" class="page-ambient pointer-events-none fixed inset-0 -z-20"></div>
+    <Header />
+    <main class="flex-1">
+      <slot />
+    </main>
+    <Footer />
+    <script>
+      // Auto-pause videos when scrolled out of view
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          const video = entry.target as HTMLVideoElement;
+          if (!entry.isIntersecting && !video.paused) video.pause();
+        });
+      }, { threshold: 0.25 });
+      document.querySelectorAll('video').forEach((v) => observer.observe(v));
+    </script>
+  </body>
+</html>

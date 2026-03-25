@@ -1,0 +1,126 @@
+---
+import { getCollection } from 'astro:content';
+
+const allClients = await getCollection('clients', ({ data }) => data.showInCarousel !== false);
+const clients = allClients.sort((a, b) => a.data.order - b.data.order);
+---
+
+<section class="py-10">
+	<p class="text-xs font-medium tracking-widest text-zinc-400 dark:text-zinc-500 uppercase text-center mb-8">
+		Companies I've worked with
+	</p>
+
+	<!-- Outer wrapper: clips the scroll track and applies edge fades -->
+	<div class="logo-outer">
+		<!-- Scroll track: two logo-sets with a gap between them for seamless loop -->
+		<div class="logo-track" style="display:flex;flex-wrap:nowrap;align-items:center;gap:3rem;width:max-content;">
+			<!-- First copy -->
+			<div class="logo-set" style="display:flex;flex-wrap:nowrap;align-items:center;gap:3rem;">
+				{
+					clients.map((c) => (
+						<div class="logo-slot">
+							<img src={c.data.logo.src} alt={c.data.name} title={c.data.name} class="logo-img" loading="lazy" decoding="async" />
+						</div>
+					))
+				}
+			</div>
+			<!-- Duplicate copy for seamless loop -->
+			<div class="logo-set" aria-hidden="true" style="display:flex;flex-wrap:nowrap;align-items:center;gap:3rem;">
+				{
+					clients.map((c) => (
+						<div class="logo-slot">
+							<img src={c.data.logo.src} alt="" class="logo-img" loading="lazy" decoding="async" />
+						</div>
+					))
+				}
+			</div>
+		</div>
+	</div>
+</section>
+
+<style>
+	/* ── Outer container ─────────────────────────────────────────────── */
+	.logo-outer {
+		overflow: hidden;
+		/* Edge fades */
+		mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+		-webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+	}
+
+	/* ── Scroll track ────────────────────────────────────────────────── */
+	.logo-track {
+		display: flex;
+		align-items: center;
+		gap: 3rem; /* gap between the two logo-sets */
+		width: max-content;
+		animation: scroll 90s linear infinite;
+	}
+
+	.logo-track:hover {
+		animation-play-state: paused;
+	}
+
+	/* ── Logo set (one copy of the list) ─────────────────────────────── */
+	.logo-set {
+		display: flex;
+		align-items: center;
+		gap: 3rem; /* gap between logos within each set */
+	}
+
+	/* ── Individual logo slot ────────────────────────────────────────── */
+	.logo-slot {
+		/* Fixed container — same size for all logos */
+		width: 7rem; /* w-28 */
+		height: 3rem; /* h-12 */
+		flex-shrink: 0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	/* ── Logo image ──────────────────────────────────────────────────── */
+	.logo-img {
+		width: 100%;
+		height: 100%;
+		object-fit: contain;
+		filter: grayscale(1) opacity(0.5);
+		transition: filter 0.25s ease;
+	}
+
+	.logo-img:hover {
+		filter: grayscale(0) opacity(1);
+	}
+
+	/* Dark-mode: flatten to white silhouettes for universal visibility */
+	:global(.dark) .logo-img {
+		filter: brightness(0) invert(1) opacity(0.6);
+	}
+
+	:global(.dark) .logo-img:hover {
+		filter: brightness(0) invert(1) opacity(1);
+	}
+
+	/* ── Keyframe ────────────────────────────────────────────────────── */
+	@keyframes scroll {
+		from {
+			transform: translateX(0);
+		}
+		to {
+			/*
+			 * Track total width = 2 × set_width + 3rem (the gap between sets).
+			 * 50% of track = set_width + 1.5rem.
+			 * We want to translate by exactly one set_width + one gap (3rem)
+			 * so the second set snaps back to the first set's start position.
+			 * set_width + 3rem = (50% - 1.5rem) + 3rem = 50% + 1.5rem
+			 */
+			transform: translateX(calc(-50% - 1.5rem));
+		}
+	}
+
+	/* Respect reduced-motion preference */
+	@media (prefers-reduced-motion: reduce) {
+		.logo-track {
+			animation: none;
+		}
+	}
+</style>

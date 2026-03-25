@@ -1,0 +1,44 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import LogoBar from '../../components/LogoBar.astro';
+import { getCollection } from 'astro:content';
+
+const allWork = await getCollection('work', ({ data }) => !data.draft);
+const sortedWork = allWork.sort((a, b) => b.data.startYear - a.data.startYear);
+
+const formatYearRange = (start: number, end?: number) =>
+  !end ? `${start} — present` : start === end ? `${start}` : `${start} — ${end}`;
+---
+
+<BaseLayout
+  title="Work"
+  description="Client work and case studies — Alexandre Joly, freelance tech lead and full-stack developer based in Zurich."
+>
+  <div class="max-w-4xl mx-auto px-6 py-16">
+    <header class="mb-12">
+      <h1 class="text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 mb-3">
+        Work
+      </h1>
+      <p class="text-zinc-600 dark:text-zinc-400 max-w-xl">
+        Client projects — the problems, the approach, the outcome. Swiss enterprise, regulated industries, things where getting it wrong has real consequences.
+      </p>
+    </header>
+
+    <LogoBar />
+
+    <div class="grid gap-4 mt-12">
+      {sortedWork.map((item) => (
+        <ProjectCard
+          title={item.data.title}
+          client={item.data.client}
+          role={item.data.role}
+          description={item.data.description}
+          stack={item.data.stack}
+          href={`/work/${item.id}`}
+          date={formatYearRange(item.data.startYear, item.data.endYear)}
+        />
+      ))}
+    </div>
+  </div>
+</BaseLayout>

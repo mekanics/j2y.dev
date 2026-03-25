@@ -1,0 +1,407 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", "Fira Code", ui-monospace, "Cascadia Code", monospace;
+  
+  --color-accent: oklch(55% 0.18 250);
+  --color-accent-hover: oklch(48% 0.18 250);
+}
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  .dark {
+    color-scheme: dark;
+  }
+
+  html {
+    font-family: var(--font-sans);
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* overflow-x removed — was clipping ambient gradients */
+  }
+
+  /* Focus styles */
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  /* Selection */
+  ::selection {
+    background-color: oklch(55% 0.18 250 / 0.2);
+  }
+}
+
+/* Theme toggle transitions */
+html {
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* Prose content (markdown) */
+.prose {
+  max-width: 65ch;
+}
+
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4 {
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.prose pre {
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+}
+
+.prose code:not(pre code) {
+  font-family: var(--font-mono);
+  font-size: 0.875em;
+  padding: 0.1em 0.3em;
+  border-radius: 0.25rem;
+}
+
+/* Stack tag styling */
+.stack-tag {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+}
+
+/* ============================================
+   Glassmorphism Design System
+   ============================================ */
+
+/* Orb float animations — slow, ambient, CSS-only */
+@keyframes orb-drift-1 {
+  0%, 100% { transform: translateY(0px) translateX(0px) scale(1); }
+  25%       { transform: translateY(-18px) translateX(12px) scale(1.04); }
+  75%       { transform: translateY(-8px) translateX(-14px) scale(0.97); }
+}
+
+@keyframes orb-drift-2 {
+  0%, 100% { transform: translateY(0px) translateX(0px) scale(1); }
+  33%       { transform: translateY(-22px) translateX(-10px) scale(1.06); }
+  66%       { transform: translateY(-6px) translateX(16px) scale(0.98); }
+}
+
+@keyframes orb-drift-3 {
+  0%, 100% { transform: translateY(0px) translateX(0px) scale(1); }
+  40%       { transform: translateY(-12px) translateX(8px) scale(1.03); }
+  80%       { transform: translateY(-20px) translateX(-10px) scale(1.05); }
+}
+
+/* Orb base class */
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  will-change: transform;
+}
+
+.orb-1 {
+  animation: orb-drift-1 16s ease-in-out infinite;
+}
+
+.orb-2 {
+  animation: orb-drift-2 20s ease-in-out infinite;
+  animation-delay: -6s;
+}
+
+.orb-3 {
+  animation: orb-drift-3 13s ease-in-out infinite;
+  animation-delay: -3s;
+}
+
+/* Glass card — light mode
+   High-opacity background, no backdrop-filter (avoids GPU re-composite lag).
+   Box-shadow uses a large y-offset + negative spread so the shadow sits
+   cleanly BELOW the card and doesn't bleed around the sides/top (which
+   creates a false border halo at low opacity values). */
+.glass-card {
+  background: rgba(0, 0, 0, 0.02);
+  border: none;
+  outline: none;
+  box-shadow: none;
+  transition: background 0.2s ease;
+}
+
+.glass-card:hover {
+  background: rgba(0, 0, 0, 0.04);
+}
+
+/* Glass card — dark mode */
+.dark .glass-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: none;
+  outline: none;
+  box-shadow: none;
+}
+
+.dark .glass-card:hover {
+  background: rgba(255, 255, 255, 0.06);
+  box-shadow: none;
+}
+
+/* Page-level ambient background — CSS radial gradients replace filter:blur()
+   on fixed elements. Gradients are GPU-accelerated fill ops; filter:blur() on
+   fixed elements forces full-page re-composite on every scroll frame. */
+.page-ambient {
+  background:
+    radial-gradient(circle at 35% 15%, oklch(96% 0.03 236 / 0.18) 0%, transparent 55%),
+    radial-gradient(circle at 65% 45%, oklch(93% 0.04 278 / 0.15) 0%, transparent 50%);
+}
+
+.dark .page-ambient {
+  background:
+    radial-gradient(circle at 30% 20%, oklch(32% 0.13 236 / 0.25) 0%, transparent 50%),
+    radial-gradient(circle at 70% 40%, oklch(30% 0.13 278 / 0.15) 0%, transparent 50%);
+}
+
+/* Glass header — light mode */
+.glass-header {
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: none;
+  box-shadow: none;
+}
+
+/* Glass header — dark mode */
+.dark .glass-header {
+  background: rgba(9, 9, 11, 0.72);
+  border-bottom: none;
+  box-shadow: none;
+}
+
+/* Gradient CTA button — light: warm coral, dark: blue/violet */
+.btn-gradient {
+  background: linear-gradient(135deg, oklch(55% 0.22 260), oklch(55% 0.22 300));
+  color: white;
+  transition: filter 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+  box-shadow: 0 2px 12px oklch(55% 0.22 280 / 0.35);
+}
+
+.dark .btn-gradient {
+  background: linear-gradient(135deg, oklch(55% 0.22 260), oklch(55% 0.22 300));
+  box-shadow: 0 2px 12px oklch(55% 0.22 280 / 0.35);
+}
+
+.btn-gradient:hover {
+  filter: brightness(1.1);
+  box-shadow: 0 4px 20px oklch(55% 0.22 280 / 0.5);
+}
+
+.btn-gradient:active {
+  transform: translateY(1px);
+}
+
+/* Gradient heading text */
+.gradient-heading {
+  background: linear-gradient(135deg, oklch(25% 0.05 260), oklch(45% 0.2 270));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.dark .gradient-heading {
+  background: linear-gradient(135deg, oklch(92% 0.02 260), oklch(75% 0.18 280));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ============================================
+   Terminal Hero Block
+   ============================================ */
+
+/* Blinking cursor animation */
+@keyframes cursor-blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+.terminal-block {
+  border-radius: 0.625rem;
+  overflow: hidden;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.35);
+}
+
+.terminal-inner {
+  background: #1e1e1e;
+  padding: 1.25rem 1.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  line-height: 1.7;
+}
+
+.terminal-line {
+  display: flex;
+  gap: 0.6em;
+  align-items: baseline;
+}
+
+.terminal-prompt {
+  color: #5a8a5a;
+  flex-shrink: 0;
+  user-select: none;
+}
+
+.terminal-text {
+  color: #8fbc8f;
+  word-break: break-word;
+}
+
+.terminal-cursor {
+  display: inline-block;
+  color: #8fbc8f;
+  animation: cursor-blink 1s step-end infinite;
+  margin-left: 0.1em;
+  line-height: 1;
+  vertical-align: baseline;
+}
+
+/* ============================================
+   App Screenshot Gallery
+   ============================================ */
+
+.app-screenshot-gallery {
+  position: relative;
+  margin-inline: -1rem;
+  margin-block: 2rem;
+}
+
+.app-screenshot-gallery .gallery-track {
+  display: flex;
+  gap: 0;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  padding: 0;
+  margin: 0;
+}
+
+.app-screenshot-gallery .gallery-track::-webkit-scrollbar {
+  display: none;
+}
+
+.app-screenshot-gallery .gallery-item {
+  flex: 0 0 auto;
+  scroll-snap-align: start;
+  margin: 0;
+  padding: 0;
+  height: 480px;
+}
+
+.app-screenshot-gallery .gallery-img {
+  height: 100%;
+  width: auto;
+  border-radius: 0;
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+
+/* Responsive gallery item height */
+@media (max-width: 639px) {
+  .app-screenshot-gallery .gallery-item {
+    height: 360px;
+  }
+}
+
+/* Arrow navigation — desktop only, appear on gallery hover */
+.app-screenshot-gallery .gallery-arrow {
+  display: none;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  background: rgba(255, 255, 255, 0.92);
+  color: #3f3f46;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.2s ease, background 0.15s ease;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.dark .app-screenshot-gallery .gallery-arrow {
+  background: rgba(39, 39, 42, 0.92);
+  color: #d4d4d8;
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.app-screenshot-gallery .gallery-arrow--prev { left: 0.25rem; }
+.app-screenshot-gallery .gallery-arrow--next { right: 0.25rem; }
+
+@media (min-width: 1024px) {
+  .app-screenshot-gallery .gallery-arrow {
+    display: flex;
+  }
+
+  .app-screenshot-gallery:hover .gallery-arrow:not(:disabled) {
+    opacity: 1;
+  }
+
+  .app-screenshot-gallery .gallery-arrow:hover {
+    background: white;
+  }
+
+  .dark .app-screenshot-gallery .gallery-arrow:hover {
+    background: #27272a;
+  }
+
+  .app-screenshot-gallery .gallery-arrow:disabled {
+    opacity: 0 !important;
+    cursor: default;
+  }
+}
+
+/* Section gradient separator */
+.section-glow {
+  position: relative;
+}
+
+.section-glow::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    oklch(55% 0.18 270 / 0.3),
+    oklch(55% 0.18 270 / 0.3),
+    transparent
+  );
+}
+
+.dark .section-glow::before {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    oklch(65% 0.22 280 / 0.4),
+    oklch(65% 0.22 280 / 0.4),
+    transparent
+  );
+}

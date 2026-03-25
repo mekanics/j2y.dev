@@ -1,0 +1,66 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import TilEntry from '../../components/TilEntry.astro'
+import { getCollection } from 'astro:content'
+
+const allPosts = await getCollection('til', ({ data }) => !data.draft)
+const sortedPosts = allPosts.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+
+// Collect all unique tags
+const allTags = [...new Set(sortedPosts.flatMap(p => p.data.tags))].sort()
+---
+
+<BaseLayout
+	title="TIL"
+	description="Today I Learned — short notes on things Alexandre Joly discovers while building software.">
+	<div class="max-w-4xl mx-auto px-6 py-16">
+		<header class="mb-12">
+			<h1 class="text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 mb-3">Today I Learned</h1>
+			<p class="text-lg text-zinc-700 dark:text-zinc-300 font-medium mb-2">
+				Welcome to my personal zone of questionable brilliance!
+			</p>
+			<blockquote class="border-l-2 border-zinc-300 dark:border-zinc-600 pl-4 text-zinc-500 dark:text-zinc-400 mb-6">
+				Enter at your own risk — this is a sandbox of half-baked ideas, random brain dumps, and theories held together
+				by duct tape and hope. Trust level: 🥔.
+			</blockquote>
+
+			<!-- Tags -->
+			{
+				allTags.length > 0 && (
+					<div class="flex flex-wrap gap-2">
+						{allTags.map(tag => (
+							<span class="stack-tag px-2 py-1 bg-zinc-100 dark:bg-zinc-800 text-zinc-500 dark:text-zinc-400 rounded text-xs">
+								#{tag}
+							</span>
+						))}
+					</div>
+				)
+			}
+
+			<!-- RSS link -->
+			<a
+				href="/til/rss.xml"
+				class="inline-flex items-center gap-1.5 mt-4 text-xs text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200 transition-colors">
+				<svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+					<path
+						d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19.01 7.38 20 6.18 20C4.98 20 4 19.01 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27V4.44m0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93V10.1z"
+					></path>
+				</svg>
+				RSS feed
+			</a>
+		</header>
+
+		<div class="text-sm text-zinc-500 dark:text-zinc-500 font-mono mb-6">
+			{sortedPosts.length}
+			{sortedPosts.length === 1 ? 'post' : 'posts'}
+		</div>
+
+		<div>
+			{
+				sortedPosts.map(post => (
+					<TilEntry title={post.data.title} date={post.data.date} tags={post.data.tags} href={`/til/${post.id}`} />
+				))
+			}
+		</div>
+	</div>
+</BaseLayout>

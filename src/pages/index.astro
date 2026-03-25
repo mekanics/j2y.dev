@@ -1,49 +1,171 @@
 ---
-import Layout from '../layouts/Layout.astro'
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+
+import ProjectCard from '../components/ProjectCard.astro';
+import TilEntry from '../components/TilEntry.astro';
+import { getCollection } from 'astro:content';
+import socialsData from '../content/socials.json';
+
+// Featured work
+const allWork = await getCollection('work', ({ data }) => !data.draft);
+const featuredWork = allWork
+  .filter((p) => p.data.featured)
+  .sort((a, b) => b.data.startYear - a.data.startYear)
+  .slice(0, 3);
+
+const formatYearRange = (start: number, end?: number) =>
+  !end ? `${start} — present` : start === end ? `${start}` : `${start} — ${end}`;
+
+// Featured projects
+const allProjects = await getCollection('projects', ({ data }) => !data.draft);
+const featuredProjects = allProjects
+  .filter((p) => p.data.featured)
+  .slice(0, 2);
+
+// Latest TIL
+const allTil = await getCollection('til', ({ data }) => !data.draft);
+const latestTil = allTil
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 3);
 ---
 
-<Layout title="j2y.dev">
-	<main>
-		<section>
-			<h1>
-				Hi, I'm Alex –<br />
-				a full-stack software engineer <br />
-				dedicated to crafting digital solutions.
-			</h1>
-		</section>
-	</main>
-</Layout>
+<BaseLayout
+  title="j2y.dev"
+  description="Alexandre Joly — Freelance tech lead and full-stack developer based in Zurich, Switzerland. I build things that work."
+  structuredData={[
+    {
+      '@context': 'https://schema.org',
+      '@type': 'WebSite',
+      name: 'j2y.dev',
+      url: 'https://j2y.dev',
+      description: 'Personal portfolio of Alexandre Joly — freelance tech lead and full-stack developer in Zurich',
+      author: {
+        '@type': 'Person',
+        name: 'Alexandre Joly',
+      },
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Person',
+      '@id': 'https://j2y.dev/#alex',
+      name: 'Alexandre Joly',
+      alternateName: 'Alex Joly',
+      url: 'https://j2y.dev',
+      image: 'https://avatars.githubusercontent.com/u/591059?v=4',
+      sameAs: socialsData.map(s => s.href),
+      jobTitle: 'Freelance Tech Lead & Full-Stack Developer',
+      worksFor: {
+        '@type': 'Organization',
+        name: 'Self-employed',
+      },
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: 'Zurich',
+        addressCountry: 'CH',
+      },
+      knowsLanguage: ['en', 'de', 'fr'],
+      description: 'Freelance tech lead and full-stack developer based in Zurich, Switzerland. 20+ years shipping software across Swiss enterprise.',
+    },
+  ]}
+>
+  <Hero />
 
-<style>
-	main {
-		margin: auto;
-	}
+  <!-- Client Logo Bar -->
 
-	section {
-		padding: 300px var(--gutter-h) 10vh;
-		/* max-width: 60ch; */
-		min-height: 100vh;
-		min-height: 100svh;
-		min-width: 100vw;
-		min-width: 100svw;
 
-		display: grid;
-		align-items: end;
-	}
+  <!-- Divider -->
+  <div class="max-w-4xl mx-auto px-6">
+    <hr class="border-zinc-100/80 dark:border-zinc-800/60" />
+  </div>
 
-	h1 {
-		font-size: 7.4vw;
-		/* font-weight: 650; */
-		font-variation-settings: 'wght' 650;
-		margin: 0;
-	}
-	@media (min-width: 672px) {
-		section {
-			padding: 10vh var(--gutter-h);
-		}
+  <!-- Featured Work -->
+  <section class="max-w-4xl mx-auto px-6 py-12">
+    <div class="flex items-center justify-between mb-8">
+      <h2 class="text-xl font-semibold text-zinc-900 dark:text-zinc-100">
+        Selected work
+      </h2>
+      <a href="/work" class="text-sm text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors">
+        All projects →
+      </a>
+    </div>
 
-		h1 {
-			font-size: 3.703704vw;
-		}
-	}
-</style>
+    <div class="grid gap-4">
+      {featuredWork.map((item) => (
+        <ProjectCard
+          title={item.data.title}
+          client={item.data.client}
+          role={item.data.role}
+          description={item.data.description}
+          stack={item.data.stack}
+          href={`/work/${item.id}`}
+          date={formatYearRange(item.data.startYear, item.data.endYear)}
+        />
+      ))}
+    </div>
+  </section>
+
+  <!-- Divider -->
+  <div class="max-w-4xl mx-auto px-6 section-glow">
+    <hr class="border-zinc-100/80 dark:border-zinc-800/60" />
+  </div>
+
+  <!-- Personal Projects -->
+  <section class="max-w-4xl mx-auto px-6 py-12">
+    <div class="flex items-center justify-between mb-8">
+      <h2 class="text-xl font-semibold text-zinc-900 dark:text-zinc-100">
+        Building for fun
+      </h2>
+      <a href="/projects" class="text-sm text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors">
+        All projects →
+      </a>
+    </div>
+
+    <div class="grid sm:grid-cols-2 gap-4">
+      {featuredProjects.map((item) => (
+        <ProjectCard
+          title={item.data.title}
+          description={item.data.description}
+          stack={item.data.stack}
+          href={`/projects/${item.id}`}
+          status={item.data.status}
+          url={item.data.url}
+          github={item.data.github}
+        />
+      ))}
+    </div>
+  </section>
+
+  <!-- Divider -->
+  <div class="max-w-4xl mx-auto px-6 section-glow">
+    <hr class="border-zinc-100/80 dark:border-zinc-800/60" />
+  </div>
+
+  <!-- Latest TIL -->
+  <section class="max-w-4xl mx-auto px-6 py-12">
+    <div class="flex items-center justify-between mb-6">
+      <div>
+        <h2 class="text-xl font-semibold text-zinc-900 dark:text-zinc-100">
+          Today I learned
+        </h2>
+        <p class="text-sm text-zinc-500 dark:text-zinc-400 mt-1">
+          Short notes on things I run into while building.
+        </p>
+      </div>
+      <a href="/til" class="text-sm text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors shrink-0">
+        All posts →
+      </a>
+    </div>
+
+    <div>
+      {latestTil.map((post) => (
+        <TilEntry
+          title={post.data.title}
+          date={post.data.date}
+          tags={post.data.tags}
+          href={`/til/${post.id}`}
+        />
+      ))}
+    </div>
+  </section>
+</BaseLayout>

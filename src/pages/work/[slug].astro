@@ -1,0 +1,161 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import AppScreenshotGallery from '../../components/AppScreenshotGallery.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const workItems = await getCollection('work', ({ data }) => !data.draft);
+  return workItems.map((item) => ({
+    params: { slug: item.id },
+    props: { item },
+  }));
+}
+
+const { item } = Astro.props;
+const { Content } = await render(item);
+const { title, client, agency, role, stack, startYear, endYear, url, screenshots } = item.data;
+
+const yearRange = !endYear ? `${startYear} — present` : startYear === endYear ? `${startYear}` : `${startYear} — ${endYear}`;
+
+// Try to match client name against the clients collection for logo display
+const allClients = await getCollection('clients');
+const clientEntry = allClients.find((c) => c.data.name === client);
+
+// Use startYear for schema datePublished
+const isoDate = new Date(`${startYear}-01-01`).toISOString();
+
+const structuredData = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: title,
+    description: item.data.description,
+    datePublished: isoDate,
+    author: {
+      '@type': 'Person',
+      '@id': 'https://j2y.dev/#alex',
+      name: 'Alexandre Joly',
+      url: 'https://j2y.dev/about',
+    },
+    publisher: {
+      '@type': 'Person',
+      name: 'Alexandre Joly',
+      url: 'https://j2y.dev',
+    },
+    url: `https://j2y.dev/work/${item.id}/`,
+    mainEntityOfPage: `https://j2y.dev/work/${item.id}/`,
+    keywords: stack.join(', '),
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Work',
+        item: 'https://j2y.dev/work',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: title,
+        item: `https://j2y.dev/work/${item.id}/`,
+      },
+    ],
+  },
+];
+---
+
+<BaseLayout
+  title={title}
+  description={item.data.description}
+  ogTitle={`${title} — j2y.dev`}
+  ogDescription={item.data.description}
+  ogType="article"
+  articlePublishedTime={isoDate}
+  articleAuthor="Alexandre Joly"
+  structuredData={structuredData}
+>
+  <div class="max-w-4xl mx-auto px-6 py-16">
+    <!-- Breadcrumb -->
+    <nav class="mb-8 text-sm text-zinc-500 dark:text-zinc-500">
+      <a href="/work" class="hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors">Work</a>
+      <span class="mx-2">/</span>
+      <span class="text-zinc-900 dark:text-zinc-100">{title}</span>
+    </nav>
+
+    <!-- Header -->
+    <header class="mb-12 pb-8 border-b border-zinc-200 dark:border-zinc-800">
+      <p class="font-mono text-sm text-zinc-500 dark:text-zinc-500 mb-2">{client}</p>
+      <h1 class="text-3xl sm:text-4xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 mb-4">
+        {title}
+      </h1>
+
+      <!-- Metadata grid -->
+      <dl class="grid grid-cols-2 sm:grid-cols-3 gap-4 mt-6">
+        <div>
+          <dt class="text-xs font-mono text-zinc-500 dark:text-zinc-500 uppercase tracking-wide mb-1">Role</dt>
+          <dd class="text-sm text-zinc-700 dark:text-zinc-300">{role}</dd>
+        </div>
+        {agency && (
+          <div>
+            <dt class="text-xs font-mono text-zinc-500 dark:text-zinc-500 uppercase tracking-wide mb-1">Via</dt>
+            <dd class="text-sm text-zinc-700 dark:text-zinc-300">{agency}</dd>
+          </div>
+        )}
+        <div>
+          <dt class="text-xs font-mono text-zinc-500 dark:text-zinc-500 uppercase tracking-wide mb-1">Year</dt>
+          <dd class="text-sm text-zinc-700 dark:text-zinc-300">{yearRange}</dd>
+        </div>
+        {url && (
+          <div>
+            <dt class="text-xs font-mono text-zinc-500 dark:text-zinc-500 uppercase tracking-wide mb-1">Link</dt>
+            <dd class="text-sm"><a href={url} target="_blank" rel="noopener noreferrer" class="text-blue-600 dark:text-orange-400 hover:underline">{new URL(url).hostname.replace('www.', '')}</a></dd>
+          </div>
+        )}
+        <div class="col-span-2 sm:col-span-3">
+          <dt class="text-xs font-mono text-zinc-500 dark:text-zinc-500 uppercase tracking-wide mb-2">Stack</dt>
+          <dd class="flex flex-wrap gap-1.5">
+            {stack.map((tag) => (
+              <span class="stack-tag px-2 py-1 bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 rounded">
+                {tag}
+              </span>
+            ))}
+          </dd>
+        </div>
+      </dl>
+    </header>
+
+    <!-- Screenshot gallery (rendered outside prose to avoid max-width clipping) -->
+    {screenshots && screenshots.length > 0 && (
+      <AppScreenshotGallery screenshots={screenshots} />
+    )}
+
+    <!-- Content -->
+    <div class="prose prose-zinc dark:prose-invert max-w-none
+      prose-headings:tracking-tight
+      prose-h2:text-xl prose-h2:font-semibold prose-h2:mt-10 prose-h2:mb-4
+      prose-h3:text-lg prose-h3:font-medium prose-h3:mt-6 prose-h3:mb-3
+      prose-p:text-zinc-600 dark:prose-p:text-zinc-400 prose-p:leading-relaxed
+      prose-strong:text-zinc-900 dark:prose-strong:text-zinc-100 prose-strong:font-semibold
+      prose-code:font-mono prose-code:text-zinc-700 dark:prose-code:text-zinc-300 prose-code:bg-zinc-100 dark:prose-code:bg-zinc-800 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded
+      prose-pre:bg-zinc-900 prose-pre:text-zinc-100 prose-pre:border-none
+      [&_pre_code]:bg-transparent [&_pre_code]:p-0 [&_pre_code]:text-inherit
+      prose-li:text-zinc-600 dark:prose-li:text-zinc-400
+      prose-a:text-blue-600 dark:prose-a:text-orange-400 prose-a:no-underline hover:prose-a:underline
+    ">
+      <Content />
+    </div>
+
+    <!-- Back link -->
+    <div class="mt-16 pt-8 border-t border-zinc-200 dark:border-zinc-800">
+      <a
+        href="/work"
+        class="inline-flex items-center gap-2 text-sm text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
+      >
+        ← All work
+      </a>
+    </div>
+  </div>
+</BaseLayout>

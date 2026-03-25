@@ -1,12 +1,27 @@
-import { defineConfig } from 'astro/config'
-import sitemap from '@astrojs/sitemap'
+// @ts-check
+import { defineConfig } from 'astro/config';
+import tailwindcss from '@tailwindcss/vite';
+import sitemap from '@astrojs/sitemap';
+import mdx from '@astrojs/mdx';
+import { passthroughImageService } from 'astro/config';
 
 // https://astro.build/config
 export default defineConfig({
-    experimental: {
-        assets: true
+  site: 'https://j2y.dev',
+  vite: {
+    plugins: [tailwindcss()]
+  },
+  integrations: [
+    mdx(),
+    sitemap()
+  ],
+  image: {
+    service: passthroughImageService(),
+  },
+  markdown: {
+    shikiConfig: {
+      theme: 'github-dark',
+      wrap: true,
     },
-    site: 'https://www.j2y.dev',
-    integrations: [sitemap()],
-    compressHTML: true
-})
+  },
+});

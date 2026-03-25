@@ -1,24 +1,24 @@
 {
-	"name": "j2y.dev",
+	"name": "j2y-dev",
 	"type": "module",
 	"version": "0.0.1",
+	"engines": {
+		"node": ">=24.14.1"
+	},
 	"scripts": {
 		"dev": "astro dev",
-		"start": "astro dev",
-		"build": "astro check && tsc --noEmit && astro build",
+		"build": "astro build",
 		"preview": "astro preview",
 		"astro": "astro"
 	},
 	"dependencies": {
-		"@astrojs/image": "^0.17.1",
-		"@astrojs/sitemap": "^1.3.3",
-		"astro": "2.7.2",
-		"astro-seo": "^0.7.4",
-		"autoprefixer": "^10.4.14",
-		"cssnano": "^6.0.1"
+		"@astrojs/mdx": "^5.0.2",
+		"@astrojs/rss": "^4.0.17",
+		"@astrojs/sitemap": "^3.7.1",
+		"@tailwindcss/typography": "^0.5.19",
+		"@tailwindcss/vite": "^4.2.2",
+		"astro": "^6.0.6",
+		"tailwindcss": "^4.2.2"
 	},
-	"devDependencies": {
-		"prettier": "2.8.8",
-		"prettier-plugin-astro": "0.10.0"
-	}
+	"packageManager": "pnpm@10.30.3"
 }
