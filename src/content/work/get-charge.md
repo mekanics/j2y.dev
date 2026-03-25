@@ -30,12 +30,12 @@ We shaped the digital brand for GET CHARGE — visual identity, tone of voice, h
 
 <div class="app-screenshot-gallery" role="region" aria-label="GET CHARGE app screenshots">
   <div class="gallery-track">
-    <div class="gallery-item"><img class="gallery-img" src="./images/get-charge/01-map.png" alt="Map view — station locations across Europe" loading="eager" decoding="async" /></div>
-    <div class="gallery-item"><img class="gallery-img" src="./images/get-charge/02-filter.png" alt="Filter panel — filter stations by connector type and operator" loading="lazy" decoding="async" /></div>
-    <div class="gallery-item"><img class="gallery-img" src="./images/get-charge/03-search.png" alt="Search — find charging stations by location or address" loading="lazy" decoding="async" /></div>
-    <div class="gallery-item"><img class="gallery-img" src="./images/get-charge/04-station.png" alt="Station detail — availability, pricing, and connector info" loading="lazy" decoding="async" /></div>
-    <div class="gallery-item"><img class="gallery-img" src="./images/get-charge/05-charging.png" alt="Active charging session — live status and cost tracker" loading="lazy" decoding="async" /></div>
-    <div class="gallery-item"><img class="gallery-img" src="./images/get-charge/06-history.png" alt="Charging history — past sessions and billing summary" loading="lazy" decoding="async" /></div>
+    <div class="gallery-item"><img class="gallery-img" src="/images/get-charge/01-map.png" alt="Map view — station locations across Europe" loading="eager" decoding="async" /></div>
+    <div class="gallery-item"><img class="gallery-img" src="/images/get-charge/02-filter.png" alt="Filter panel — filter stations by connector type and operator" loading="lazy" decoding="async" /></div>
+    <div class="gallery-item"><img class="gallery-img" src="/images/get-charge/03-search.png" alt="Search — find charging stations by location or address" loading="lazy" decoding="async" /></div>
+    <div class="gallery-item"><img class="gallery-img" src="/images/get-charge/04-station.png" alt="Station detail — availability, pricing, and connector info" loading="lazy" decoding="async" /></div>
+    <div class="gallery-item"><img class="gallery-img" src="/images/get-charge/05-charging.png" alt="Active charging session — live status and cost tracker" loading="lazy" decoding="async" /></div>
+    <div class="gallery-item"><img class="gallery-img" src="/images/get-charge/06-history.png" alt="Charging history — past sessions and billing summary" loading="lazy" decoding="async" /></div>
   </div>
   <button class="gallery-arrow gallery-arrow--prev" aria-label="Previous screenshots" type="button">
     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M12.5 15L7.5 10L12.5 5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
