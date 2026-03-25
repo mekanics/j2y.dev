@@ -13,9 +13,9 @@ const clients = allClients.sort((a, b) => a.data.order - b.data.order);
 	<!-- Outer wrapper: clips the scroll track and applies edge fades -->
 	<div class="logo-outer">
 		<!-- Scroll track: two logo-sets with a gap between them for seamless loop -->
-		<div class="logo-track">
+		<div class="logo-track" style="display:flex;flex-wrap:nowrap;align-items:center;gap:3rem;width:max-content;">
 			<!-- First copy -->
-			<div class="logo-set">
+			<div class="logo-set" style="display:flex;flex-wrap:nowrap;align-items:center;gap:3rem;">
 				{
 					clients.map((c) => (
 						<div class="logo-slot">
@@ -25,7 +25,7 @@ const clients = allClients.sort((a, b) => a.data.order - b.data.order);
 				}
 			</div>
 			<!-- Duplicate copy for seamless loop -->
-			<div class="logo-set" aria-hidden="true">
+			<div class="logo-set" aria-hidden="true" style="display:flex;flex-wrap:nowrap;align-items:center;gap:3rem;">
 				{
 					clients.map((c) => (
 						<div class="logo-slot">
