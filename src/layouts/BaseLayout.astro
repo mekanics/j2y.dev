@@ -79,8 +79,10 @@ const resolvedCanonical = canonicalUrl || Astro.url.href;
       href="/til/rss.xml"
     />
 
-    <!-- Analytics (Umami — same ID as til.j2y.dev to merge data) -->
-    <script defer src="https://cloud.umami.is/script.js" data-website-id="131346f0-92b8-42f2-90fe-c02b08a06147"></script>
+    <!-- Analytics (Umami) -->
+    {import.meta.env.PUBLIC_UMAMI_WEBSITE_ID && (
+      <script defer src="https://cloud.umami.is/script.js" data-website-id={import.meta.env.PUBLIC_UMAMI_WEBSITE_ID}></script>
+    )}
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
