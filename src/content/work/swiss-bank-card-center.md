@@ -1,14 +1,14 @@
 ---
-title: "Card Center Platform"
-client: "A leading Swiss bank"
-agency: "Freelance (self-employed)"
-role: "Frontend Architecture Lead"
-stack: ["React", "TypeScript", "Module Federation", "Micro-frontends"]
-description: "Led the architectural transformation of a legacy financial platform to a micro-frontend system — modernised without disrupting live operations."
+title: 'Card Center Platform'
+client: 'A leading Swiss bank'
+agency: 'Freelance (self-employed)'
+role: 'Frontend Architecture Lead'
+stack: ['React', 'TypeScript', 'Module Federation', 'Micro-frontends']
+description: 'Led the architectural transformation of a legacy financial platform to a micro-frontend system — modernised without disrupting live operations.'
 startYear: 2024
 endYear: 2026
 featured: true
-draft: false
+draft: true
 ---
 
 ## The Problem
