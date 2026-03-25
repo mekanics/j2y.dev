@@ -4,7 +4,7 @@ client: 'Canton of Thurgau'
 agency: 'KiloKilo GmbH (co-founded)'
 role: 'Lead Developer'
 stack: ['TypeScript', 'Next.js', 'React', 'Component Library', 'Design System']
-description: 'PoC applications and initial component library for the Canton of Thurgau's TG Service Portal — an IT ticketing and ordering system for the canton's internal customers.'
+description: "PoC applications and initial component library for the Canton of Thurgau's TG Service Portal — an IT ticketing and ordering system for the canton's internal customers."
 startYear: 2021
 endYear: 2021
 featured: true
