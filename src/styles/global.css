@@ -290,8 +290,7 @@ html {
   scroll-behavior: smooth;
   scrollbar-width: none;
   padding: 0;
-  /* 1.5 items visible on mobile — peek effect */
-  --gallery-item-width: calc(100% / 1.5);
+  margin: 0;
 }
 
 .app-screenshot-gallery .gallery-track::-webkit-scrollbar {
@@ -299,30 +298,26 @@ html {
 }
 
 .app-screenshot-gallery .gallery-item {
-  flex: 0 0 var(--gallery-item-width);
+  flex: 0 0 auto;
   scroll-snap-align: start;
+  margin: 0;
+  padding: 0;
+  height: 480px;
 }
 
 .app-screenshot-gallery .gallery-img {
-  width: 100%;
-  max-height: 480px;
-  object-fit: contain;
-  object-position: top;
+  height: 100%;
+  width: auto;
   border-radius: 0;
   display: block;
+  margin: 0;
+  padding: 0;
 }
 
-/* 2 items on tablet */
-@media (min-width: 640px) {
-  .app-screenshot-gallery .gallery-track {
-    --gallery-item-width: calc(100% / 2);
-  }
-}
-
-/* 3 items on desktop */
-@media (min-width: 1024px) {
-  .app-screenshot-gallery .gallery-track {
-    --gallery-item-width: calc(100% / 3);
+/* Responsive gallery item height */
+@media (max-width: 639px) {
+  .app-screenshot-gallery .gallery-item {
+    height: 360px;
   }
 }
 
