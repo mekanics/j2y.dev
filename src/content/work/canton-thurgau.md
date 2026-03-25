@@ -1,53 +1,53 @@
 ---
-title: 'Digitaler Schalter — Digital Government Portal'
+title: 'TG Service Portal — Internal IT Service Ordering'
 client: 'Canton of Thurgau'
 agency: 'KiloKilo GmbH (co-founded)'
 role: 'Lead Developer'
 stack: ['TypeScript', 'Next.js', 'React', 'Component Library', 'Design System']
-description: 'A citizen-facing digital government portal with a full design system — from scholarship applications to tax filings, serving the entire Canton of Thurgau.'
+description: 'PoC applications and initial component library for the Canton of Thurgau's TG Service Portal — an IT ticketing and ordering system for the canton's internal customers.'
 startYear: 2021
 endYear: 2021
 featured: true
 draft: false
 ---
 
-![Thurgau Design System — cover illustration showing diverse citizens](./images/canton-thurgau/design-system-cover.webp)
+![TG Service Portal — design system cover illustration](./images/canton-thurgau/design-system-cover.webp)
 
 ## The Project
 
-The Canton of Thurgau set out to digitise its citizen services — moving paper-based government processes online. Not a marketing website, but a real transactional portal where citizens apply for scholarships, file tax extensions, order official documents, and manage their interactions with the canton.
+The Canton of Thurgau was building the TG Service Portal — an internal IT service portal for their own employees and departments. Think service desk and IT ordering system: internal customers request hardware, report issues, order software licences, that kind of thing. Not citizen-facing — this was infrastructure for the people running the canton.
 
-KiloKilo built it. I led the frontend and design system development.
+KiloKilo was brought in to build proof-of-concept applications and lay the foundation for the component library. I led that work.
 
 ## What We Built
 
 ![Component library overview — forms, buttons, navigation, cards, and data tables](./images/canton-thurgau/design-system-components.webp)
 
-**The Design System:**
-A component library covering all the form types, input patterns, and data displays a government portal actually requires, multi-step application wizards, data tables, accordion FAQs, date pickers, tag selectors, and responsive navigation. Built to be accessible, documented, and maintainable by teams that would extend it long after we left.
+**The component library:**
+The initial design system for TG Service Portal. Form components, input patterns, data displays, navigation — the building blocks the portal would be assembled from. Built to be accessible, documented, and maintainable by whoever would carry it forward. Government projects have long lifespans; the code has to outlast the project team.
 
-**The Portal:**
-A responsive, citizen-facing application handling the full service lifecycle. Citizens can browse services by category (education, taxes, construction, transport), complete multi-step applications with progress tracking, upload documents, and receive status updates.
+**PoC applications:**
+Proof-of-concept implementations showing how the component library would work end-to-end — service catalogue browsing, request flows, the kind of UI patterns an internal IT portal actually needs.
 
-![Homepage — desktop and mobile responsive views](./images/canton-thurgau/homepage-responsive.webp)
+![Portal UI — desktop and mobile responsive views](./images/canton-thurgau/homepage-responsive.webp)
 
-**Key Features:**
+**What that covered:**
 
-- 6-step scholarship application with eligibility pre-check and progress tracking
-- Service catalogue with topic filtering across 10+ government departments
-- FAQ system with categorised, searchable content and explainer video carousel
-- Logged-in user area for managing applications and personal documents
-- Friendly error and maintenance pages with custom illustrations
+- Service catalogue with category filtering
+- Multi-step request and ordering flows with progress tracking
+- Data tables for managing open requests and history
+- FAQ and help content patterns
+- User area for tracking active requests
 
-![Scholarship application flow and help & contact page](./images/canton-thurgau/scholarship-application.webp)
+![Service request flows and help & contact page](./images/canton-thurgau/scholarship-application.webp)
 
 ## The Constraints
 
-Public sector work has different constraints: WCAG accessibility, data protection, procurement timelines, people who care about outcomes not epics, and the expectation that the thing still works five years later with minimal upkeep.
+Public sector work comes with its own requirements: WCAG accessibility, procurement timelines, documentation standards, and the expectation that what you build keeps working without you. A government component library needs to be something another team can pick up cold and understand.
 
-Everything had to outlast the project: clear architecture, accessible components, and documentation that a developer can follow without needing to call me.
+That meant clear architecture, accessible components by default, and documentation that doesn't assume institutional knowledge.
 
-![Help & contact page with FAQ section, and graceful server error page](./images/canton-thurgau/help-contact-error.webp)
+![Help & contact page with FAQ section, and graceful error page](./images/canton-thurgau/help-contact-error.webp)
 
 ## Portal Walkthrough
 
@@ -57,4 +57,4 @@ Everything had to outlast the project: clear architecture, accessible components
 
 ## Outcome
 
-A live digital government portal serving the citizens of Canton Thurgau. A design system with hand-drawn illustrations that makes government services feel approachable rather than bureaucratic. Good UX here means someone submits their scholarship application in 15 minutes instead of mailing forms back and forth for three weeks. That's what it was actually for.
+PoC delivered. Component library established. The scope here was intentionally limited — lay the foundation, prove the patterns, hand it off in a state where the canton's internal teams (or another agency) could build on it. That's what it was scoped for, and that's what we delivered.
