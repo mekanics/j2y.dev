@@ -11,6 +11,8 @@ featured: false
 draft: false
 ---
 
+![Digital Chalet — 3D isometric illustration of a cozy alpine chalet interior](./images/biomed-digital-chalet/hero.png)
+
 ## The Context
 
 Pharma events are regulated. You can't just open a Zoom link and invite anyone — content intended for healthcare professionals has to stay with healthcare professionals. Biomed AG ran in-person events for doctors and medical specialists. Then COVID made that impossible.
