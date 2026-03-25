@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import AppScreenshotGallery from '../../components/AppScreenshotGallery.astro';
 import { getCollection, render } from 'astro:content';
 
 export async function getStaticPaths() {
@@ -12,7 +13,7 @@ export async function getStaticPaths() {
 
 const { item } = Astro.props;
 const { Content } = await render(item);
-const { title, client, agency, role, stack, startYear, endYear, url } = item.data;
+const { title, client, agency, role, stack, startYear, endYear, url, screenshots } = item.data;
 
 const yearRange = !endYear ? `${startYear} — present` : startYear === endYear ? `${startYear}` : `${startYear} — ${endYear}`;
 
@@ -125,6 +126,11 @@ const structuredData = [
         </div>
       </dl>
     </header>
+
+    <!-- Screenshot gallery (rendered outside prose to avoid max-width clipping) -->
+    {screenshots && screenshots.length > 0 && (
+      <AppScreenshotGallery screenshots={screenshots} />
+    )}
 
     <!-- Content -->
     <div class="prose prose-zinc dark:prose-invert max-w-none

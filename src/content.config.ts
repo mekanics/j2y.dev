@@ -15,7 +15,7 @@ const clients = defineCollection({
 
 const work = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/work' }),
-  schema: z.object({
+  schema: ({ image }) => z.object({
     title: z.string(),
     // client matches the `name` field in the clients collection — could become a reference later
     client: z.string(),
@@ -28,6 +28,10 @@ const work = defineCollection({
     endYear: z.number().optional(), // omit for ongoing
     featured: z.boolean().optional().default(false),
     draft: z.boolean().optional().default(false),
+    screenshots: z.array(z.object({
+      src: image(),
+      alt: z.string(),
+    })).optional(),
   }),
 });
 

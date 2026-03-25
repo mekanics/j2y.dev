@@ -284,14 +284,14 @@ html {
 
 .app-screenshot-gallery .gallery-track {
   display: flex;
-  gap: 1rem;
+  gap: 0;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
   scrollbar-width: none;
-  padding: 1rem;
+  padding: 0;
   /* 1.5 items visible on mobile — peek effect */
-  --gallery-item-width: calc((100% - 2 * 1rem) / 1.5);
+  --gallery-item-width: calc(100% / 1.5);
 }
 
 .app-screenshot-gallery .gallery-track::-webkit-scrollbar {
@@ -308,30 +308,21 @@ html {
   max-height: 480px;
   object-fit: contain;
   object-position: top;
-  border-radius: 0.75rem;
-  box-shadow:
-    0 2px 4px rgba(0, 0, 0, 0.06),
-    0 8px 24px rgba(0, 0, 0, 0.10);
+  border-radius: 0;
   display: block;
-}
-
-.dark .app-screenshot-gallery .gallery-img {
-  box-shadow:
-    0 2px 4px rgba(0, 0, 0, 0.20),
-    0 8px 32px rgba(0, 0, 0, 0.35);
 }
 
 /* 2 items on tablet */
 @media (min-width: 640px) {
   .app-screenshot-gallery .gallery-track {
-    --gallery-item-width: calc((100% - 3 * 1rem) / 2);
+    --gallery-item-width: calc(100% / 2);
   }
 }
 
 /* 3 items on desktop */
 @media (min-width: 1024px) {
   .app-screenshot-gallery .gallery-track {
-    --gallery-item-width: calc((100% - 4 * 1rem) / 3);
+    --gallery-item-width: calc(100% / 3);
   }
 }
 
