@@ -14,7 +14,7 @@ const clients = defineCollection({
 });
 
 const work = defineCollection({
-  loader: glob({ pattern: '**/*.md', base: './src/content/work' }),
+  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/work' }),
   schema: ({ image }) => z.object({
     title: z.string(),
     // client matches the `name` field in the clients collection — could become a reference later

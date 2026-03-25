@@ -9,20 +9,15 @@ startYear: 2020
 endYear: 2020
 featured: false
 draft: false
-screenshots:
-  - src: ./images/get-charge/01-map.png
-    alt: "Map view — station locations across Europe"
-  - src: ./images/get-charge/02-filter.png
-    alt: "Filter panel — filter stations by connector type and operator"
-  - src: ./images/get-charge/03-search.png
-    alt: "Search — find charging stations by location or address"
-  - src: ./images/get-charge/04-station.png
-    alt: "Station detail — availability, pricing, and connector info"
-  - src: ./images/get-charge/05-charging.png
-    alt: "Active charging session — live status and cost tracker"
-  - src: ./images/get-charge/06-history.png
-    alt: "Charging history — past sessions and billing summary"
 ---
+
+import AppScreenshotGallery from '../../components/AppScreenshotGallery.astro';
+import img01 from './images/get-charge/01-map.png';
+import img02 from './images/get-charge/02-filter.png';
+import img03 from './images/get-charge/03-search.png';
+import img04 from './images/get-charge/04-station.png';
+import img05 from './images/get-charge/05-charging.png';
+import img06 from './images/get-charge/06-history.png';
 
 ![GET CHARGE — app and charging card key visual](./images/get-charge/hero.jpg)
 
@@ -42,6 +37,15 @@ Product marketing site for GET CHARGE — built in React.
 
 **Digital branding:**
 We shaped the digital brand for GET CHARGE — visual identity, tone of voice, how the product presented itself across app and web. Not just building to spec, but defining what the product should look and feel like.
+
+<AppScreenshotGallery screenshots={[
+  { src: img01, alt: "Map view — station locations across Europe" },
+  { src: img02, alt: "Filter panel — filter stations by connector type and operator" },
+  { src: img03, alt: "Search — find charging stations by location or address" },
+  { src: img04, alt: "Station detail — availability, pricing, and connector info" },
+  { src: img05, alt: "Active charging session — live status and cost tracker" },
+  { src: img06, alt: "Charging history — past sessions and billing summary" },
+]} />
 
 ## Outcome
 
