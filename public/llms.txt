@@ -20,18 +20,18 @@ Contact: alexandre@j2y.dev
 
 ## Selected Work
 
-- Swiss bank card center platform — Frontend architecture lead, micro-frontend migration (React, Module Federation)
-- Spühl GmbH recipe governance — Lead developer, replaced USB-stick workflow with auditable 4-stage approval system
-- mygrid AG EV charging app — Lead developer, React Native + AWS Lambda serverless backend
-- Canton of Thurgau IT service portal — Lead developer, Next.js, government accessibility requirements
-- Get Charge (Deutsche Telekom) — Mobile app for 56,000+ EV charging stations across Europe
+- Biomed AG Digital Chalet — Lead developer, backend + HCP auth integration for pharma online events platform (Strapi, AWS CloudFormation, DocCheck, SwissRx)
+- Foodnow (Migros) — Mobile developer, cross-platform food delivery app embedded with dreipol (Swift, Kotlin Multiplatform, GraphQL)
+- mygrid AG EV charging app — Lead developer, React Native + AWS serverless backend, end-to-end ownership
+- Get Charge (Deutsche Telekom) — Lead developer, mobile app for 56'000+ EV charging stations across 29 European countries (React Native)
 
 ## Personal Projects
 
-- badi-predictor: ML system predicting Zürich public pool occupancy (Python, XGBoost, FastAPI)
-- chargeprice.ch: EV charging price comparison for Switzerland
-- homelab: Kubernetes on Raspberry Pi (K3s, Cilium, Longhorn, ArgoCD)
-- work-vacation-planner: Freelance day planning tool for Swiss contractors
+- badi-predictor: ML system predicting Zürich public pool occupancy — live at https://badifrei.ch (Python, XGBoost, FastAPI, TimescaleDB)
+- beancount-tools-collection: Swiss financial institution importers for plain-text accounting (https://github.com/mekanics/beancount-tools-collection)
+- n8n-nodes-harvest: Custom n8n community node for Harvest time tracking (https://github.com/mekanics/n8n-nodes-harvest)
+- work-vacation-planner: Freelance day planning tool for Swiss contractors (https://github.com/mekanics/work-vacation-planner)
+- homelab: Kubernetes on Raspberry Pi cluster (K3s, Cilium, Longhorn, ArgoCD) — in progress (https://github.com/mekanics/homelab)
 
 ## TIL Posts
 
