@@ -272,6 +272,123 @@ html {
   vertical-align: baseline;
 }
 
+/* ============================================
+   App Screenshot Gallery
+   ============================================ */
+
+.app-screenshot-gallery {
+  position: relative;
+  margin-inline: -1rem;
+  margin-block: 2rem;
+}
+
+.app-screenshot-gallery .gallery-track {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  padding: 1rem;
+  /* 1.5 items visible on mobile — peek effect */
+  --gallery-item-width: calc((100% - 2 * 1rem) / 1.5);
+}
+
+.app-screenshot-gallery .gallery-track::-webkit-scrollbar {
+  display: none;
+}
+
+.app-screenshot-gallery .gallery-item {
+  flex: 0 0 var(--gallery-item-width);
+  scroll-snap-align: start;
+}
+
+.app-screenshot-gallery .gallery-img {
+  width: 100%;
+  max-height: 480px;
+  object-fit: contain;
+  object-position: top;
+  border-radius: 0.75rem;
+  box-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.06),
+    0 8px 24px rgba(0, 0, 0, 0.10);
+  display: block;
+}
+
+.dark .app-screenshot-gallery .gallery-img {
+  box-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.20),
+    0 8px 32px rgba(0, 0, 0, 0.35);
+}
+
+/* 2 items on tablet */
+@media (min-width: 640px) {
+  .app-screenshot-gallery .gallery-track {
+    --gallery-item-width: calc((100% - 3 * 1rem) / 2);
+  }
+}
+
+/* 3 items on desktop */
+@media (min-width: 1024px) {
+  .app-screenshot-gallery .gallery-track {
+    --gallery-item-width: calc((100% - 4 * 1rem) / 3);
+  }
+}
+
+/* Arrow navigation — desktop only, appear on gallery hover */
+.app-screenshot-gallery .gallery-arrow {
+  display: none;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  background: rgba(255, 255, 255, 0.92);
+  color: #3f3f46;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.2s ease, background 0.15s ease;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.dark .app-screenshot-gallery .gallery-arrow {
+  background: rgba(39, 39, 42, 0.92);
+  color: #d4d4d8;
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.app-screenshot-gallery .gallery-arrow--prev { left: 0.25rem; }
+.app-screenshot-gallery .gallery-arrow--next { right: 0.25rem; }
+
+@media (min-width: 1024px) {
+  .app-screenshot-gallery .gallery-arrow {
+    display: flex;
+  }
+
+  .app-screenshot-gallery:hover .gallery-arrow:not(:disabled) {
+    opacity: 1;
+  }
+
+  .app-screenshot-gallery .gallery-arrow:hover {
+    background: white;
+  }
+
+  .dark .app-screenshot-gallery .gallery-arrow:hover {
+    background: #27272a;
+  }
+
+  .app-screenshot-gallery .gallery-arrow:disabled {
+    opacity: 0 !important;
+    cursor: default;
+  }
+}
+
 /* Section gradient separator */
 .section-glow {
   position: relative;
