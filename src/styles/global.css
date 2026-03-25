@@ -73,6 +73,19 @@ html {
   border-radius: 0.25rem;
 }
 
+/* Image captions — italic-only paragraph immediately after an image paragraph.
+   Markdown renders ![alt](img) as <p><img></p> then caption as <p><em>...</em></p>.
+   Tighten the gap so it reads as a caption, not a separate paragraph. */
+.prose p:has(> img) + p:has(> em:only-child),
+.prose p:has(> img) + p > em:only-child {
+  margin-top: 0.35rem !important;
+}
+
+.prose p:has(> img) + p:has(> em:only-child) {
+  opacity: 0.75;
+  font-size: 0.875rem;
+}
+
 /* Stack tag styling */
 .stack-tag {
   font-family: var(--font-mono);
