@@ -9,11 +9,25 @@ const sortedWork = allWork.sort((a, b) => b.data.startYear - a.data.startYear);
 
 const formatYearRange = (start: number, end?: number) =>
   !end ? `${start} — present` : start === end ? `${start}` : `${start} — ${end}`;
+
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: 'Work — j2y.dev',
+  url: 'https://j2y.dev/work/',
+  itemListElement: sortedWork.map((w, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    url: `https://j2y.dev/work/${w.id}/`,
+    name: w.data.title,
+  })),
+};
 ---
 
 <BaseLayout
   title="Work"
   description="Client work and case studies — Alexandre Joly, freelance tech lead and full-stack developer based in Zurich."
+  structuredData={structuredData}
 >
   <div class="max-w-4xl mx-auto px-6 py-16">
     <header class="mb-12">
@@ -35,7 +49,7 @@ const formatYearRange = (start: number, end?: number) =>
           role={item.data.role}
           description={item.data.description}
           stack={item.data.stack}
-          href={`/work/${item.id}`}
+          href={`/work/${item.id}/`}
           date={formatYearRange(item.data.startYear, item.data.endYear)}
         />
       ))}

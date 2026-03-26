@@ -1,12 +1,13 @@
 ---
-title: "mygrid — EV Charging App & Backend"
-client: "mygrid AG"
-agency: "Freelance (self-employed)"
-role: "Lead Developer"
-stack: ["React Native", "TypeScript", "AWS Lambda", "Terraform", "Serverless"]
+title: 'mygrid — EV Charging App & Backend'
+client: 'mygrid AG'
+agency: 'Freelance (self-employed)'
+role: 'Lead Developer'
+stack: ['React Native', 'TypeScript', 'AWS Lambda', 'Terraform', 'Serverless']
 description: "Mobile app and serverless backend for Switzerland's private and semi-public EV charging infrastructure — end-to-end ownership from prototype to production."
 startYear: 2023
 endYear: 2023
+date: 2024-02-01
 featured: true
 draft: false
 ---

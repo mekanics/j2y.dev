@@ -1,12 +1,13 @@
 ---
-title: "Digital Chalet — Online Events Platform"
-client: "Biomed AG"
-agency: "KiloKilo GmbH (co-founded)"
-role: "Lead Developer"
-stack: ["Strapi", "AWS CloudFormation", "SwissRx", "DocCheck"]
+title: 'Digital Chalet — Online Events Platform'
+client: 'Biomed AG'
+agency: 'KiloKilo GmbH (co-founded)'
+role: 'Lead Developer'
+stack: ['Strapi', 'AWS CloudFormation', 'SwissRx', 'DocCheck']
 description: "Backend and auth integration for Biomed AG's Digital Chalet — an online platform replacing in-person pharmaceutical events during the pandemic."
 startYear: 2021
 endYear: 2021
+date: 2023-06-01
 featured: false
 draft: false
 ---

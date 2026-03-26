@@ -21,8 +21,8 @@ const yearRange = !endYear ? `${startYear} — present` : startYear === endYear 
 const allClients = await getCollection('clients');
 const clientEntry = allClients.find((c) => c.data.name === client);
 
-// Use startYear for schema datePublished
-const isoDate = new Date(`${startYear}-01-01`).toISOString();
+// Use explicit date field if set, fall back to startYear
+const isoDate = (item.data.date ?? new Date(`${startYear}-01-01`)).toISOString();
 
 const structuredData = [
   {
@@ -54,7 +54,7 @@ const structuredData = [
         '@type': 'ListItem',
         position: 1,
         name: 'Work',
-        item: 'https://j2y.dev/work',
+        item: 'https://j2y.dev/work/',
       },
       {
         '@type': 'ListItem',
@@ -80,7 +80,7 @@ const structuredData = [
   <div class="max-w-4xl mx-auto px-6 py-16">
     <!-- Breadcrumb -->
     <nav class="mb-8 text-sm text-zinc-500 dark:text-zinc-500">
-      <a href="/work" class="hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors">Work</a>
+      <a href="/work/" class="hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors">Work</a>
       <span class="mx-2">/</span>
       <span class="text-zinc-900 dark:text-zinc-100">{title}</span>
     </nav>
@@ -151,7 +151,7 @@ const structuredData = [
     <!-- Back link -->
     <div class="mt-16 pt-8 border-t border-zinc-200 dark:border-zinc-800">
       <a
-        href="/work"
+        href="/work/"
         class="inline-flex items-center gap-2 text-sm text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
       >
         ← All work

@@ -85,8 +85,8 @@ const latestTil = allTil
       <h2 class="text-xl font-semibold text-zinc-900 dark:text-zinc-100">
         Selected work
       </h2>
-      <a href="/work" class="text-sm text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors">
-        All projects →
+      <a href="/work/" class="text-sm text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors">
+        All work →
       </a>
     </div>
 
@@ -98,7 +98,7 @@ const latestTil = allTil
           role={item.data.role}
           description={item.data.description}
           stack={item.data.stack}
-          href={`/work/${item.id}`}
+          href={`/work/${item.id}/`}
           date={formatYearRange(item.data.startYear, item.data.endYear)}
         />
       ))}
@@ -116,7 +116,7 @@ const latestTil = allTil
       <h2 class="text-xl font-semibold text-zinc-900 dark:text-zinc-100">
         Building for fun
       </h2>
-      <a href="/projects" class="text-sm text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors">
+      <a href="/projects/" class="text-sm text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors">
         All projects →
       </a>
     </div>
@@ -127,7 +127,7 @@ const latestTil = allTil
           title={item.data.title}
           description={item.data.description}
           stack={item.data.stack}
-          href={`/projects/${item.id}`}
+          href={`/projects/${item.id}/`}
           status={item.data.status}
           url={item.data.url}
           github={item.data.github}
@@ -152,7 +152,7 @@ const latestTil = allTil
           Short notes on things I run into while building.
         </p>
       </div>
-      <a href="/til" class="text-sm text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors shrink-0">
+      <a href="/til/" class="text-sm text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors shrink-0">
         All posts →
       </a>
     </div>
@@ -163,7 +163,7 @@ const latestTil = allTil
           title={post.data.title}
           date={post.data.date}
           tags={post.data.tags}
-          href={`/til/${post.id}`}
+          href={`/til/${post.id}/`}
         />
       ))}
     </div>

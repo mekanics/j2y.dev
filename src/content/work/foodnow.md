@@ -8,6 +8,7 @@ description: "Cross-platform food delivery app for one of Switzerland's largest 
 url: 'https://www.dreipol.ch/de/referenzen/foodnow-app'
 startYear: 2023
 endYear: 2023
+date: 2024-02-01
 featured: true
 draft: false
 ---
