@@ -16,17 +16,17 @@ function isActive(href: string): boolean {
 
 <header class="sticky top-0 z-50 backdrop-blur-sm">
 	<!--
-		Mobile (<640px): flex-wrap, two rows
+		Mobile (<480px): flex-wrap, two rows
 		  Row 1: logo (order-1, mr-auto) + theme toggle (order-2)
 		  Row 2: nav links (order-3, w-full, centered)
-		Desktop (≥640px): flex-nowrap, single row
+		Desktop (≥480px): flex-nowrap, single row
 		  logo | (auto gap) | nav links | theme toggle
 	-->
-	<nav class="max-w-4xl mx-auto px-6 flex flex-wrap items-center sm:flex-nowrap sm:h-14">
+	<nav class="max-w-4xl mx-auto px-6 flex flex-wrap items-center xs:flex-nowrap xs:h-14">
 		<!-- Logo -->
 		<a
 			href="/"
-			class="order-1 mr-auto py-3 sm:py-0 font-mono font-bold text-lg text-zinc-900 dark:text-zinc-100 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+			class="order-1 mr-auto py-3 xs:py-0 font-mono font-bold text-lg text-zinc-900 dark:text-zinc-100 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
 			aria-label="j2y.dev home">
 			[j2y]
 		</a>
@@ -34,7 +34,7 @@ function isActive(href: string): boolean {
 		<!-- Theme toggle — order-2 on mobile (row 1, right), order-last on desktop (far right) -->
 		<button
 			id="theme-toggle"
-			class="order-2 sm:order-last sm:ml-2 p-2 rounded-md text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 hover:bg-zinc-100/80 dark:hover:bg-zinc-800/80 transition-colors"
+			class="order-2 xs:order-last xs:ml-2 p-2 rounded-md text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 hover:bg-zinc-100/80 dark:hover:bg-zinc-800/80 transition-colors"
 			aria-label="Toggle dark mode">
 			<!-- Sun icon (shown in dark mode) -->
 			<svg
@@ -69,12 +69,12 @@ function isActive(href: string): boolean {
 
 		<!-- Nav links — order-3 on mobile (wraps to row 2, full width, centered),
 		     order-2 on desktop (inline, pushed right via ml-auto) -->
-		<div class="order-3 sm:order-2 w-full sm:w-auto sm:ml-auto flex items-center justify-center sm:justify-start gap-1 pb-2 sm:pb-0">
+		<div class="order-3 xs:order-2 w-full xs:w-auto xs:ml-auto flex items-center justify-center xs:justify-start gap-1 pb-2 xs:pb-0">
 			{
 				navLinks.map(({ href, label }) => (
 					<a
 						href={href}
-						class={`px-2 py-1 sm:px-3 sm:py-1.5 min-h-[44px] flex items-center rounded-md text-sm font-medium transition-colors ${
+						class={`px-2 py-1 xs:px-3 xs:py-1.5 min-h-[44px] flex items-center rounded-md text-sm font-medium transition-colors ${
 							isActive(href)
 								? 'text-zinc-900 dark:text-zinc-100 bg-zinc-100/80 dark:bg-zinc-800/80'
 								: 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 hover:bg-zinc-50/80 dark:hover:bg-zinc-800/50'
