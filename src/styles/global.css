@@ -9,6 +9,9 @@
 
 	--color-accent: oklch(55% 0.18 250);
 	--color-accent-hover: oklch(48% 0.18 250);
+
+	/* Custom breakpoint for mobile nav collapse (480px) */
+	--breakpoint-xs: 30rem;
 }
 
 @layer base {
