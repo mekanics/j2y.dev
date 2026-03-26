@@ -8,11 +8,25 @@ const sortedPosts = allPosts.sort((a, b) => b.data.date.valueOf() - a.data.date.
 
 // Collect all unique tags
 const allTags = [...new Set(sortedPosts.flatMap(p => p.data.tags))].sort()
+
+const structuredData = {
+	'@context': 'https://schema.org',
+	'@type': 'ItemList',
+	name: 'Today I Learned — j2y.dev',
+	url: 'https://j2y.dev/til/',
+	itemListElement: sortedPosts.map((p, i) => ({
+		'@type': 'ListItem',
+		position: i + 1,
+		url: `https://j2y.dev/til/${p.id}/`,
+		name: p.data.title,
+	})),
+}
 ---
 
 <BaseLayout
 	title="TIL"
-	description="Today I Learned — short notes on things Alexandre Joly discovers while building software.">
+	description="Today I Learned — short notes on things Alexandre Joly discovers while building software."
+	structuredData={structuredData}>
 	<div class="max-w-4xl mx-auto px-6 py-16">
 		<header class="mb-12">
 			<h1 class="text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 mb-3">Today I Learned</h1>
@@ -58,7 +72,7 @@ const allTags = [...new Set(sortedPosts.flatMap(p => p.data.tags))].sort()
 		<div>
 			{
 				sortedPosts.map(post => (
-					<TilEntry title={post.data.title} date={post.data.date} tags={post.data.tags} href={`/til/${post.id}`} />
+					<TilEntry title={post.data.title} date={post.data.date} tags={post.data.tags} href={`/til/${post.id}/`} />
 				))
 			}
 		</div>

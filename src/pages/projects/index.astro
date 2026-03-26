@@ -7,11 +7,25 @@ const allProjects = await getCollection('projects', ({ data }) => !data.draft);
 
 // Sort: newest first by year
 const sortedProjects = allProjects.sort((a, b) => (b.data.year ?? 0) - (a.data.year ?? 0));
+
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: 'Projects — j2y.dev',
+  url: 'https://j2y.dev/projects/',
+  itemListElement: sortedProjects.map((p, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    url: `https://j2y.dev/projects/${p.id}/`,
+    name: p.data.title,
+  })),
+};
 ---
 
 <BaseLayout
   title="Projects"
   description="Personal and open-source projects by Alexandre Joly — side projects, experiments, tools I've built for fun."
+  structuredData={structuredData}
 >
   <div class="max-w-4xl mx-auto px-6 py-16">
     <header class="mb-12">
@@ -29,7 +43,7 @@ const sortedProjects = allProjects.sort((a, b) => (b.data.year ?? 0) - (a.data.y
           title={item.data.title}
           description={item.data.description}
           stack={item.data.stack}
-          href={`/projects/${item.id}`}
+          href={`/projects/${item.id}/`}
           status={item.data.status}
           url={item.data.url}
           github={item.data.github}

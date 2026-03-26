@@ -53,7 +53,7 @@ const structuredData = [
     isPartOf: {
       '@type': 'Blog',
       name: 'j2y.dev TIL',
-      url: 'https://j2y.dev/til',
+      url: 'https://j2y.dev/til/',
     },
   },
   {
@@ -64,7 +64,7 @@ const structuredData = [
         '@type': 'ListItem',
         position: 1,
         name: 'TIL',
-        item: 'https://j2y.dev/til',
+        item: 'https://j2y.dev/til/',
       },
       {
         '@type': 'ListItem',
@@ -81,6 +81,7 @@ const structuredData = [
   title={title}
   description={metaDescription}
   ogTitle={`${title} — j2y.dev/til`}
+  ogImage={`/og/til-${post.id}.png`}
   ogType="article"
   articlePublishedTime={isoDate}
   articleAuthor="Alexandre Joly"
@@ -89,7 +90,7 @@ const structuredData = [
   <div class="max-w-4xl mx-auto px-6 py-16">
     <!-- Breadcrumb -->
     <nav class="mb-8 text-sm text-zinc-500 dark:text-zinc-500">
-      <a href="/til" class="hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors">TIL</a>
+      <a href="/til/" class="hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors">TIL</a>
       <span class="mx-2">/</span>
       <span class="text-zinc-900 dark:text-zinc-100 truncate">#{post.id}</span>
     </nav>
@@ -132,7 +133,7 @@ const structuredData = [
     <!-- Back link -->
     <div class="mt-16 pt-8 border-t border-zinc-200 dark:border-zinc-800">
       <a
-        href="/til"
+        href="/til/"
         class="inline-flex items-center gap-2 text-sm text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
       >
         ← All TIL posts
