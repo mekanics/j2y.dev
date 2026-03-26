@@ -6,6 +6,7 @@ role: 'Lead Developer'
 stack: ['React', 'Next.js', 'Python', 'Flask', 'Azure']
 description: 'Replaced a USB-stick-based production workflow with an auditable recipe governance system featuring 4-stage approval workflows.'
 startYear: 2025
+date: 2025-09-01
 featured: true
 draft: true
 ---

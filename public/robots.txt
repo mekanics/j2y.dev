@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /_astro/
 
 Sitemap: https://j2y.dev/sitemap-index.xml
