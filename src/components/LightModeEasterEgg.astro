@@ -1,0 +1,67 @@
+---
+// LightModeEasterEgg — shows a meme popup once when the user switches dark→light
+// on desktop (≥1024px). Gated by localStorage so it only fires once ever.
+---
+
+<style>
+  .easter-egg-popup {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    z-index: 60;
+    width: 200px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+    pointer-events: none;
+    animation: easter-egg-show 4s forwards;
+  }
+
+  @keyframes easter-egg-show {
+    0%   { opacity: 0; transform: translateY(20px); }
+    10%  { opacity: 1; transform: translateY(0); }
+    88%  { opacity: 1; transform: translateY(0); }
+    100% { opacity: 0; transform: translateY(8px); }
+  }
+</style>
+
+<script>
+  (function () {
+    if (localStorage.getItem('j2y-easter-egg-seen') === 'true') return;
+
+    const observer = new MutationObserver((mutations) => {
+      for (const mutation of mutations) {
+        const oldVal = mutation.oldValue ?? '';
+        const newVal = document.documentElement.className;
+        const wasDark = oldVal.includes('dark');
+        const isNowLight = !newVal.includes('dark');
+
+        if (wasDark && isNowLight && window.innerWidth >= 1024) {
+          localStorage.setItem('j2y-easter-egg-seen', 'true');
+          observer.disconnect();
+
+          const popup = document.createElement('div');
+          popup.className = 'easter-egg-popup';
+          popup.setAttribute('aria-hidden', 'true');
+
+          const img = document.createElement('img');
+          img.src = '/easter-egg-bright.webp';
+          img.alt = '';
+          img.width = 200;
+          img.height = 200;
+
+          popup.appendChild(img);
+          document.body.appendChild(popup);
+
+          popup.addEventListener('animationend', () => popup.remove());
+        }
+      }
+    });
+
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['class'],
+      attributeOldValue: true,
+    });
+  })();
+</script>
