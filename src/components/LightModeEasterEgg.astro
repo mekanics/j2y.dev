@@ -32,9 +32,8 @@
     const observer = new MutationObserver((mutations) => {
       for (const mutation of mutations) {
         const oldVal = mutation.oldValue ?? '';
-        const newVal = document.documentElement.className;
-        const wasDark = oldVal.includes('dark');
-        const isNowLight = !newVal.includes('dark');
+        const wasDark = /\bdark\b/.test(oldVal);
+        const isNowLight = !document.documentElement.classList.contains('dark');
 
         if (wasDark && isNowLight && window.innerWidth >= 1024) {
           localStorage.setItem('j2y-easter-egg-seen', 'true');
