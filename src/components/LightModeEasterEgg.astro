@@ -1,0 +1,68 @@
+---
+// LightModeEasterEgg — shows a meme popup once when the user switches dark→light
+// on desktop (≥1024px). Gated by localStorage with a 1-week TTL.
+---
+
+<style is:global>
+  .easter-egg-popup {
+    position: fixed;
+    bottom: 1.5rem;
+    left: 1.5rem;
+    z-index: 60;
+    width: 200px;
+    border-radius: 12px;
+    overflow: hidden;
+    pointer-events: none;
+    animation: easter-egg-show 6s forwards;
+  }
+
+  @keyframes easter-egg-show {
+    0%   { opacity: 0; transform: translateY(20px); }
+    10%  { opacity: 1; transform: translateY(0); }
+    88%  { opacity: 1; transform: translateY(0); }
+    100% { opacity: 0; transform: translateY(8px); }
+  }
+</style>
+
+<script>
+  (function () {
+    const STORAGE_KEY = 'j2y-easter-egg-seen';
+    const TTL_MS = 7 * 24 * 60 * 60 * 1000; // 1 week
+    const stored = localStorage.getItem(STORAGE_KEY);
+    if (stored && Date.now() - Number(stored) < TTL_MS) return;
+
+    const observer = new MutationObserver((mutations) => {
+      for (const mutation of mutations) {
+        const oldVal = mutation.oldValue ?? '';
+        const wasDark = /\bdark\b/.test(oldVal);
+        const isNowLight = !document.documentElement.classList.contains('dark');
+
+        if (wasDark && isNowLight && window.innerWidth >= 1024) {
+          localStorage.setItem(STORAGE_KEY, String(Date.now()));
+          observer.disconnect();
+
+          const popup = document.createElement('div');
+          popup.className = 'easter-egg-popup';
+          popup.setAttribute('aria-hidden', 'true');
+
+          const img = document.createElement('img');
+          img.src = '/easter-egg-bright.webp';
+          img.alt = '';
+          img.width = 200;
+          img.height = 200;
+
+          popup.appendChild(img);
+          document.body.appendChild(popup);
+
+          popup.addEventListener('animationend', () => popup.remove());
+        }
+      }
+    });
+
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['class'],
+      attributeOldValue: true,
+    });
+  })();
+</script>
