@@ -1,6 +1,6 @@
 ---
 // LightModeEasterEgg — shows a meme popup once when the user switches dark→light
-// on desktop (≥1024px). Gated by localStorage so it only fires once ever.
+// on desktop (≥1024px). Gated by localStorage with a 1-week TTL.
 ---
 
 <style is:global>
@@ -27,7 +27,10 @@
 
 <script>
   (function () {
-    if (localStorage.getItem('j2y-easter-egg-seen') === 'true') return;
+    const STORAGE_KEY = 'j2y-easter-egg-seen';
+    const TTL_MS = 7 * 24 * 60 * 60 * 1000; // 1 week
+    const stored = localStorage.getItem(STORAGE_KEY);
+    if (stored && Date.now() - Number(stored) < TTL_MS) return;
 
     const observer = new MutationObserver((mutations) => {
       for (const mutation of mutations) {
@@ -36,7 +39,7 @@
         const isNowLight = !document.documentElement.classList.contains('dark');
 
         if (wasDark && isNowLight && window.innerWidth >= 1024) {
-          localStorage.setItem('j2y-easter-egg-seen', 'true');
+          localStorage.setItem(STORAGE_KEY, String(Date.now()));
           observer.disconnect();
 
           const popup = document.createElement('div');
