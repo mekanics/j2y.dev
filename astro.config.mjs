@@ -10,6 +10,11 @@ export default defineConfig({
 	trailingSlash: 'always',
 	vite: {
 		plugins: [tailwindcss()],
+		resolve: {
+			// Required when Vite 8 is hoisted: @tailwindcss/vite spreads resolve options
+			// into rolldown's createResolver(), which rejects configs without tsconfigPaths.
+			tsconfigPaths: true,
+		},
 	},
 	integrations: [mdx(), sitemap()],
 	markdown: {
