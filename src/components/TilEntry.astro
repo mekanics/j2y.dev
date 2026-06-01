@@ -18,20 +18,20 @@ const formattedDate = date.toLocaleDateString('en-CH', {
 const isoDate = date.toISOString();
 ---
 
-<article class="group flex flex-col sm:flex-row sm:items-start gap-3 py-4 border-b border-zinc-100 dark:border-zinc-800/60 last:border-0">
+<article class="group grid grid-cols-1 sm:grid-cols-[7rem_1fr] gap-2 sm:gap-4 py-5 border-b border-zinc-100 dark:border-zinc-800/60 last:border-0">
   <!-- Date -->
   <time
     datetime={isoDate}
-    class="font-mono text-xs text-zinc-400 dark:text-zinc-600 shrink-0 sm:w-28 sm:pt-0.5"
+    class="font-mono text-xs text-zinc-400 dark:text-zinc-600 sm:pt-0.5"
   >
     {formattedDate}
   </time>
 
   <!-- Content -->
-  <div class="flex-1 min-w-0">
+  <div class="min-w-0">
     <a
       href={href}
-      class="block font-mono text-sm font-medium text-zinc-900 dark:text-zinc-100 hover:text-blue-600 dark:hover:text-blue-400 transition-colors leading-snug mb-2"
+      class="block font-mono text-sm font-medium text-zinc-900 dark:text-zinc-100 hover:text-[var(--color-accent)] transition-colors leading-snug mb-2"
     >
       {title}
     </a>
