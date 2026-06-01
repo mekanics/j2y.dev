@@ -21,5 +21,13 @@
 		"astro": "^6.0.6",
 		"tailwindcss": "^4.3.0"
 	},
-	"packageManager": "pnpm@10.34.1"
+	"packageManager": "pnpm@10.34.1",
+	"overrides": {
+		"vite": "^7"
+	},
+	"pnpm": {
+		"overrides": {
+			"vite": "^7"
+		}
+	}
 }
