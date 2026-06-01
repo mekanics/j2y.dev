@@ -19,6 +19,7 @@
 		"@tailwindcss/typography": "^0.5.19",
 		"@tailwindcss/vite": "^4.3.0",
 		"astro": "^6.0.6",
+		"sharp": "^0.34.5",
 		"tailwindcss": "^4.3.0"
 	},
 	"packageManager": "pnpm@10.34.1",
@@ -28,6 +29,7 @@
 	"pnpm": {
 		"overrides": {
 			"vite": "^7"
-		}
+		},
+		"onlyBuiltDependencies": ["sharp"]
 	}
 }
