@@ -22,7 +22,7 @@
 		"sharp": "^0.34.5",
 		"tailwindcss": "^4.3.0"
 	},
-	"packageManager": "pnpm@10.34.1",
+	"packageManager": "pnpm@10.34.5",
 	"overrides": {
 		"vite": "^7"
 	},
