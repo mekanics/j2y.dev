@@ -12,7 +12,6 @@
 		"astro": "astro"
 	},
 	"dependencies": {
-		"@astrojs/internal-helpers": "0.10.0",
 		"@astrojs/mdx": "^7.0.0",
 		"@astrojs/rss": "^4.0.17",
 		"@astrojs/sitemap": "^3.7.1",
@@ -24,11 +23,11 @@
 	},
 	"packageManager": "pnpm@10.34.1",
 	"overrides": {
-		"vite": "^7"
+		"vite": "^8"
 	},
 	"pnpm": {
 		"overrides": {
-			"vite": "^7"
+			"vite": "^8"
 		},
 		"onlyBuiltDependencies": ["sharp"]
 	}
