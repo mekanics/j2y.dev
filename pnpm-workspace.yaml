@@ -1,0 +1,10 @@
+overrides:
+  vite: ^8
+
+allowBuilds:
+  sharp: true
+  esbuild: false
+
+# Keep in sync with renovate.json "minimumReleaseAge" (3 days = 4320 min) so
+# Renovate-generated lockfiles always satisfy pnpm's install-time policy.
+minimumReleaseAge: 4320
