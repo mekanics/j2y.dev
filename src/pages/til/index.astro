@@ -1,13 +1,11 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro'
-import TilEntry from '../../components/TilEntry.astro'
 import { getCollection } from 'astro:content'
+import TilEntry from '../../components/TilEntry.astro'
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import { tilResultLabel } from '../../lib/til-query'
 
 const allPosts = await getCollection('til', ({ data }) => !data.draft)
 const sortedPosts = allPosts.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
-
-// Collect all unique tags
-const allTags = [...new Set(sortedPosts.flatMap(p => p.data.tags))].sort()
 
 const structuredData = {
 	'@context': 'https://schema.org',
@@ -30,43 +28,43 @@ const structuredData = {
 	<div class="max-w-4xl mx-auto px-6 py-16">
 		<header class="mb-12">
 			<h1 class="text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 mb-3">Today I Learned</h1>
-			<p class="text-lg text-zinc-700 dark:text-zinc-300 font-medium mb-2">
+			<p class="text-lg text-zinc-700 dark:text-zinc-300 mb-3">Short notes, written so I can find them again.</p>
+			<p class="text-sm text-zinc-500 dark:text-zinc-400 mb-2">
 				Welcome to my personal zone of questionable brilliance!
 			</p>
-			<blockquote class="border-l-2 border-zinc-300 dark:border-zinc-600 pl-4 text-zinc-500 dark:text-zinc-400 mb-6">
+			<blockquote
+				class="border-l-2 border-zinc-300 dark:border-zinc-600 pl-4 text-sm text-zinc-500 dark:text-zinc-400 mb-8">
 				Enter at your own risk — this is a sandbox of half-baked ideas, random brain dumps, and theories held together
 				by duct tape and hope. Trust level: 🥔.
 			</blockquote>
 
-			<!-- Tags -->
-			{
-				allTags.length > 0 && (
-					<div class="flex flex-wrap gap-2">
-						{allTags.map(tag => (
-							<span class="stack-tag px-2 py-1 bg-zinc-100 dark:bg-zinc-800 text-zinc-500 dark:text-zinc-400 rounded text-xs">
-								#{tag}
-							</span>
-						))}
-					</div>
-				)
-			}
-
-			<!-- RSS link -->
-			<a
-				href="/til/rss.xml"
-				class="inline-flex items-center gap-1.5 mt-4 text-xs text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200 transition-colors">
-				<svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-					<path
-						d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19.01 7.38 20 6.18 20C4.98 20 4 19.01 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27V4.44m0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93V10.1z"
-					></path>
-				</svg>
-				RSS feed
-			</a>
+			<div class="grid grid-cols-[1fr_auto] items-center gap-x-4 text-xs text-zinc-400">
+				<a
+					id="til-show-all"
+					href="/til/"
+					hidden
+					class="justify-self-start text-sm text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors">
+					Show all
+				</a>
+				<a
+					href="/til/rss.xml"
+					class="col-start-2 inline-grid grid-cols-[auto_auto] items-center gap-1.5 hover:text-zinc-700 dark:hover:text-zinc-200 transition-colors">
+					<svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+						<path
+							d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19.01 7.38 20 6.18 20C4.98 20 4 19.01 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27V4.44m0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93V10.1z"
+						></path>
+					</svg>
+					RSS feed
+				</a>
+			</div>
 		</header>
 
-		<div class="text-sm text-zinc-500 dark:text-zinc-500 font-mono mb-6">
-			{sortedPosts.length}
-			{sortedPosts.length === 1 ? 'post' : 'posts'}
+		<div
+			id="til-status"
+			role="status"
+			aria-live="polite"
+			class="text-sm text-zinc-500 dark:text-zinc-500 font-mono mb-6">
+			{tilResultLabel(sortedPosts.length, false)}
 		</div>
 
 		<div>
@@ -78,3 +76,87 @@ const structuredData = {
 		</div>
 	</div>
 </BaseLayout>
+
+<script>
+	import { matchTil, parseTilQuery, tilResultLabel, type TilQuery } from '../../lib/til-query'
+
+	const status = document.getElementById('til-status')
+	const showAll = document.getElementById('til-show-all')
+
+	function writeUrl(query: TilQuery, mode: 'push' | 'replace') {
+		const tag = query.tag?.trim() || null
+		const params = new URLSearchParams()
+		if (tag) params.set('tag', tag)
+		const search = params.toString()
+		const url = search.length > 0 ? `/til/?${search}` : '/til/'
+		if (mode === 'push') history.pushState(null, '', url)
+		else history.replaceState(null, '', url)
+	}
+
+	function apply() {
+		const parsed = parseTilQuery(location.search)
+		const query: TilQuery = { tag: parsed.tag, q: null }
+		const queryActive = query.tag !== null
+
+		if (parsed.q !== null) writeUrl(query, 'replace')
+
+		let visible = 0
+		for (const article of document.querySelectorAll<HTMLElement>('article[data-title]')) {
+			let tags: string[] = []
+			try {
+				const parsedTags: unknown = JSON.parse(article.dataset.tags ?? '[]')
+				if (Array.isArray(parsedTags) && parsedTags.every(item => typeof item === 'string')) {
+					tags = parsedTags
+				}
+			} catch {
+				tags = []
+			}
+
+			const matches = matchTil({ title: article.dataset.title ?? '', tags }, query)
+			article.toggleAttribute('hidden', !matches)
+			if (matches) visible += 1
+		}
+
+		if (status) status.textContent = tilResultLabel(visible, queryActive)
+		if (showAll) showAll.toggleAttribute('hidden', !queryActive)
+
+		for (const link of document.querySelectorAll<HTMLAnchorElement>('a[href^="/til/?tag="]')) {
+			const hrefTag = parseTilQuery(new URL(link.href).search).tag
+			const isCurrent = query.tag !== null && hrefTag !== null && query.tag.toLowerCase() === hrefTag.toLowerCase()
+			if (isCurrent) link.setAttribute('aria-current', 'true')
+			else link.removeAttribute('aria-current')
+		}
+	}
+
+	document.addEventListener('click', event => {
+		if (event.defaultPrevented || event.button !== 0) return
+		if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return
+
+		const target = event.target
+		if (!(target instanceof Element)) return
+
+		const showAllLink = target.closest('#til-show-all')
+		if (showAllLink) {
+			event.preventDefault()
+			history.pushState(null, '', '/til/')
+			apply()
+			return
+		}
+
+		const tagLink = target.closest<HTMLAnchorElement>('a[href^="/til/?tag="]')
+		if (!tagLink) return
+
+		event.preventDefault()
+		const current = parseTilQuery(location.search)
+		const clicked = parseTilQuery(new URL(tagLink.href).search).tag
+		const sameTag = current.tag !== null && clicked !== null && current.tag.toLowerCase() === clicked.toLowerCase()
+		writeUrl({ tag: sameTag ? null : clicked, q: null }, 'push')
+		apply()
+	})
+
+	window.addEventListener('popstate', () => {
+		apply()
+	})
+
+	apply()
+</script>
