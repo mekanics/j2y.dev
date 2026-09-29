@@ -19,7 +19,7 @@ No audit trail, no version control, no approval process. A wrong recipe on a mac
 
 ## What We Built
 
-I was contracted through originate GmbH, who build the machine-side software and API. My focus was the frontend and the governance workflow layer.
+originate GmbH builds the machine-side software and API. I supported that team, focusing on the frontend and the governance workflow layer.
 
 A governance platform that replaces the USB workflow with a structured, traceable process. The system handles the full recipe lifecycle:
 
@@ -33,8 +33,6 @@ A governance platform that replaces the USB workflow with a structured, traceabl
 ## The Shift
 
 The tech was straightforward. The harder thing was that USB sticks, despite everything, are simple — you grab one, walk to the machine, and it works. Adding a four-stage approval process means convincing production staff that the friction is worth it.
-
-I spent time on the production floor before building anything. If the approval workflow is too much friction, people route around it — which defeats the point. Getting that right required understanding how they actually work, not how the process diagram said they should.
 
 ## Outcome
 
